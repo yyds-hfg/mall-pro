@@ -30,6 +30,7 @@ import java.util.zip.ZipOutputStream;
  */
 @Service
 public class SysGeneratorService {
+
 	@Autowired
 	private GeneratorDao generatorDao;
 
@@ -63,4 +64,5 @@ public class SysGeneratorService {
 		IOUtils.closeQuietly(zip);
 		return outputStream.toByteArray();
 	}
+
 }

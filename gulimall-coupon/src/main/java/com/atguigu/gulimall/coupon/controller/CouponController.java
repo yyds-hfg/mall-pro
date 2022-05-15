@@ -3,6 +3,8 @@ package com.atguigu.gulimall.coupon.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.atguigu.common.result.ResultT;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -30,12 +32,13 @@ import com.atguigu.common.utils.R;
 @RestController
 @RequestMapping("coupon/coupon")
 public class CouponController {
+
     @Autowired
     private CouponService couponService;
 
-
     @Value("${coupon.user.name}")
     private String name;
+
     @Value("${coupon.user.age}")
     private Integer age;
 
@@ -46,10 +49,11 @@ public class CouponController {
     }
 
     @RequestMapping("/member/list")
-    public R membercoupons(){
+    @ApiOperation("会员服务")
+    public ResultT<CouponEntity> membercoupons(){
         CouponEntity couponEntity = new CouponEntity();
         couponEntity.setCouponName("满100减10");
-        return R.ok().put("coupons",Arrays.asList(couponEntity));
+        return ResultT.ok(couponEntity);
     }
 
     /**
@@ -59,10 +63,8 @@ public class CouponController {
     //@RequiresPermissions("coupon:coupon:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = couponService.queryPage(params);
-
         return R.ok().put("page", page);
     }
-
 
     /**
      * 信息
@@ -71,7 +73,6 @@ public class CouponController {
     //@RequiresPermissions("coupon:coupon:info")
     public R info(@PathVariable("id") Long id){
 		CouponEntity coupon = couponService.getById(id);
-
         return R.ok().put("coupon", coupon);
     }
 
@@ -82,7 +83,6 @@ public class CouponController {
     //@RequiresPermissions("coupon:coupon:save")
     public R save(@RequestBody CouponEntity coupon){
 		couponService.save(coupon);
-
         return R.ok();
     }
 
@@ -93,7 +93,6 @@ public class CouponController {
     //@RequiresPermissions("coupon:coupon:update")
     public R update(@RequestBody CouponEntity coupon){
 		couponService.updateById(coupon);
-
         return R.ok();
     }
 
@@ -104,7 +103,6 @@ public class CouponController {
     //@RequiresPermissions("coupon:coupon:delete")
     public R delete(@RequestBody Long[] ids){
 		couponService.removeByIds(Arrays.asList(ids));
-
         return R.ok();
     }
 
