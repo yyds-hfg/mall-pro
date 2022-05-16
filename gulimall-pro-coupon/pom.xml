@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.atguigu.gulimall</groupId>
-    <artifactId>gulimall-coupon</artifactId>
+    <artifactId>gulimall-pro-coupon</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gulimall-coupon</name>
+    <name>gulimall-pro-coupon</name>
     <description>谷粒商城-优惠卷服务</description>
 
     <properties>

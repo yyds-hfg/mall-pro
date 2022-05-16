@@ -11,7 +11,7 @@
     <groupId>com.atguigu.gulimall</groupId>
     <artifactId>gulimall-pro-third-party</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gulimall-third-party</name>
+    <name>gulimall-pro-third-party</name>
     <description>第三方服务</description>
 
     <properties>

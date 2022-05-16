@@ -11,7 +11,7 @@
     <groupId>com.atguigu.gulimall</groupId>
     <artifactId>gulimall-pro-ware</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gulimall-ware</name>
+    <name>gulimall-pro-ware</name>
     <description>谷粒商城-仓储服务</description>
 
     <properties>
