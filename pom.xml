@@ -5,7 +5,7 @@
     <groupId>com.atguigu.gulimall</groupId>
     <artifactId>gulimall-pro</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gulimall</name>
+    <name>gulimall-pro</name>
     <description>聚合服务</description>
     <packaging>pom</packaging>
 
