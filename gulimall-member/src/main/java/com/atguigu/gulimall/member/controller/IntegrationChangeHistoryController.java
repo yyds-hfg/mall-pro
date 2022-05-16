@@ -27,6 +27,7 @@ import com.atguigu.common.utils.R;
 @RestController
 @RequestMapping("member/integrationchangehistory")
 public class IntegrationChangeHistoryController {
+
     @Autowired
     private IntegrationChangeHistoryService integrationChangeHistoryService;
 

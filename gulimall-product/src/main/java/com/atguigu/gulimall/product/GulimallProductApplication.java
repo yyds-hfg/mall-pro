@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * 1、整合MyBatis-Plus
@@ -57,6 +58,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableDiscoveryClient
 @MapperScan("com.atguigu.gulimall.product.dao")
 @SpringBootApplication
+@EnableSwagger2
 public class GulimallProductApplication {
 
     public static void main(String[] args) {
