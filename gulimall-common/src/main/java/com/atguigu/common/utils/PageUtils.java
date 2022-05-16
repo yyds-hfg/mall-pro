@@ -9,6 +9,7 @@
 package com.atguigu.common.utils;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.List;
  *
  * @author Mark sunlightcs@gmail.com
  */
+@Data
 public class PageUtils implements Serializable {
 	private static final long serialVersionUID = 1L;
 	/**
@@ -67,44 +69,4 @@ public class PageUtils implements Serializable {
 		this.totalPage = (int)page.getPages();
 	}
 
-	public int getTotalCount() {
-		return totalCount;
-	}
-
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
-	}
-
-	public int getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
-
-	public int getTotalPage() {
-		return totalPage;
-	}
-
-	public void setTotalPage(int totalPage) {
-		this.totalPage = totalPage;
-	}
-
-	public int getCurrPage() {
-		return currPage;
-	}
-
-	public void setCurrPage(int currPage) {
-		this.currPage = currPage;
-	}
-
-	public List<?> getList() {
-		return list;
-	}
-
-	public void setList(List<?> list) {
-		this.list = list;
-	}
-	
 }
