@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.atguigu.gulimall</groupId>
-    <artifactId>gulimall-order</artifactId>
+    <artifactId>gulimall-pro-order</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>gulimall-order</name>
     <description>谷粒商城-订单服务</description>
@@ -22,7 +22,7 @@
     <dependencies>
         <dependency>
             <groupId>com.atguigu.gulimall</groupId>
-            <artifactId>gulimall-common</artifactId>
+            <artifactId>gulimall-pro-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
