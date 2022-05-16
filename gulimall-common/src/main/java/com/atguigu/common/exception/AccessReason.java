@@ -1,7 +1,9 @@
 package com.atguigu.common.exception;
 
+import lombok.Getter;
+
 /**
- * @Author: Zero
+ * @author: Zero
  * @Date: 2022/5/11 21:08
  * @Description:运行时异常访问报错原因
  */
@@ -20,23 +22,19 @@ public enum AccessReason {
     /**
      * code
      */
-    private String errorCode;
+    @Getter
+    private final String errorCode;
 
     /**
      * 异常描述
      */
-    private String errorMsg;
+    @Getter
+    private final String errorMsg;
 
-
-    public String getErrorCode() {
-        return errorCode;
-    }
-
-    public String getErrorMsg() {
-        return errorMsg;
-    }
-
-
+    /**
+     * @param errorCode 错误吗
+     * @param errorMsg 错误信息
+     */
     AccessReason(String errorCode, String errorMsg) {
         this.errorCode = errorCode;
         this.errorMsg = errorMsg;

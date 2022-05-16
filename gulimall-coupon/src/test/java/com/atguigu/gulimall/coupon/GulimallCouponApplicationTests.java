@@ -1,5 +1,7 @@
 package com.atguigu.gulimall.coupon;
 
+import com.atguigu.common.utils.SpringContextUtil;
+import com.atguigu.gulimall.coupon.controller.CouponController;
 import lombok.SneakyThrows;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +32,15 @@ public class GulimallCouponApplicationTests {
 
     private Cache getCache() {
         return cacheManager.getCache("gulimall-coupon-cache");
+    }
+
+    /**
+     * 测试SpringContext
+     */
+    @Test
+    public void getContext() {
+        CouponController bean = SpringContextUtil.getBean(CouponController.class);
+        System.out.println(bean.membercoupons());
     }
 
 }

@@ -15,8 +15,6 @@ import com.atguigu.gulimall.member.service.MemberLoginLogService;
 import com.atguigu.common.utils.PageUtils;
 import com.atguigu.common.utils.R;
 
-
-
 /**
  * 会员登录记录
  *
@@ -27,6 +25,7 @@ import com.atguigu.common.utils.R;
 @RestController
 @RequestMapping("member/memberloginlog")
 public class MemberLoginLogController {
+
     @Autowired
     private MemberLoginLogService memberLoginLogService;
 

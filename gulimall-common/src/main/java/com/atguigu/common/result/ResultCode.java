@@ -6,7 +6,6 @@ import lombok.Getter;
  * @Date: 2022/4/20 08:30
  * @Description:
  */
-
 @Getter
 public enum ResultCode {
 

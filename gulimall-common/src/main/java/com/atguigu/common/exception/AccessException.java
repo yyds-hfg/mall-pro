@@ -10,9 +10,10 @@ import org.springframework.util.StringUtils;
 public class AccessException extends RuntimeException{
 
     /**
-     * 返回吗
+     * 返回accessReason
      */
     private AccessReason accessReason;
+
     /**
      * 自定义异常信息
      */

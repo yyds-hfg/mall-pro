@@ -27,6 +27,7 @@ import com.atguigu.common.utils.R;
 @RestController
 @RequestMapping("coupon/homesubjectspu")
 public class HomeSubjectSpuController {
+
     @Autowired
     private HomeSubjectSpuService homeSubjectSpuService;
 

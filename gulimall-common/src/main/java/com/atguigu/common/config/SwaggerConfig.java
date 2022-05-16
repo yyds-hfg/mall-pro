@@ -13,11 +13,9 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * Create with Intellij IDEA.
- * Description：
- * User:Zero
- * Date:2021/7/30
- * Time:23:11
+ * @Author: Zero
+ * @Date: 2021/7/30 23:11
+ * @Description: swagger配置
  */
 @Configuration
 @EnableSwagger2

@@ -15,8 +15,6 @@ import com.atguigu.gulimall.member.service.MemberCollectSpuService;
 import com.atguigu.common.utils.PageUtils;
 import com.atguigu.common.utils.R;
 
-
-
 /**
  * 会员收藏的商品
  *

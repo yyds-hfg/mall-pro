@@ -8,22 +8,25 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
 
 /**
  * @Author: Zero
  * @Date: 2022/5/16 10:30
  * @Description: SpringContextUtil工具类
  */
-@Component
 public class SpringContextUtil implements ApplicationContextAware {
 
     @Setter
     private static ApplicationContext context;
 
+    /**
+     * 给context赋值
+     * @param applicationContext applicationContext
+     * @throws BeansException  bean异常
+     */
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        setContext(context);
+        setContext(applicationContext);
     }
 
     /**
@@ -63,7 +66,7 @@ public class SpringContextUtil implements ApplicationContextAware {
     @SneakyThrows
     public static <T> T getBean(String name, Class<T> requiredType) {
         assertContextInjected();
-        return context.getBean(requiredType);
+        return context.getBean(name,requiredType);
     }
 
 
