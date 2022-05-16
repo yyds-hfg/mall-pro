@@ -11,6 +11,12 @@ spring:
   application:
     name: gulimall-coupon
 
+  #caffeine缓存
+  cache:
+    cache-names: gulimall-coupon-cache
+    type: caffeine
+    caffeine:
+      spec: initialCapacity=50,maximumSize=5000,expireAfterWrite=600s
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
