@@ -1,5 +1,6 @@
 package com.atguigu.common.exception;
 
+import com.google.common.util.concurrent.RateLimiter;
 import lombok.Getter;
 
 /**
@@ -17,7 +18,9 @@ public enum AccessReason {
     /**
      * 类型检查异常
      */
-    TYPE_CHECK_EXCEPTION("500002","类型检查异常");
+    TYPE_CHECK_EXCEPTION("500002","类型检查异常"),
+
+    RATE_LIMITER("500003","接口被限流了");
 
     /**
      * code

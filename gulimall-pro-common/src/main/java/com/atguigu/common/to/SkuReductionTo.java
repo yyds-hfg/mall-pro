@@ -9,11 +9,18 @@ import java.util.List;
 public class SkuReductionTo {
 
     private Long skuId;
+
     private int fullCount;
+
     private BigDecimal discount;
+
     private int countStatus;
+
     private BigDecimal fullPrice;
+
     private BigDecimal reducePrice;
+
     private int priceStatus;
+
     private List<MemberPrice> memberPrice;
 }

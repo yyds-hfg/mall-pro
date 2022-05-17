@@ -11,6 +11,7 @@ package io.renren.modules.app.utils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -25,11 +26,24 @@ import java.util.Date;
  */
 @ConfigurationProperties(prefix = "renren.jwt")
 @Component
+@Data
 public class JwtUtils {
+
     private Logger logger = LoggerFactory.getLogger(getClass());
 
+    /**
+     * 密钥
+     */
     private String secret;
+
+    /**
+     * 过期时间
+     */
     private long expire;
+
+    /**
+     * 请求头 名称
+     */
     private String header;
 
     /**
@@ -39,7 +53,6 @@ public class JwtUtils {
         Date nowDate = new Date();
         //过期时间
         Date expireDate = new Date(nowDate.getTime() + expire * 1000);
-
         return Jwts.builder()
                 .setHeaderParam("typ", "JWT")
                 .setSubject(userId+"")
@@ -69,27 +82,4 @@ public class JwtUtils {
         return expiration.before(new Date());
     }
 
-    public String getSecret() {
-        return secret;
-    }
-
-    public void setSecret(String secret) {
-        this.secret = secret;
-    }
-
-    public long getExpire() {
-        return expire;
-    }
-
-    public void setExpire(long expire) {
-        this.expire = expire;
-    }
-
-    public String getHeader() {
-        return header;
-    }
-
-    public void setHeader(String header) {
-        this.header = header;
-    }
 }

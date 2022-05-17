@@ -21,11 +21,14 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.aspectj.weaver.SignatureUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -37,9 +40,13 @@ import java.util.Date;
 @Aspect
 @Component
 public class SysLogAspect {
+
 	@Autowired
 	private SysLogService sysLogService;
-	
+
+	/**
+	 * 给SysLog注解作为切点
+	 */
 	@Pointcut("@annotation(io.renren.common.annotation.SysLog)")
 	public void logPointCut() { 
 		
@@ -47,15 +54,13 @@ public class SysLogAspect {
 
 	@Around("logPointCut()")
 	public Object around(ProceedingJoinPoint point) throws Throwable {
-		long beginTime = System.currentTimeMillis();
+		long beginTime = Instant.now().toEpochMilli();
 		//执行方法
 		Object result = point.proceed();
 		//执行时长(毫秒)
-		long time = System.currentTimeMillis() - beginTime;
-
+		long time = Instant.now().toEpochMilli() - beginTime;
 		//保存日志
 		saveSysLog(point, time);
-
 		return result;
 	}
 
@@ -98,4 +103,5 @@ public class SysLogAspect {
 		//保存系统日志
 		sysLogService.save(sysLog);
 	}
+
 }

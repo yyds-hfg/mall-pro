@@ -1,5 +1,7 @@
 package com.atguigu.gulimall.coupon.service.impl;
 
+import com.atguigu.common.annotation.SystemLog;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -24,6 +26,17 @@ public class CouponServiceImpl extends ServiceImpl<CouponDao, CouponEntity> impl
         );
 
         return new PageUtils(page);
+    }
+
+    @SneakyThrows
+    @Override
+    @SystemLog
+    public String hellp() {
+        for (int i = 0; i < 5; i++) {
+            System.out.println("执行第"+i+++"次");
+            Thread.sleep(2000);
+        }
+        return "hahsah";
     }
 
 }

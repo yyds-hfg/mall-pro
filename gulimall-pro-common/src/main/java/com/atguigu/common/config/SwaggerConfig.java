@@ -1,11 +1,13 @@
 package com.atguigu.common.config;
 
-import com.google.common.base.Predicates;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
@@ -28,18 +30,22 @@ public class SwaggerConfig {
     private String title;
 
     @Bean
-    public Docket webApiConfig(){
+    public Docket webApiConfig() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName(groupname)
                 .apiInfo(webApiInfo())
                 .select()
+                //为有@Api注解的Controller生成API文档
+                .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
+                //为有@ApiOperation注解的方法生成API文档
+                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 //.paths(Predicates.not(PathSelectors.regex("/admin/.*")))  //如果接口包含这个路径 是不会显示的
-                .paths(Predicates.not(PathSelectors.regex("/error.*")))
+                .paths(PathSelectors.any())
                 .build();
         //分组   api信息
     }
 
-    private ApiInfo webApiInfo(){
+    private ApiInfo webApiInfo() {
         return new ApiInfoBuilder()
                 .title(title)
                 .description("本文档描述了微服务接口定义")

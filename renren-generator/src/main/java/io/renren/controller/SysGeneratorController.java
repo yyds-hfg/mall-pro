@@ -31,6 +31,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/sys/generator")
 public class SysGeneratorController {
+
 	@Autowired
 	private SysGeneratorService sysGeneratorService;
 	

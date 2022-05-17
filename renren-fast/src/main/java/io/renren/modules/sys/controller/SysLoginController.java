@@ -33,13 +33,21 @@ import java.util.Map;
  */
 @RestController
 public class SysLoginController extends AbstractController {
+
 	@Autowired
 	private SysUserService sysUserService;
+
 	@Autowired
 	private SysUserTokenService sysUserTokenService;
+
 	@Autowired
 	private SysCaptchaService sysCaptchaService;
 
+	@GetMapping("/hello/{name}")
+	public String hello(@PathVariable String name) {
+		System.out.println(name);
+		return "韩福贵";
+	}
 	/**
 	 * 验证码
 	 */

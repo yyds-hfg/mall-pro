@@ -3,10 +3,12 @@ package com.atguigu.gulimall.coupon.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.atguigu.common.annotation.SystemLog;
 import com.atguigu.common.annotation.Type;
 import com.atguigu.common.result.ResultT;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -100,6 +102,13 @@ public class CouponController {
     public R delete(@RequestBody Long[] ids){
 		couponService.removeByIds(Arrays.asList(ids));
         return R.ok();
+    }
+
+    @SneakyThrows
+    @GetMapping("/hello")
+    public ResultT<String> hello() {
+        couponService.hellp();
+        return ResultT.ok();
     }
 
 }

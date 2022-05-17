@@ -14,7 +14,8 @@ import com.atguigu.gulimall.coupon.service.SeckillSkuNoticeService;
 
 
 @Service("seckillSkuNoticeService")
-public class SeckillSkuNoticeServiceImpl extends ServiceImpl<SeckillSkuNoticeDao, SeckillSkuNoticeEntity> implements SeckillSkuNoticeService {
+public class SeckillSkuNoticeServiceImpl extends ServiceImpl<SeckillSkuNoticeDao, SeckillSkuNoticeEntity>
+        implements SeckillSkuNoticeService {
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -22,7 +23,6 @@ public class SeckillSkuNoticeServiceImpl extends ServiceImpl<SeckillSkuNoticeDao
                 new Query<SeckillSkuNoticeEntity>().getPage(params),
                 new QueryWrapper<SeckillSkuNoticeEntity>()
         );
-
         return new PageUtils(page);
     }
 
