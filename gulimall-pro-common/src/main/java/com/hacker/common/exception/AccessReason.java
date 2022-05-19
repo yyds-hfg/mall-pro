@@ -19,7 +19,15 @@ public enum AccessReason {
      */
     TYPE_CHECK_EXCEPTION("500002","类型检查异常"),
 
-    RATE_LIMITER("500003","接口被限流了");
+    /**
+     * 限流
+     */
+    RATE_LIMITER("500003","接口被限流了"),
+
+    /**
+     * 空指针异常
+     */
+    NULL_POINT_EXCEPTION("500004","空指针异常");
 
     /**
      * code

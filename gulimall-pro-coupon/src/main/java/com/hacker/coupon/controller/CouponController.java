@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 import com.hacker.common.annotation.Type;
-import com.hacker.common.result.ResultT;
+import com.hacker.common.result.R;
 import com.hacker.coupon.entity.CouponEntity;
 import com.hacker.coupon.service.CouponService;
 import io.swagger.annotations.Api;
@@ -18,7 +18,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import com.hacker.common.utils.PageUtils;
-import com.hacker.common.utils.R;
 
 import javax.annotation.Resource;
 /**
@@ -44,16 +43,16 @@ public class CouponController {
     private Integer age;
 
     @GetMapping("/test")
-    public R test(){
-        return R.ok().put("name",name).put("age",age);
+    public com.hacker.common.utils.R test(){
+        return com.hacker.common.utils.R.ok().put("name",name).put("age",age);
     }
 
     @GetMapping("/member/list")
     @ApiOperation("会员服务")
-    public ResultT<CouponEntity> membercoupons(){
+    public R<CouponEntity> membercoupons(){
         CouponEntity couponEntity = new CouponEntity();
         couponEntity.setCouponName("满100减10");
-        return ResultT.ok(couponEntity);
+        return R.ok(couponEntity);
     }
 
     @Resource
@@ -63,51 +62,51 @@ public class CouponController {
      * 列表
      */
     @GetMapping("/list")
-    public R list(@RequestParam Map<String, Object> params){
+    public com.hacker.common.utils.R list(@RequestParam Map<String, Object> params){
         PageUtils page = couponService.queryPage(params);
-        return R.ok().put("page", page);
+        return com.hacker.common.utils.R.ok().put("page", page);
     }
 
     /**
      * 信息
      */
     @GetMapping("/info/{id}")
-    public R info(@PathVariable("id") Long id){
+    public com.hacker.common.utils.R info(@PathVariable("id") Long id){
 		CouponEntity coupon = couponService.getById(id);
-        return R.ok().put("coupon", coupon);
+        return com.hacker.common.utils.R.ok().put("coupon", coupon);
     }
 
     /**
      * 保存coupon
      */
     @PostMapping("/save")
-    public ResultT<?> save(@Validated({Type.Add.class}) @RequestBody CouponEntity coupon){
-        return ResultT.run(()->couponService.save(coupon));
+    public R<?> save(@Validated({Type.Add.class}) @RequestBody CouponEntity coupon){
+        return R.run(()->couponService.save(coupon));
     }
 
     /**
      * 修改
      */
     @GetMapping("/update")
-    public R update(@RequestBody CouponEntity coupon){
+    public com.hacker.common.utils.R update(@RequestBody CouponEntity coupon){
 		couponService.updateById(coupon);
-        return R.ok();
+        return com.hacker.common.utils.R.ok();
     }
 
     /**
      * 删除
      */
     @DeleteMapping("/delete")
-    public R delete(@RequestBody Long[] ids){
+    public com.hacker.common.utils.R delete(@RequestBody Long[] ids){
 		couponService.removeByIds(Arrays.asList(ids));
-        return R.ok();
+        return com.hacker.common.utils.R.ok();
     }
 
     @SneakyThrows
     @GetMapping("/hello")
-    public ResultT<String> hello() {
+    public R<String> hello() {
         couponService.hellp();
-        return ResultT.ok();
+        return R.ok();
     }
 
 }
