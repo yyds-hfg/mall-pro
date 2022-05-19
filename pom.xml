@@ -20,6 +20,8 @@
         <module>renren-generator</module>
         <module>renren-fast-pro</module>
         <module>gulimall-pro-dependency</module>
+        <module>gulimall-pro-gateway</module>
+        <module>gulimall-pro-third-party</module>
     </modules>
 
 </project>
