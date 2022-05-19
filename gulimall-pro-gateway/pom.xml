@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.atguigu.gulimall</groupId>
+    <groupId>com.hacker</groupId>
     <artifactId>gulimall-pro-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>gulimall-pro-gateway</name>
@@ -22,7 +22,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.atguigu.gulimall</groupId>
+            <groupId>com.hacker</groupId>
             <artifactId>gulimall-pro-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

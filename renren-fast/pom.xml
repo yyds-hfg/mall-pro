@@ -52,7 +52,7 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>com.atguigu.gulimall</groupId>
+			<groupId>com.hacker</groupId>
 			<artifactId>gulimall-pro-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>

@@ -26,8 +26,10 @@ import javax.validation.constraints.NotNull;
  */
 @Service("categoryService")
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
+
     @Autowired
     private CategoryBrandRelationService categoryBrandRelationService;
+
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<CategoryEntity> page = this.page(
@@ -36,6 +38,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         );
         return new PageUtils(page);
     }
+
 
     @Override
     public List<CategoryEntity> listWithTree() {
@@ -46,10 +49,11 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         }
         return entities.stream()  //找到所有的一级分类
                     .filter(categoryEntity -> categoryEntity.getParentCid() == 0)
-                    .peek((menu)-> menu.setChildren(getChildrens(menu,entities)))              //当前菜单的子分类
+                    .peek((menu)-> menu.setChildren(getChildrens(menu,entities)))//当前菜单的子分类
                     .sorted(Comparator.comparingInt(menu -> (menu.getSort() == null ? 0 : menu.getSort())))
                     .collect(Collectors.toList());
     }
+
 
     @Override
     public void removeMenuByIds(List<Long> asList) {
@@ -57,6 +61,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         //逻辑删除
         baseMapper.deleteBatchIds(asList);
     }
+
 
     //[2,25,225]
     @Override
@@ -66,6 +71,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         Collections.reverse(parentPath);
         return parentPath.toArray(new Long[parentPath.size()]);
     }
+
 
     /**
      * 级联更新所有关联的数据
@@ -77,6 +83,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         this.updateById(category);
         categoryBrandRelationService.updateCategory(category.getCatId(),category.getName());
     }
+
 
     //225,25,2
     private List<Long> findParentPath(Long catelogId,List<Long> paths){
@@ -104,5 +111,6 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
                 .sorted(Comparator.comparingInt(menu -> (menu.getSort() == null ? 0 : menu.getSort())))
                 .collect(Collectors.toList());
     }
+
 
 }

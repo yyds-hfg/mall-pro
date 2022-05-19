@@ -11,8 +11,11 @@ import com.hacker.common.utils.Query;
 
 import com.hacker.product.entity.SkuSaleAttrValueEntity;
 import com.hacker.product.service.SkuSaleAttrValueService;
-
-
+/**
+ * @Author: Zero
+ * @Date: 2022/5/19 14:29
+ * @Description:
+ */
 @Service("skuSaleAttrValueService")
 public class SkuSaleAttrValueServiceImpl extends ServiceImpl<SkuSaleAttrValueDao, SkuSaleAttrValueEntity> implements SkuSaleAttrValueService {
 
@@ -22,7 +25,6 @@ public class SkuSaleAttrValueServiceImpl extends ServiceImpl<SkuSaleAttrValueDao
                 new Query<SkuSaleAttrValueEntity>().getPage(params),
                 new QueryWrapper<SkuSaleAttrValueEntity>()
         );
-
         return new PageUtils(page);
     }
 

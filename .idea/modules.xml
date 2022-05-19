@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/gulimall-pro.iml" filepath="$PROJECT_DIR$/gulimall-pro.iml" />
       <module fileurl="file://$PROJECT_DIR$/gulimall-pro-common/gulimall-pro-common.iml" filepath="$PROJECT_DIR$/gulimall-pro-common/gulimall-pro-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/gulimall-pro-coupon/gulimall-pro-coupon.iml" filepath="$PROJECT_DIR$/gulimall-pro-coupon/gulimall-pro-coupon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gulimall-pro-dependency/gulimall-pro-dependency.iml" filepath="$PROJECT_DIR$/gulimall-pro-dependency/gulimall-pro-dependency.iml" />
       <module fileurl="file://$PROJECT_DIR$/gulimall-pro-gateway/gulimall-pro-gateway.iml" filepath="$PROJECT_DIR$/gulimall-pro-gateway/gulimall-pro-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/gulimall-pro-member/gulimall-pro-member.iml" filepath="$PROJECT_DIR$/gulimall-pro-member/gulimall-pro-member.iml" />
       <module fileurl="file://$PROJECT_DIR$/gulimall-pro-order/gulimall-pro-order.iml" filepath="$PROJECT_DIR$/gulimall-pro-order/gulimall-pro-order.iml" />

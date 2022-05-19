@@ -8,7 +8,7 @@
         <version>2.2.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.atguigu.gulimall</groupId>
+    <groupId>com.hacker</groupId>
     <artifactId>gulimall-pro-product</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>gulimall-pro-product</name>
@@ -21,7 +21,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.atguigu.gulimall</groupId>
+            <groupId>com.hacker</groupId>
             <artifactId>gulimall-pro-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

@@ -34,10 +34,7 @@ public class RequestAspect {
 
     }
 
- /*   *//**
-     * 前置通知
-     * @param joinPoint
-     *//*
+    /**
     @Before("log()")
     public void before(JoinPoint joinPoint) {
         //清理线程变量

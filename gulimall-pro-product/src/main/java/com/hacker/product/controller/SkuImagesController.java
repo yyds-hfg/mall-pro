@@ -15,8 +15,6 @@ import com.hacker.product.service.SkuImagesService;
 import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
-
-
 /**
  * sku图片
  *
@@ -27,6 +25,7 @@ import com.hacker.common.utils.R;
 @RestController
 @RequestMapping("product/skuimages")
 public class SkuImagesController {
+
     @Autowired
     private SkuImagesService skuImagesService;
 

@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>gulimall-pro</artifactId>
-        <groupId>com.atguigu.gulimall</groupId>
+        <groupId>com.hacker</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -33,7 +33,6 @@
             <artifactId>httpcore</artifactId>
             <version>4.4.12</version>
         </dependency>
-
 
         <dependency>
             <groupId>commons-lang</groupId>
@@ -83,21 +82,10 @@
         </dependency>
 
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.mapstruct</groupId>
-                    <artifactId>mapstruct</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <!--在引用时请在maven中央仓库搜索2.X最新版本号-->
+            <version>2.0.6</version>
         </dependency>
 
         <!--FASTJSON v2是FASTJSON项目的重要升级目标是为下一个十年提供一个高性能的JSON库。通过同一套API-->

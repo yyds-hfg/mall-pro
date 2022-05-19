@@ -12,6 +12,7 @@
         <module name="gulimall-pro-common" />
         <module name="gulimall-pro-product" />
         <module name="gulimall-pro-coupon" />
+        <module name="gulimall-pro-dependency" />
         <module name="gulimall-pro-gateway" />
         <module name="gulimall-pro-member" />
         <module name="renren-fast" />
@@ -24,6 +25,7 @@
       <module name="gulimall-pro" target="8" />
       <module name="gulimall-pro-common" target="8" />
       <module name="gulimall-pro-coupon" target="8" />
+      <module name="gulimall-pro-dependency" target="8" />
       <module name="gulimall-pro-gateway" target="8" />
       <module name="gulimall-pro-member" target="8" />
       <module name="gulimall-pro-order" target="8" />

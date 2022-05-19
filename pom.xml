@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.atguigu.gulimall</groupId>
+    <groupId>com.hacker</groupId>
     <artifactId>gulimall-pro</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>gulimall-pro</name>
@@ -19,6 +19,7 @@
         <module>renren-fast</module>
         <module>renren-generator</module>
         <module>renren-fast-pro</module>
+        <module>gulimall-pro-dependency</module>
     </modules>
 
 </project>
