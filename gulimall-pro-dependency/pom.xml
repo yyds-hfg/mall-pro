@@ -2,73 +2,109 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>gulimall-pro</artifactId>
-        <groupId>com.hacker</groupId>
-        <version>0.0.1-SNAPSHOT</version>
-    </parent>
 
     <modelVersion>4.0.0</modelVersion>
-
+    <groupId>com.hacker</groupId>
     <artifactId>gulimall-pro-dependency</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
 
     <properties>
-        <spring.boot.version>2.2.4.RELEASE</spring.boot.version>
+        <revision>1.1.1.RELEASE</revision>
+        <!-- 统一依赖管理 -->
+        <spring.boot.version>2.6.3</spring.boot.version>
+        <spring-cloud.version>2021.0.1</spring-cloud.version>
+        <!--https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E-->
+        <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
+
+        <!-- Web 相关 -->
+        <knife4j.version>3.0.2</knife4j.version>
+        <swagger-annotations.version>1.5.22</swagger-annotations.version>
+        <servlet.versoin>2.5</servlet.versoin>
+
+        <!--DB相关-->
+        <mybatis-plus-boot.version>3.4.2</mybatis-plus-boot.version>
+        <mysql.version>8.0.19</mysql.version>
+
+
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <lombok.version>1.18.22</lombok.version>
         <knife4j-spring-boot.version>2.0.6</knife4j-spring-boot.version>
-        <mybatis-plus-boot.version>3.4.2</mybatis-plus-boot.version>
-        <httpcore.version>4.4.12</httpcore.version>
-        <commons-lang.version>2.6</commons-lang.version>
-        <mysql.version>8.0.19</mysql.version>
-        <servlet-api.version>2.5</servlet-api.version>
-        <validation-api.version>2.0.1.Final</validation-api.version>
+
+
+        <!--工具类相关-->
         <hutool-all.version>5.7.9</hutool-all.version>
         <fastjson2.version>2.0.3</fastjson2.version>
+        <httpcore.version>4.4.12</httpcore.version>
+        <commons-lang.version>2.6</commons-lang.version>
+        <servlet-api.version>2.5</servlet-api.version>
+        <validation-api.version>2.0.1.Final</validation-api.version>
+        <swagger-annotations.version>1.5.22</swagger-annotations.version>
     </properties>
+
     <dependencyManagement>
         <dependencies>
+
+            <!-- 统一依赖管理 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-aop</artifactId>
-                <version>2.2.4.RELEASE</version>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+
+            <!--工具类-->
             <dependency>
                 <groupId>com.alibaba.fastjson2</groupId>
                 <artifactId>fastjson2</artifactId>
                 <version>${fastjson2.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool-all.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
                 <version>${validation-api.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>servlet-api</artifactId>
                 <version>${servlet-api.version}</version>
                 <scope>provided</scope>
             </dependency>
+
+
+
+            <!--数据库相关-->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpcore</artifactId>
-                <version>${httpcore.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-lang</groupId>
-                <artifactId>commons-lang</artifactId>
-                <version>${commons-lang.version}</version>
             </dependency>
             <!--mybatis-plus-->
             <dependency>
@@ -76,18 +112,70 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus-boot.version}</version>
             </dependency>
+
+
+            <!-- Spring 核心 -->
+            <dependency>
+                <!-- 用于生成自定义的 Spring @ConfigurationProperties 配置类的说明文件 -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-configuration-processor</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>${httpcore.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons-lang.version}</version>
+            </dependency>
+
+
             <!--lombok-->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-spring-boot-starter</artifactId>
                 <version>${knife4j-spring-boot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>mapstruct</artifactId>
+                        <groupId>org.mapstruct</groupId> <!-- 避免冲突 -->
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>guava</artifactId>
+                        <groupId>com.google.guava</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>swagger-annotations</artifactId>
+                        <groupId>io.swagger</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger-annotations.version}</version>
             </dependency>
 
         </dependencies>
     </dependencyManagement>
+    <!-- 使用 aliyun 的 Maven 源，提升下载速度 -->
+    <repositories>
+        <repository>
+            <id>aliyunmaven</id>
+            <name>aliyun</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </repository>
+    </repositories>
 </project>

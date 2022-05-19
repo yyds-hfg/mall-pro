@@ -5,8 +5,7 @@ import com.hacker.product.service.BrandService;
 import com.hacker.product.service.CategoryService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -21,7 +20,6 @@ import java.util.List;
  * 3、使用OSSClient 进行相关操作
  */
 @Slf4j
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class GulimallProductApplicationTests {
 

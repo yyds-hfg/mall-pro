@@ -27,6 +27,7 @@ import com.hacker.common.utils.R;
 @RestController
 @RequestMapping("coupon/couponhistory")
 public class CouponHistoryController {
+
     @Autowired
     private CouponHistoryService couponHistoryService;
 

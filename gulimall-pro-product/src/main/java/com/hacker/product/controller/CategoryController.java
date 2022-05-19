@@ -45,6 +45,7 @@ public class CategoryController {
      * 保存
      */
     @PostMapping("/save")
+    @ApiOperation("")
     public R<?> save(@RequestBody CategoryEntity category){
         return R.run(()->categoryService.save(category));
     }

@@ -37,7 +37,7 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
     CategoryBrandRelationDao relationDao;
 
     @Autowired
-    BrandService brandService;
+    private BrandService brandService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -45,7 +45,6 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
                 new Query<CategoryBrandRelationEntity>().getPage(params),
                 new QueryWrapper<CategoryBrandRelationEntity>()
         );
-
         return new PageUtils(page);
     }
 

@@ -21,7 +21,7 @@ import org.springframework.util.StringUtils;
 public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> implements BrandService {
 
     @Autowired
-    CategoryBrandRelationService categoryBrandRelationService;
+    private CategoryBrandRelationService categoryBrandRelationService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {

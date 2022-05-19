@@ -24,6 +24,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
  */
 @RestControllerAdvice
 public class RRExceptionHandler {
+
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	/**
@@ -34,7 +35,6 @@ public class RRExceptionHandler {
 		R r = new R();
 		r.put("code", e.getCode());
 		r.put("msg", e.getMessage());
-
 		return r;
 	}
 

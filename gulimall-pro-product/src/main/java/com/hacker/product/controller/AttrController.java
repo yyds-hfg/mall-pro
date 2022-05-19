@@ -25,11 +25,12 @@ import com.hacker.common.utils.R;
 @RestController
 @RequestMapping("product/attr")
 public class AttrController {
+
     @Autowired
     private AttrService attrService;
 
     @Autowired
-    ProductAttrValueService productAttrValueService;
+    private ProductAttrValueService productAttrValueService;
 
     // /product/attr/base/listforspu/{spuId}
     @GetMapping("/base/listforspu/{spuId}")

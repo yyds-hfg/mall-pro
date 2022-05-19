@@ -11,6 +11,11 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
 
+#可以通过设置spring:main:allow-circular-references为true。
+#不鼓励使用循环引用，默认情况下是禁止使用的。更新应用程序以删除bean之间的依赖循环。
+#作为最后的手段
+  main:
+    allow-circular-references: true
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml

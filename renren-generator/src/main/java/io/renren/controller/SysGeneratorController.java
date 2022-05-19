@@ -60,4 +60,5 @@ public class SysGeneratorController {
   
         IOUtils.write(data, response.getOutputStream());  
 	}
+
 }

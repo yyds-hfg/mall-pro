@@ -4,8 +4,7 @@ import com.hacker.common.annotation.FieldAlias;
 import com.hacker.common.utils.SpringContextUtil;
 import com.hacker.coupon.controller.CouponController;
 import lombok.SneakyThrows;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cache.Cache;
@@ -14,7 +13,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.lang.reflect.Field;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class GulimallCouponApplicationTests {
 
