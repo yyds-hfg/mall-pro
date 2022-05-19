@@ -33,7 +33,6 @@
       <module name="gulimall-pro-third-party" target="8" />
       <module name="gulimall-pro-ware" target="8" />
       <module name="renren-fast" target="8" />
-      <module name="renren-fast (1)" target="8" />
       <module name="renren-fast-pro" target="8" />
       <module name="renren-generator" target="8" />
     </bytecodeTargetLevel>
@@ -49,7 +48,6 @@
       <module name="gulimall-pro-third-party" options="-parameters" />
       <module name="gulimall-pro-ware" options="-parameters" />
       <module name="renren-fast" options="-parameters" />
-      <module name="renren-fast (1)" options="-parameters" />
       <module name="renren-fast-pro" options="-parameters" />
       <module name="renren-generator" options="-parameters" />
     </option>
