@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("product/category")
 @Api(tags = "商品三级分类")
+@CrossOrigin
 public class CategoryController {
 
 

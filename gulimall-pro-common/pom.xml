@@ -98,6 +98,12 @@
             <artifactId>knife4j-spring-boot-starter</artifactId>
         </dependency>
 
+        <!--使用bootstrap.properties所需依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>
