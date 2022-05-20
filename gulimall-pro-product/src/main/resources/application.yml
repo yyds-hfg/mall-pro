@@ -31,3 +31,29 @@ mybatis-plus:
 server:
   port: 10000
 
+knife4j:
+  # 开启生产环境屏蔽
+  production: true
+swagger:
+  module:
+    name: ProductModel
+# 关闭烦人的提示信息
+logging:
+  level:
+    springfox:
+      documentation:
+        spring:
+          web:
+            readers:
+              operation:
+                CachingOperationNameGenerator: warn
+
+#apollo配置中心
+app:
+  id: zero10001
+
+apollo:
+  meta: http://106.54.227.205:8080
+  bootstrap:
+    enabled: true
+    namespaces: application

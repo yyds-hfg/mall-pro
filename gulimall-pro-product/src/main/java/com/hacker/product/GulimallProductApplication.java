@@ -1,10 +1,14 @@
 package com.hacker.product;
 
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+
+import javax.annotation.PostConstruct;
+import javax.print.attribute.standard.MediaSize;
 
 /**
  * 1、整合MyBatis-Plus
@@ -54,13 +58,15 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  *  2）、使用@ExceptionHandler标注方法可以处理的异常。
  */
 @EnableFeignClients(basePackages = "com.hacker.product.feign")
-@EnableDiscoveryClient
 @MapperScan("com.hacker.product.dao")
+@EnableDiscoveryClient
 @SpringBootApplication
 public class GulimallProductApplication {
+
 
     public static void main(String[] args) {
         SpringApplication.run(GulimallProductApplication.class, args);
     }
+
 
 }

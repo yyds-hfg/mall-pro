@@ -49,7 +49,10 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         }
         return entities.stream()  //找到所有的一级分类
                     .filter(categoryEntity -> categoryEntity.getParentCid() == 0)
-                    .peek((menu)-> menu.setChildren(getChildrens(menu,entities)))//当前菜单的子分类
+                    .peek((menu)-> {
+                        List<CategoryEntity> list = getChildrens(menu, entities);
+                        menu.setChildren(list);
+                    })//当前菜单的子分类
                     .sorted(Comparator.comparingInt(menu -> (menu.getSort() == null ? 0 : menu.getSort())))
                     .collect(Collectors.toList());
     }
@@ -105,11 +108,22 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
      */
     private List<CategoryEntity> getChildrens(@NotNull(message = "当前菜单不能为空") CategoryEntity root,
                                               @NotNull(message = "菜单列表不能为空") List<CategoryEntity> all){
-        return all.stream().filter(categoryEntity -> categoryEntity.getParentCid()
-                .equals(root.getCatId())).peek(categoryEntity ->
+        return all.stream().filter(categoryEntity -> categoryEntity.getParentCid().equals(root.getCatId()))
+                .peek(categoryEntity ->
                     categoryEntity.setChildren(getChildrens(categoryEntity,all)))//1、找到子菜单
                 .sorted(Comparator.comparingInt(menu -> (menu.getSort() == null ? 0 : menu.getSort())))
                 .collect(Collectors.toList());
+    }
+
+
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("a");list.add("b");list.add("a");
+        List<String> stringList = list.stream()
+                .filter(s -> s.equals("c"))
+                .peek(s -> new StringBuilder(s).append(s))
+                .collect(Collectors.toList());
+        stringList.forEach(System.out::println);
     }
 
 
