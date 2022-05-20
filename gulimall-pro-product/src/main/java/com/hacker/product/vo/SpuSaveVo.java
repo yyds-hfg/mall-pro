@@ -30,5 +30,4 @@ public class SpuSaveVo {
     private List<Skus> skus;
 
 
-
 }

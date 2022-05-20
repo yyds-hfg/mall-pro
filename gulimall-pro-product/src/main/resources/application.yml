@@ -11,10 +11,10 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
 
-#不鼓励使用循环引用,默认情况下是禁止使用的,更新应用程序以删除bean之间的依赖循环。
+  #不鼓励使用循环引用,默认情况下是禁止使用的,更新应用程序以删除bean之间的依赖循环。
   main:
     allow-circular-references: true
-#解决Swagger documentationPluginsBootstrapper  npe异常
+  #解决Swagger documentationPluginsBootstrapper  npe异常
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER

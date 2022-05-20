@@ -12,22 +12,22 @@ public enum AccessReason {
     /**
      * 参数检查异常
      */
-    PARAM_CHECK_EXCEPTION("500001","参数异常异常"),
+    PARAM_CHECK_EXCEPTION("500001", "参数异常异常"),
 
     /**
      * 类型检查异常
      */
-    TYPE_CHECK_EXCEPTION("500002","类型检查异常"),
+    TYPE_CHECK_EXCEPTION("500002", "类型检查异常"),
 
     /**
      * 限流
      */
-    RATE_LIMITER("500003","接口被限流了"),
+    RATE_LIMITER("500003", "接口被限流了"),
 
     /**
      * 空指针异常
      */
-    NULL_POINT_EXCEPTION("500004","空指针异常");
+    NULL_POINT_EXCEPTION("500004", "空指针异常");
 
     /**
      * code
@@ -43,7 +43,7 @@ public enum AccessReason {
 
     /**
      * @param errorCode 错误吗
-     * @param errorMsg 错误信息
+     * @param errorMsg  错误信息
      */
     AccessReason(String errorCode, String errorMsg) {
         this.errorCode = errorCode;
@@ -51,7 +51,6 @@ public enum AccessReason {
     }
 
     /**
-     *
      * @return
      */
     public AccessException exception() {
@@ -59,12 +58,11 @@ public enum AccessReason {
     }
 
     /**
-     *
      * @param errorMsg
      * @return
      */
     public AccessException exception(String errorMsg) {
-        return new AccessException(this,errorMsg);
+        return new AccessException(this, errorMsg);
     }
 
 }

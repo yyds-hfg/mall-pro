@@ -6,6 +6,6 @@ package com.hacker.common.result;
  * @Description:
  */
 @FunctionalInterface
-public interface RunnableAndGetResult<P>{
+public interface RunnableAndGetResult<P> {
     P run();
 }

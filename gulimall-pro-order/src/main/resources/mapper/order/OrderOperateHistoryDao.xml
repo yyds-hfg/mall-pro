@@ -3,7 +3,7 @@
 
 <mapper namespace="com.hacker.order.dao.OrderOperateHistoryDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.hacker.order.entity.OrderOperateHistoryEntity" id="orderOperateHistoryMap">
         <result property="id" column="id"/>
         <result property="orderId" column="order_id"/>

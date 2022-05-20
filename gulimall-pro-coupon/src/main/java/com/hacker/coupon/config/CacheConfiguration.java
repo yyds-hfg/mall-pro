@@ -13,11 +13,10 @@ import org.springframework.context.annotation.Primary;
  * @Date: 2022/5/16 09:12
  * @Description:
  */
+
 /**
- * @ConfigurationProperties注解
- *      将配置文件熟悉转化为Bean对象使用
- * @EnableConfigurationProperties作用:
- *      使这个单独的@ConfigurationProperties(prefix = "spring.cache")注解生效
+ * @ConfigurationProperties注解 将配置文件熟悉转化为Bean对象使用
+ * @EnableConfigurationProperties作用: 使这个单独的@ConfigurationProperties(prefix = "spring.cache")注解生效
  * @ConfigurationProperties + @Configuration = @EnableConfigurationProperties({CacheProperties.class})
  */
 @EnableConfigurationProperties({CacheProperties.class})
@@ -25,7 +24,6 @@ import org.springframework.context.annotation.Primary;
 public class CacheConfiguration {
 
     /**
-     *
      * @param cacheProperties
      * @return
      */

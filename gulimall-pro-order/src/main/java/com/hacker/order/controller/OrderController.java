@@ -29,7 +29,7 @@ public class OrderController {
      * 列表
      */
     @RequestMapping("/list")
-    public com.hacker.common.utils.R list(@RequestParam Map<String, Object> params){
+    public com.hacker.common.utils.R list(@RequestParam Map<String, Object> params) {
         PageUtils page = orderService.queryPage(params);
         return com.hacker.common.utils.R.ok().put("page", page);
     }
@@ -39,8 +39,8 @@ public class OrderController {
      * 信息
      */
     @GetMapping("/info/{id}")
-    public com.hacker.common.utils.R info(@PathVariable("id") Long id){
-		OrderEntity order = orderService.getById(id);
+    public com.hacker.common.utils.R info(@PathVariable("id") Long id) {
+        OrderEntity order = orderService.getById(id);
         return com.hacker.common.utils.R.ok().put("order", order);
     }
 
@@ -48,24 +48,24 @@ public class OrderController {
      * 保存
      */
     @PutMapping("/save")
-    public R<?> save(@RequestBody OrderEntity order){
-		return R.run(()->orderService.save(order));
+    public R<?> save(@RequestBody OrderEntity order) {
+        return R.run(() -> orderService.save(order));
     }
 
     /**
      * 修改
      */
     @PostMapping("/update")
-    public R<?> update(@RequestBody OrderEntity order){
-        return R.run(()->orderService.updateById(order));
+    public R<?> update(@RequestBody OrderEntity order) {
+        return R.run(() -> orderService.updateById(order));
     }
 
     /**
      * 删除
      */
     @DeleteMapping("/delete")
-    public com.hacker.common.utils.R delete(@RequestBody Long[] ids){
-		orderService.removeByIds(Arrays.asList(ids));
+    public com.hacker.common.utils.R delete(@RequestBody Long[] ids) {
+        orderService.removeByIds(Arrays.asList(ids));
         return com.hacker.common.utils.R.ok();
     }
 

@@ -10,5 +10,5 @@ public class BrandVo {
      * "brandName": "string",
      */
     private Long brandId;
-    private String  brandName;
+    private String brandName;
 }

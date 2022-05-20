@@ -24,7 +24,7 @@ public class RequestAspect {
 
 //    private static final ThreadLocal<Long> startTime = new ThreadLocal<>();
 
-   private static final RateLimiter RATE_LIMITER = RateLimiter.create(3);
+    private static final RateLimiter RATE_LIMITER = RateLimiter.create(3);
 
     /**
      * 定义切点
@@ -35,18 +35,18 @@ public class RequestAspect {
     }
 
     /**
-    @Before("log()")
-    public void before(JoinPoint joinPoint) {
-        //清理线程变量
-        startTime.remove();
-        setRequestTime();
-    }
-
-    private void setRequestTime() {
-        log.info("清除本地线程变量");
-        //记录请求时间
-        startTime.set(Instant.now().toEpochMilli());
-    }*/
+     * @Before("log()") public void before(JoinPoint joinPoint) {
+     * //清理线程变量
+     * startTime.remove();
+     * setRequestTime();
+     * }
+     * <p>
+     * private void setRequestTime() {
+     * log.info("清除本地线程变量");
+     * //记录请求时间
+     * startTime.set(Instant.now().toEpochMilli());
+     * }
+     */
 
     @SneakyThrows
     @Around("log()")
@@ -59,7 +59,7 @@ public class RequestAspect {
         //执行方法
         Object proceed = joinPoint.proceed();
         long endTime = Instant.now().toEpochMilli() - startTime;
-        log.info(joinPoint.getSignature().getName()+"执行了"+(endTime-startTime)+"秒");
+        log.info(joinPoint.getSignature().getName() + "执行了" + (endTime - startTime) + "秒");
         return proceed;
     }
 

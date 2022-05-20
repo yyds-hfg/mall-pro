@@ -23,12 +23,12 @@ public class AccessException extends RuntimeException {
      *
      */
     public AccessException(AccessReason accessReason) {
-        this(accessReason,accessReason.getErrorMsg());
+        this(accessReason, accessReason.getErrorMsg());
     }
 
 
     public AccessException(AccessReason accessReason, String errorMsg) {
-        super(!StringUtils.isNotBlank(errorMsg) ?errorMsg:accessReason.getErrorMsg());
+        super(!StringUtils.isNotBlank(errorMsg) ? errorMsg : accessReason.getErrorMsg());
         this.accessReason = accessReason;
         this.errorMsg = errorMsg;
     }

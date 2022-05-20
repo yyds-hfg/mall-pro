@@ -16,7 +16,6 @@
         <module>gulimall-pro-order</module>
         <module>gulimall-pro-product</module>
         <module>gulimall-pro-ware</module>
-        <module>renren-generator</module>
         <module>gulimall-pro-dependency</module>
         <module>gulimall-pro-gateway</module>
         <module>gulimall-pro-third-party</module>

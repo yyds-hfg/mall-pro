@@ -23,7 +23,7 @@ public class GulimallCouponApplicationTests {
     @Test
     public void contextLoads() {
         Cache cache = getCache();
-        cache.put("name","hanfugui");
+        cache.put("name", "hanfugui");
         Thread.sleep(1000);
         System.out.println(cache.get("name").get());
     }
@@ -55,7 +55,7 @@ public class GulimallCouponApplicationTests {
             FieldAlias annotation = field.getAnnotation(FieldAlias.class);
             if (field.getName().equals("name")) {
                 String fieldName = annotation.fieldName();
-                System.out.println("属性别名为:"+fieldName);
+                System.out.println("属性别名为:" + fieldName);
             }
         }
     }

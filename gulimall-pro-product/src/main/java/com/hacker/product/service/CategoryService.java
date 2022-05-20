@@ -20,6 +20,7 @@ public interface CategoryService extends IService<CategoryEntity> {
 
     /**
      * 以树形结构返回商品分类
+     *
      * @return
      */
     List<CategoryEntity> listWithTree();
@@ -31,6 +32,7 @@ public interface CategoryService extends IService<CategoryEntity> {
     /**
      * 找到catelogId的完整路径；
      * [父/子/孙]
+     *
      * @param catelogId
      * @return
      */

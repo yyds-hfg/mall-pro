@@ -16,7 +16,6 @@ import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
 
-
 /**
  * 商品库存
  *
@@ -36,7 +35,7 @@ public class WareSkuController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("ware:waresku:list")
-    public R list(@RequestParam Map<String, Object> params){
+    public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = wareSkuService.queryPage(params);
 
         return R.ok().put("page", page);
@@ -48,8 +47,8 @@ public class WareSkuController {
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("ware:waresku:info")
-    public R info(@PathVariable("id") Long id){
-		WareSkuEntity wareSku = wareSkuService.getById(id);
+    public R info(@PathVariable("id") Long id) {
+        WareSkuEntity wareSku = wareSkuService.getById(id);
 
         return R.ok().put("wareSku", wareSku);
     }
@@ -59,8 +58,8 @@ public class WareSkuController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("ware:waresku:save")
-    public R save(@RequestBody WareSkuEntity wareSku){
-		wareSkuService.save(wareSku);
+    public R save(@RequestBody WareSkuEntity wareSku) {
+        wareSkuService.save(wareSku);
 
         return R.ok();
     }
@@ -70,8 +69,8 @@ public class WareSkuController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("ware:waresku:update")
-    public R update(@RequestBody WareSkuEntity wareSku){
-		wareSkuService.updateById(wareSku);
+    public R update(@RequestBody WareSkuEntity wareSku) {
+        wareSkuService.updateById(wareSku);
 
         return R.ok();
     }
@@ -81,8 +80,8 @@ public class WareSkuController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("ware:waresku:delete")
-    public R delete(@RequestBody Long[] ids){
-		wareSkuService.removeByIds(Arrays.asList(ids));
+    public R delete(@RequestBody Long[] ids) {
+        wareSkuService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

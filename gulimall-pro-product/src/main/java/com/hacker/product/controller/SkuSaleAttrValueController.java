@@ -34,8 +34,8 @@ public class SkuSaleAttrValueController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:skusaleattrvalue:list")
-    public R<?> list(@RequestParam Map<String, Object> params){
-        return R.run(()->skuSaleAttrValueService.queryPage(params));
+    public R<?> list(@RequestParam Map<String, Object> params) {
+        return R.run(() -> skuSaleAttrValueService.queryPage(params));
     }
 
 
@@ -44,8 +44,8 @@ public class SkuSaleAttrValueController {
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("product:skusaleattrvalue:info")
-    public R<?> info(@PathVariable("id") Long id){
-        return R.run(()->skuSaleAttrValueService.getById(id));
+    public R<?> info(@PathVariable("id") Long id) {
+        return R.run(() -> skuSaleAttrValueService.getById(id));
     }
 
     /**
@@ -53,8 +53,8 @@ public class SkuSaleAttrValueController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:skusaleattrvalue:save")
-    public R<?> save(@RequestBody SkuSaleAttrValueEntity skuSaleAttrValue){
-        return R.run(()->skuSaleAttrValueService.save(skuSaleAttrValue));
+    public R<?> save(@RequestBody SkuSaleAttrValueEntity skuSaleAttrValue) {
+        return R.run(() -> skuSaleAttrValueService.save(skuSaleAttrValue));
     }
 
     /**
@@ -62,8 +62,8 @@ public class SkuSaleAttrValueController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:skusaleattrvalue:update")
-    public R<?> update(@RequestBody SkuSaleAttrValueEntity skuSaleAttrValue){
-        return R.run(()->skuSaleAttrValueService.updateById(skuSaleAttrValue));
+    public R<?> update(@RequestBody SkuSaleAttrValueEntity skuSaleAttrValue) {
+        return R.run(() -> skuSaleAttrValueService.updateById(skuSaleAttrValue));
     }
 
     /**
@@ -71,8 +71,8 @@ public class SkuSaleAttrValueController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:skusaleattrvalue:delete")
-    public R<?> delete(@RequestBody Long[] ids){
-        return R.run(()->skuSaleAttrValueService.removeByIds(Arrays.asList(ids)));
+    public R<?> delete(@RequestBody Long[] ids) {
+        return R.run(() -> skuSaleAttrValueService.removeByIds(Arrays.asList(ids)));
     }
 
 }

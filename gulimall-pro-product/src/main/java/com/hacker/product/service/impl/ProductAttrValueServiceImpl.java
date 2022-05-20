@@ -46,7 +46,7 @@ public class ProductAttrValueServiceImpl extends ServiceImpl<ProductAttrValueDao
     @Override
     public void updateSpuAttr(Long spuId, List<ProductAttrValueEntity> entities) {
         //1、删除这个spuId之前对应的所有属性
-        this.baseMapper.delete(new QueryWrapper<ProductAttrValueEntity>().eq("spu_id",spuId));
+        this.baseMapper.delete(new QueryWrapper<ProductAttrValueEntity>().eq("spu_id", spuId));
 
 
         List<ProductAttrValueEntity> collect = entities.stream().map(item -> {

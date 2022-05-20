@@ -44,17 +44,17 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     public List<CategoryEntity> listWithTree() {
         //1、查出所有分类
         List<CategoryEntity> entities = baseMapper.selectList(null);
-        if (entities==null) {
+        if (entities == null) {
             throw AccessReason.NULL_POINT_EXCEPTION.exception("商品分类为空");
         }
         return entities.stream()  //找到所有的一级分类
-                    .filter(categoryEntity -> categoryEntity.getParentCid() == 0)
-                    .peek((menu)-> {
-                        List<CategoryEntity> list = getChildrens(menu, entities);
-                        menu.setChildren(list);
-                    })//当前菜单的子分类
-                    .sorted(Comparator.comparingInt(menu -> (menu.getSort() == null ? 0 : menu.getSort())))
-                    .collect(Collectors.toList());
+                .filter(categoryEntity -> categoryEntity.getParentCid() == 0)
+                .peek((menu) -> {
+                    List<CategoryEntity> list = getChildrens(menu, entities);
+                    menu.setChildren(list);
+                })//当前菜单的子分类
+                .sorted(Comparator.comparingInt(menu -> (menu.getSort() == null ? 0 : menu.getSort())))
+                .collect(Collectors.toList());
     }
 
 
@@ -78,23 +78,24 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
     /**
      * 级联更新所有关联的数据
+     *
      * @param category
      */
     @Transactional
     @Override
     public void updateCascade(CategoryEntity category) {
         this.updateById(category);
-        categoryBrandRelationService.updateCategory(category.getCatId(),category.getName());
+        categoryBrandRelationService.updateCategory(category.getCatId(), category.getName());
     }
 
 
     //225,25,2
-    private List<Long> findParentPath(Long catelogId,List<Long> paths){
+    private List<Long> findParentPath(Long catelogId, List<Long> paths) {
         //1、收集当前节点id
         paths.add(catelogId);
         CategoryEntity byId = this.getById(catelogId);
-        if(byId.getParentCid()!=0){
-            findParentPath(byId.getParentCid(),paths);
+        if (byId.getParentCid() != 0) {
+            findParentPath(byId.getParentCid(), paths);
         }
         return paths;
     }
@@ -102,15 +103,16 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
     /**
      * 递归查找所有菜单的子菜单
+     *
      * @param root 当前菜单
      * @param all  所有菜单
      * @return 当前菜单子菜单
      */
     private List<CategoryEntity> getChildrens(@NotNull(message = "当前菜单不能为空") CategoryEntity root,
-                                              @NotNull(message = "菜单列表不能为空") List<CategoryEntity> all){
+                                              @NotNull(message = "菜单列表不能为空") List<CategoryEntity> all) {
         return all.stream().filter(categoryEntity -> categoryEntity.getParentCid().equals(root.getCatId()))
                 .peek(categoryEntity ->
-                    categoryEntity.setChildren(getChildrens(categoryEntity,all)))//1、找到子菜单
+                        categoryEntity.setChildren(getChildrens(categoryEntity, all)))//1、找到子菜单
                 .sorted(Comparator.comparingInt(menu -> (menu.getSort() == null ? 0 : menu.getSort())))
                 .collect(Collectors.toList());
     }
@@ -118,7 +120,9 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
     public static void main(String[] args) {
         ArrayList<String> list = new ArrayList<>();
-        list.add("a");list.add("b");list.add("a");
+        list.add("a");
+        list.add("b");
+        list.add("a");
         List<String> stringList = list.stream()
                 .filter(s -> s.equals("c"))
                 .peek(s -> new StringBuilder(s).append(s))

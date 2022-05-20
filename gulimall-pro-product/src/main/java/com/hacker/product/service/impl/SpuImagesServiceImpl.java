@@ -32,9 +32,9 @@ public class SpuImagesServiceImpl extends ServiceImpl<SpuImagesDao, SpuImagesEnt
 
     @Override
     public void saveImages(Long id, List<String> images) {
-        if(images == null || images.size() == 0){
+        if (images == null || images.size() == 0) {
 
-        }else{
+        } else {
             List<SpuImagesEntity> collect = images.stream().map(img -> {
                 SpuImagesEntity spuImagesEntity = new SpuImagesEntity();
                 spuImagesEntity.setSpuId(id);

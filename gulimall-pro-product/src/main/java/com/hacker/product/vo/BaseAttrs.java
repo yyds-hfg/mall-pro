@@ -19,5 +19,4 @@ public class BaseAttrs {
     private int showDesc;
 
 
-
 }

@@ -70,6 +70,6 @@ public class OssController {
             System.out.println(e.getMessage());
         }
 
-        return R.ok().put("data",respMap);
+        return R.ok().put("data", respMap);
     }
 }

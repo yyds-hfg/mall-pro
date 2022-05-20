@@ -9,7 +9,7 @@ import lombok.Data;
 
 /**
  * 库存工作单
- * 
+ *
  * @author leifengyang
  * @email leifengyang@gmail.com
  * @date 2019-10-08 09:59:40
@@ -17,28 +17,28 @@ import lombok.Data;
 @Data
 @TableName("wms_ware_order_task_detail")
 public class WareOrderTaskDetailEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * id
-	 */
-	@TableId
-	private Long id;
-	/**
-	 * sku_id
-	 */
-	private Long skuId;
-	/**
-	 * sku_name
-	 */
-	private String skuName;
-	/**
-	 * 购买个数
-	 */
-	private Integer skuNum;
-	/**
-	 * 工作单id
-	 */
-	private Long taskId;
+    /**
+     * id
+     */
+    @TableId
+    private Long id;
+    /**
+     * sku_id
+     */
+    private Long skuId;
+    /**
+     * sku_name
+     */
+    private String skuName;
+    /**
+     * 购买个数
+     */
+    private Integer skuNum;
+    /**
+     * 工作单id
+     */
+    private Long taskId;
 
 }

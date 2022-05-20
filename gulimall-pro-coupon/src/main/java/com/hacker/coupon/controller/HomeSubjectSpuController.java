@@ -16,7 +16,6 @@ import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
 
-
 /**
  * 专题商品
  *
@@ -36,7 +35,7 @@ public class HomeSubjectSpuController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("coupon:homesubjectspu:list")
-    public R list(@RequestParam Map<String, Object> params){
+    public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = homeSubjectSpuService.queryPage(params);
 
         return R.ok().put("page", page);
@@ -48,8 +47,8 @@ public class HomeSubjectSpuController {
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("coupon:homesubjectspu:info")
-    public R info(@PathVariable("id") Long id){
-		HomeSubjectSpuEntity homeSubjectSpu = homeSubjectSpuService.getById(id);
+    public R info(@PathVariable("id") Long id) {
+        HomeSubjectSpuEntity homeSubjectSpu = homeSubjectSpuService.getById(id);
 
         return R.ok().put("homeSubjectSpu", homeSubjectSpu);
     }
@@ -59,8 +58,8 @@ public class HomeSubjectSpuController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("coupon:homesubjectspu:save")
-    public R save(@RequestBody HomeSubjectSpuEntity homeSubjectSpu){
-		homeSubjectSpuService.save(homeSubjectSpu);
+    public R save(@RequestBody HomeSubjectSpuEntity homeSubjectSpu) {
+        homeSubjectSpuService.save(homeSubjectSpu);
 
         return R.ok();
     }
@@ -70,8 +69,8 @@ public class HomeSubjectSpuController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("coupon:homesubjectspu:update")
-    public R update(@RequestBody HomeSubjectSpuEntity homeSubjectSpu){
-		homeSubjectSpuService.updateById(homeSubjectSpu);
+    public R update(@RequestBody HomeSubjectSpuEntity homeSubjectSpu) {
+        homeSubjectSpuService.updateById(homeSubjectSpu);
 
         return R.ok();
     }
@@ -81,8 +80,8 @@ public class HomeSubjectSpuController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("coupon:homesubjectspu:delete")
-    public R delete(@RequestBody Long[] ids){
-		homeSubjectSpuService.removeByIds(Arrays.asList(ids));
+    public R delete(@RequestBody Long[] ids) {
+        homeSubjectSpuService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

@@ -16,7 +16,6 @@ import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
 
-
 /**
  * 会员收藏的专题活动
  *
@@ -35,7 +34,7 @@ public class MemberCollectSubjectController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("member:membercollectsubject:list")
-    public R list(@RequestParam Map<String, Object> params){
+    public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = memberCollectSubjectService.queryPage(params);
 
         return R.ok().put("page", page);
@@ -47,8 +46,8 @@ public class MemberCollectSubjectController {
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("member:membercollectsubject:info")
-    public R info(@PathVariable("id") Long id){
-		MemberCollectSubjectEntity memberCollectSubject = memberCollectSubjectService.getById(id);
+    public R info(@PathVariable("id") Long id) {
+        MemberCollectSubjectEntity memberCollectSubject = memberCollectSubjectService.getById(id);
 
         return R.ok().put("memberCollectSubject", memberCollectSubject);
     }
@@ -58,8 +57,8 @@ public class MemberCollectSubjectController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("member:membercollectsubject:save")
-    public R save(@RequestBody MemberCollectSubjectEntity memberCollectSubject){
-		memberCollectSubjectService.save(memberCollectSubject);
+    public R save(@RequestBody MemberCollectSubjectEntity memberCollectSubject) {
+        memberCollectSubjectService.save(memberCollectSubject);
 
         return R.ok();
     }
@@ -69,8 +68,8 @@ public class MemberCollectSubjectController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("member:membercollectsubject:update")
-    public R update(@RequestBody MemberCollectSubjectEntity memberCollectSubject){
-		memberCollectSubjectService.updateById(memberCollectSubject);
+    public R update(@RequestBody MemberCollectSubjectEntity memberCollectSubject) {
+        memberCollectSubjectService.updateById(memberCollectSubject);
 
         return R.ok();
     }
@@ -80,8 +79,8 @@ public class MemberCollectSubjectController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("member:membercollectsubject:delete")
-    public R delete(@RequestBody Long[] ids){
-		memberCollectSubjectService.removeByIds(Arrays.asList(ids));
+    public R delete(@RequestBody Long[] ids) {
+        memberCollectSubjectService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

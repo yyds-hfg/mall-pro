@@ -34,8 +34,8 @@ public class SkuInfoController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:skuinfo:list")
-    public R<PageUtils> list(@RequestParam Map<String, Object> params){
-        return R.run(()->skuInfoService.queryPageByCondition(params));
+    public R<PageUtils> list(@RequestParam Map<String, Object> params) {
+        return R.run(() -> skuInfoService.queryPageByCondition(params));
     }
 
 
@@ -44,8 +44,8 @@ public class SkuInfoController {
      */
     @RequestMapping("/info/{skuId}")
     //@RequiresPermissions("product:skuinfo:info")
-    public R<SkuInfoEntity> info(@PathVariable("skuId") Long skuId){
-        return R.run(()->skuInfoService.getById(skuId));
+    public R<SkuInfoEntity> info(@PathVariable("skuId") Long skuId) {
+        return R.run(() -> skuInfoService.getById(skuId));
     }
 
     /**
@@ -53,8 +53,8 @@ public class SkuInfoController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:skuinfo:save")
-    public R<?> save(@RequestBody SkuInfoEntity skuInfo){
-		skuInfoService.save(skuInfo);
+    public R<?> save(@RequestBody SkuInfoEntity skuInfo) {
+        skuInfoService.save(skuInfo);
         return R.ok();
     }
 
@@ -63,8 +63,8 @@ public class SkuInfoController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:skuinfo:update")
-    public R<?> update(@RequestBody SkuInfoEntity skuInfo){
-		skuInfoService.updateById(skuInfo);
+    public R<?> update(@RequestBody SkuInfoEntity skuInfo) {
+        skuInfoService.updateById(skuInfo);
         return R.ok();
     }
 
@@ -73,8 +73,8 @@ public class SkuInfoController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:skuinfo:delete")
-    public R<?> delete(@RequestBody Long[] skuIds){
-		skuInfoService.removeByIds(Arrays.asList(skuIds));
+    public R<?> delete(@RequestBody Long[] skuIds) {
+        skuInfoService.removeByIds(Arrays.asList(skuIds));
         return R.ok();
     }
 

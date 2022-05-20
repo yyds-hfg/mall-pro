@@ -15,6 +15,7 @@ public class MybatisPlusConfig {
 
     /**
      * 将mybatis底层的反射能力开放出来供应应用使用
+     *
      * @return ReflectorFactory
      */
     @Bean(name = "reflectorFactory")

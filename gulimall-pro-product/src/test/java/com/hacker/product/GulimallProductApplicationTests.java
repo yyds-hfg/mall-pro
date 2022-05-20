@@ -30,9 +30,9 @@ public class GulimallProductApplicationTests {
     CategoryService categoryService;
 
     @Test
-    public void testFindPath(){
+    public void testFindPath() {
         Long[] catelogPath = categoryService.findCatelogPath(225L);
-        log.info("完整路径：{}",Arrays.asList(catelogPath));
+        log.info("完整路径：{}", Arrays.asList(catelogPath));
     }
 
 

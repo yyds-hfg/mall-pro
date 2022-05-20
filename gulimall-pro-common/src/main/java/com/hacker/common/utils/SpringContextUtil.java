@@ -21,8 +21,9 @@ public class SpringContextUtil implements ApplicationContextAware {
 
     /**
      * 给context赋值
+     *
      * @param applicationContext applicationContext
-     * @throws BeansException  bean异常
+     * @throws BeansException bean异常
      */
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -31,6 +32,7 @@ public class SpringContextUtil implements ApplicationContextAware {
 
     /**
      * 获取到ApplicationContext
+     *
      * @return ApplicationContext
      */
     @SneakyThrows
@@ -41,10 +43,11 @@ public class SpringContextUtil implements ApplicationContextAware {
 
     /**
      * 获取Bean
+     *
      * @param requiredType bean的类型
-     * @param <T> requiredType
+     * @param <T>          requiredType
      * @return bean对象
-     * @throws NoSuchBeanDefinitionException —如果没有找到给定类型的bean
+     * @throws NoSuchBeanDefinitionException   —如果没有找到给定类型的bean
      * @throws NoUniqueBeanDefinitionException —如果发现给定类型的多个bean
      */
     @SneakyThrows
@@ -55,28 +58,29 @@ public class SpringContextUtil implements ApplicationContextAware {
 
     /**
      * 获取Bean
-     * @param name  要检索的bean的名称
+     *
+     * @param name         要检索的bean的名称
      * @param requiredType requiredType bean的类型
-     * @param <T> bean对象
+     * @param <T>          bean对象
      * @return bean对象
      * @throws NoSuchBeanDefinitionException—如果没有这样的bean定义
-     * @throws BeanDefinitionStoreException —如果给出了参数，但受影响的bean不是原型
+     * @throws BeanDefinitionStoreException                —如果给出了参数，但受影响的bean不是原型
      * @throws BeansException—如果不能创建bean
      */
     @SneakyThrows
     public static <T> T getBean(String name, Class<T> requiredType) {
         assertContextInjected();
-        return context.getBean(name,requiredType);
+        return context.getBean(name, requiredType);
     }
-
 
 
     /**
      * 判断ApplicationContext 是否注入
+     *
      * @throws IllegalAccessException 当前执行的方法没有访问指定类
      */
     private static void assertContextInjected() throws IllegalAccessException {
-        if (context==null) {
+        if (context == null) {
             throw new IllegalAccessException("Application have not bean injected");
         }
     }

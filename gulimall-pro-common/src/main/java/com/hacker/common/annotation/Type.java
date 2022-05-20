@@ -12,15 +12,19 @@ import javax.validation.groups.Default;
 public interface Type {
 
     @Api(value = "添加组")
-    interface Add extends Default {}
+    interface Add extends Default {
+    }
 
     @Api(value = "更新组")
-    interface Update extends Default {}
+    interface Update extends Default {
+    }
 
     @Api(value = "删除组")
-    interface Delete extends Default {}
+    interface Delete extends Default {
+    }
 
     @Api(value = "查询组")
-    interface Query extends Default {}
+    interface Query extends Default {
+    }
 
 }

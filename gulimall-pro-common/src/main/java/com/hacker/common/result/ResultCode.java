@@ -1,4 +1,5 @@
 package com.hacker.common.result;
+
 import lombok.Getter;
 
 /**
@@ -17,7 +18,7 @@ public enum ResultCode {
 
     private final String message;
 
-    ResultCode(String code, String msg){
+    ResultCode(String code, String msg) {
         this.code = code;
         this.message = msg;
     }
