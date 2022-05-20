@@ -1,6 +1,6 @@
 package com.hacker.common.exception;
 
-import org.springframework.util.StringUtils;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * @Author: Zero
@@ -28,7 +28,7 @@ public class AccessException extends RuntimeException {
 
 
     public AccessException(AccessReason accessReason, String errorMsg) {
-        super(!StringUtils.isEmpty(errorMsg)?errorMsg:accessReason.getErrorMsg());
+        super(!StringUtils.isNotBlank(errorMsg) ?errorMsg:accessReason.getErrorMsg());
         this.accessReason = accessReason;
         this.errorMsg = errorMsg;
     }

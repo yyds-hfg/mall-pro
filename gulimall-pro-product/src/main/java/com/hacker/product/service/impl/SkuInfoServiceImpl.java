@@ -15,7 +15,6 @@ import com.hacker.common.utils.Query;
 import com.hacker.product.dao.SkuInfoDao;
 import org.springframework.util.StringUtils;
 
-
 @Service("skuInfoService")
 public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> implements SkuInfoService {
 
@@ -25,7 +24,6 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
                 new Query<SkuInfoEntity>().getPage(params),
                 new QueryWrapper<SkuInfoEntity>()
         );
-
         return new PageUtils(page);
     }
 
@@ -81,13 +79,10 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
             }
 
         }
-
-
         IPage<SkuInfoEntity> page = this.page(
                 new Query<SkuInfoEntity>().getPage(params),
                 queryWrapper
         );
-
         return new PageUtils(page);
     }
 

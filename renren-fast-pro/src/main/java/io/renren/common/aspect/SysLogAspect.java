@@ -80,7 +80,7 @@ public class SysLogAspect {
 		try{
 			String params = new Gson().toJson(args);
 			sysLog.setParams(params);
-		}catch (Exception e){
+		} catch (Exception ignored){
 
 		}
 

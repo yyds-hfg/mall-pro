@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Data
 @Slf4j
+@SuppressWarnings("unchecked")
 public class R<T> {
 
     private String code;
@@ -65,8 +66,8 @@ public class R<T> {
     /**
      *
      * @param runnable 有返回值得
-     * @param <V>
-     * @return
+     * @param <V> v
+     * @return v
      */
     public static <V> R<V> run(RunnableAndGetResult<V> runnable){
         try{

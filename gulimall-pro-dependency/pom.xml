@@ -2,15 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.hacker</groupId>
     <artifactId>gulimall-pro-dependency</artifactId>
-    <version>${revision}</version>
+    <version>1.1.1.RELEASE</version>
     <packaging>pom</packaging>
 
     <properties>
-        <revision>1.1.1.RELEASE</revision>
         <!-- 统一依赖管理 -->
         <spring.boot.version>2.6.3</spring.boot.version>
         <spring-cloud.version>2021.0.1</spring-cloud.version>
@@ -18,7 +16,7 @@
         <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
 
         <!-- Web 相关 -->
-        <knife4j.version>3.0.2</knife4j.version>
+        <knife4j.version>2.0.6</knife4j.version>
         <swagger-annotations.version>1.5.22</swagger-annotations.version>
         <servlet.versoin>2.5</servlet.versoin>
 
@@ -29,7 +27,7 @@
 
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <lombok.version>1.18.22</lombok.version>
+        <lombok.version>1.18.20</lombok.version>
         <knife4j-spring-boot.version>2.0.6</knife4j-spring-boot.version>
 
 
@@ -97,7 +95,6 @@
                 <version>${servlet-api.version}</version>
                 <scope>provided</scope>
             </dependency>
-
 
 
             <!--数据库相关-->
@@ -170,6 +167,16 @@
 
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.6.3</version>
+            </plugin>
+        </plugins>
+    </build>
     <!-- 使用 aliyun 的 Maven 源，提升下载速度 -->
     <repositories>
         <repository>

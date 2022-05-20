@@ -37,14 +37,19 @@ public class CloudStorageConfig implements Serializable {
     @NotBlank(message="七牛绑定的域名不能为空", groups = QiniuGroup.class)
     @URL(message = "七牛绑定的域名格式不正确", groups = QiniuGroup.class)
     private String qiniuDomain;
+
     //七牛路径前缀
     private String qiniuPrefix;
+
     //七牛ACCESS_KEY
     @NotBlank(message="七牛AccessKey不能为空", groups = QiniuGroup.class)
     private String qiniuAccessKey;
+
     //七牛SECRET_KEY
     @NotBlank(message="七牛SecretKey不能为空", groups = QiniuGroup.class)
     private String qiniuSecretKey;
+
+
     //七牛存储空间名
     @NotBlank(message="七牛空间名不能为空", groups = QiniuGroup.class)
     private String qiniuBucketName;
@@ -53,8 +58,12 @@ public class CloudStorageConfig implements Serializable {
     @NotBlank(message="阿里云绑定的域名不能为空", groups = AliyunGroup.class)
     @URL(message = "阿里云绑定的域名格式不正确", groups = AliyunGroup.class)
     private String aliyunDomain;
+
+
     //阿里云路径前缀
     private String aliyunPrefix;
+
+
     //阿里云EndPoint
     @NotBlank(message="阿里云EndPoint不能为空", groups = AliyunGroup.class)
     private String aliyunEndPoint;

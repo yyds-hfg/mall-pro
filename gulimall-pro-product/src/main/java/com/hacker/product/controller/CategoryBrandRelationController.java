@@ -40,7 +40,6 @@ public class CategoryBrandRelationController {
         List<CategoryBrandRelationEntity> data = categoryBrandRelationService.list(
                 new QueryWrapper<CategoryBrandRelationEntity>().eq("brand_id",brandId)
         );
-
         return R.ok().put("data", data);
     }
 
