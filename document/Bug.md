@@ -14,8 +14,6 @@
 
 #### 阿波罗配置中心启动报错问题
 
-```java
-2022-05-20 16:55:50.037  INFO 7440 --- [           main] c.c.f.f.i.p.DefaultServerProvider        : Environment is set to null. Because it is not available in either (1) JVM system property 'env', (2) OS env variable 'ENV' nor (3) property 'env' from the properties InputStream.
-```
+2022-05-20 16:55:50.037  INFO 7440 --- [main] c.c.f.f.i.p.DefaultServerProvider        : Environment is set to null. Because it is not available in either (1) JVM system property 'env', (2) OS env variable 'ENV' nor (3) property 'env' from the properties InputStream.
 
 > 在启动的激活配置文件上  vm.options   -Denv=DEV
