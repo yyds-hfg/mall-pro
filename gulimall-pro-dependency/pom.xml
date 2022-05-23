@@ -8,6 +8,8 @@
     <version>1.1.1.RELEASE</version>
     <packaging>pom</packaging>
 
+    <description>gulimall-pro 依赖版本管理</description>
+
     <properties>
         <!-- 统一依赖管理 -->
         <spring.boot.version>2.6.3</spring.boot.version>

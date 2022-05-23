@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Map;
 
 import com.hacker.order.service.OrderReturnReasonService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,17 +17,17 @@ import com.hacker.order.entity.OrderReturnReasonEntity;
 import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
-
 /**
  * 退货原因
  *
- * @author leifengyang
- * @email leifengyang@gmail.com
- * @date 2019-10-08 09:56:16
+ * @Author: Zero
+ * @Date: 2022/5/21 8:57
+ * @Description:
  */
 @RestController
 @RequestMapping("order/orderreturnreason")
 public class OrderReturnReasonController {
+
     @Autowired
     private OrderReturnReasonService orderReturnReasonService;
 
@@ -34,6 +36,7 @@ public class OrderReturnReasonController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("order:orderreturnreason:list")
+    @ApiOperation(value = "")
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = orderReturnReasonService.queryPage(params);
 

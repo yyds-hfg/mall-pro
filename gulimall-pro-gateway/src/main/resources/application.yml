@@ -9,6 +9,10 @@ spring:
             - Path=/api/product/**
           filters:
             - RewritePath=/api/(?<segment>.*),/$\{segment}
+        ## 前端项目，/api
+        ## http://localhost:88/api/captcha.jpg   http://localhost:8080/renren-fast/captcha.jpg
+        ## http://localhost:88/api/product/category/list/tree http://localhost:10000/product/category/list/tree
+
 
         - id: third_party_route
           uri: lb://gulimall-third-party
@@ -17,12 +21,14 @@ spring:
           filters:
             - RewritePath=/api/thirdparty/(?<segment>.*),/$\{segment}
 
+
         - id: member_route
           uri: lb://gulimall-member
           predicates:
             - Path=/api/member/**
           filters:
             - RewritePath=/api/(?<segment>.*),/$\{segment}
+
 
         - id: ware_route
           uri: lb://gulimall-ware
@@ -31,6 +37,7 @@ spring:
           filters:
             - RewritePath=/api/(?<segment>.*),/$\{segment}
 
+
         - id: admin_route
           uri: lb://renren-fast-pro
           predicates:
@@ -38,6 +45,12 @@ spring:
           filters:
             - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}
 
-  ## 前端项目，/api
-## http://localhost:88/api/captcha.jpg   http://localhost:8080/renren-fast/captcha.jpg
-## http://localhost:88/api/product/category/list/tree http://localhost:10000/product/category/list/tree
+
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  application:
+    name: gulimall-gateway-pro
+
+server:
+  port: 88

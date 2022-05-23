@@ -17,9 +17,24 @@ import lombok.Data;
  */
 @Data
 public class SysLoginForm {
+    /**
+     * 用户名字
+     */
     private String username;
+
+    /**
+     * 用户密码
+     */
     private String password;
+
+    /**
+     * tu图片
+     */
     private String captcha;
+
+    /**
+     * 图片uuid
+     */
     private String uuid;
 
 

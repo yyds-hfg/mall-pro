@@ -15,13 +15,12 @@ import com.hacker.order.service.PaymentInfoService;
 import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
-
 /**
  * 支付信息表
  *
- * @author leifengyang
- * @email leifengyang@gmail.com
- * @date 2019-10-08 09:56:16
+ * @Author: Zero
+ * @Date: 2022/5/21 9:23
+ * @Description:
  */
 @RestController
 @RequestMapping("order/paymentinfo")

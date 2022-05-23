@@ -6,10 +6,11 @@ package com.hacker.product.vo;
 import lombok.Data;
 
 /**
- * Auto-generated: 2019-11-26 10:50:34
  *
- * @author bejson.com (i@bejson.com)
- * @website http://www.bejson.com/java2pojo/
+ *
+ * @Author: Zero
+ * @Date: 2022/5/22 22:39
+ * @Description:
  */
 @Data
 public class Attr {

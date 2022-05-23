@@ -16,11 +16,11 @@ import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
 /**
- * sku图片
  *
- * @author leifengyang
- * @email leifengyang@gmail.com
- * @date 2019-10-01 22:50:32
+ *
+ * @Author: Zero
+ * @Date: 2022/5/22 22:57
+ * @Description:
  */
 @RestController
 @RequestMapping("product/skuimages")

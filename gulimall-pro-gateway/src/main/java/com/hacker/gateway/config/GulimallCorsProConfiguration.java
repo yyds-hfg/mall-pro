@@ -12,14 +12,15 @@ public class GulimallCorsProConfiguration {
 
     @Bean
     public CorsWebFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource(new PathPatternParser());
         CorsConfiguration config = new CorsConfiguration();
         config.addAllowedMethod("*");
-        config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource(new PathPatternParser());
+        //config.setAllowCredentials(true);
+        config.addAllowedOriginPattern("*");
+        //是否允许证书
+        config.setAllowCredentials(true);
         source.registerCorsConfiguration("/**", config);
-
         return new CorsWebFilter(source);
     }
 

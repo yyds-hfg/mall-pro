@@ -26,6 +26,7 @@ import com.hacker.common.utils.R;
 @RestController
 @RequestMapping("product/productattrvalue")
 public class ProductAttrValueController {
+
     @Autowired
     private ProductAttrValueService productAttrValueService;
 
