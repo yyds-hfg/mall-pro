@@ -25,7 +25,7 @@
         <!--DB相关-->
         <mybatis-plus-boot.version>3.4.2</mybatis-plus-boot.version>
         <mysql.version>8.0.19</mysql.version>
-
+        <pagehelper.version>5.3.0</pagehelper.version>
 
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
@@ -118,7 +118,11 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus-boot.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
 
             <!-- Spring 核心 -->
             <dependency>

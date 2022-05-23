@@ -1,5 +1,9 @@
 package com.hacker.common.config;
 
+import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import com.github.pagehelper.PageInterceptor;
 import org.apache.ibatis.reflection.DefaultReflectorFactory;
 import org.apache.ibatis.reflection.ReflectorFactory;
 import org.springframework.context.annotation.Bean;
@@ -22,5 +26,28 @@ public class MybatisPlusConfig {
     public ReflectorFactory reflectionFactory() {
         return new DefaultReflectorFactory();
     }
+
+    /**
+     * MybatisPlus分页插件，自动识别数据库类型
+     * @return PaginationInnerInterceptor
+     */
+    @Bean
+    public PaginationInnerInterceptor getPaginationInnerInterceptor() {
+        PaginationInnerInterceptor innerInterceptor = new PaginationInnerInterceptor();
+        innerInterceptor.setDbType(DbType.MYSQL);  //设置数据库类型
+        //innerInterceptor.setMaxLimit();  //设置单页条数限制
+        return innerInterceptor;
+    }
+
+    /**
+     * pagehelper分页
+     * @return ConfigurationCustomizer
+     */
+    @Bean
+    public ConfigurationCustomizer mybatisConfigurationCustomizer() {
+        PageInterceptor pageInterceptor = new PageInterceptor();
+        return configuration -> configuration.addInterceptor(pageInterceptor);
+    }
+
 
 }

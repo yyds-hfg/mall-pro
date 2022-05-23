@@ -19,7 +19,18 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
-            <scope>provided</scope><!-- 设置为 provided，只有工具类需要使用到 -->
+            <scope>provided</scope><!-- 设置为 provided,只有工具类需要使用到 -->
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <scope>provided</scope><!-- 设置为 provided,只有工具类需要使用到 -->
+        </dependency>
+        <!--https://pagehelper.github.io/docs/-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <scope>provided</scope><!-- 设置为 provided,只有工具类需要使用到 -->
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
@@ -39,18 +50,6 @@
             <version>2.5</version>
             <scope>provided</scope>
         </dependency>
-
-        <!--&lt;!&ndash;        服务注册/发现&ndash;&gt;
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-
-        &lt;!&ndash;        配置中心来做配置管理&ndash;&gt;
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>-->
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -87,12 +86,7 @@
             <artifactId>swagger-annotations</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
+        <!--knife4j-->
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-spring-boot-starter</artifactId>
