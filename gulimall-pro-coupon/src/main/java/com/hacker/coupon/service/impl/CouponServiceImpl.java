@@ -1,6 +1,5 @@
 package com.hacker.coupon.service.impl;
 
-import com.hacker.common.annotation.SystemLog;
 import com.hacker.coupon.dao.CouponDao;
 import com.hacker.coupon.entity.CouponEntity;
 import com.hacker.coupon.service.CouponService;
@@ -31,7 +30,6 @@ public class CouponServiceImpl extends ServiceImpl<CouponDao, CouponEntity> impl
 
     @SneakyThrows
     @Override
-    @SystemLog
     public String hellp() {
         for (int i = 0; i < 5; i++) {
             System.out.println("执行第" + i++ + "次");

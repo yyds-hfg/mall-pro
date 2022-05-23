@@ -1,9 +1,7 @@
 package com.hacker.common.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
-import com.github.pagehelper.PageInterceptor;
 import org.apache.ibatis.reflection.DefaultReflectorFactory;
 import org.apache.ibatis.reflection.ReflectorFactory;
 import org.springframework.context.annotation.Bean;
@@ -39,15 +37,15 @@ public class MybatisPlusConfig {
         return innerInterceptor;
     }
 
-    /**
-     * pagehelper分页
-     * @return ConfigurationCustomizer
-     */
-    @Bean
-    public ConfigurationCustomizer mybatisConfigurationCustomizer() {
-        PageInterceptor pageInterceptor = new PageInterceptor();
-        return configuration -> configuration.addInterceptor(pageInterceptor);
-    }
+//    /**
+//     * pagehelper分页
+//     * @return ConfigurationCustomizer
+//     */
+//    @Bean
+//    public ConfigurationCustomizer mybatisConfigurationCustomizer() {
+//        PageInterceptor pageInterceptor = new PageInterceptor();
+//        return configuration -> configuration.addInterceptor(pageInterceptor);
+//    }
 
 
 }

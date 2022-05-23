@@ -32,7 +32,7 @@ public class CamundaProcessApplication {
     @Autowired
     private RepositoryService repositoryService;
 
-    @EventListener
+//    @EventListener
     public void processPostDeploy(PostDeployEvent event) {
         System.out.println("部署流程");
         Deployment deployment = repositoryService.createDeployment().addClasspathResource("bpmn/start.bpmn").deploy();
