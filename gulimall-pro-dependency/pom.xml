@@ -41,6 +41,10 @@
         <servlet-api.version>2.5</servlet-api.version>
         <validation-api.version>2.0.1.Final</validation-api.version>
         <swagger-annotations.version>1.5.22</swagger-annotations.version>
+
+
+        <camunda.spring-boot.version>7.15.0</camunda.spring-boot.version>
+        <jaxb-impl.version>2.3.5</jaxb-impl.version>
     </properties>
 
     <dependencyManagement>
@@ -178,6 +182,20 @@
                 <artifactId>swagger-annotations</artifactId>
                 <version>${swagger-annotations.version}</version>
             </dependency>
+
+            <!--Camunda所需依赖-->
+            <dependency>
+                <groupId>org.camunda.bpm.springboot</groupId>
+                <artifactId>camunda-bpm-spring-boot-starter</artifactId>
+                <version>${camunda.spring-boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.sun.xml.bind</groupId>
+                <artifactId>jaxb-impl</artifactId>
+                <version>${jaxb-impl.version}</version>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>

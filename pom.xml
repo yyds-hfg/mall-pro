@@ -19,6 +19,7 @@
         <module>gulimall-pro-dependency</module>
         <module>gulimall-pro-gateway</module>
         <module>gulimall-pro-third-party</module>
+        <module>gulimall-admin-process</module>
     </modules>
     <properties>
         <!-- Maven 相关 -->
