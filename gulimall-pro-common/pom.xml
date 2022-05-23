@@ -15,16 +15,23 @@
     <description>每一个微服务公共的依赖，bean，工具类等</description>
 
     <dependencies>
-
+        <!--aop依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
             <scope>provided</scope><!-- 设置为 provided,只有工具类需要使用到 -->
         </dependency>
+        <!--持久层mybatis-plus依赖-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <scope>provided</scope><!-- 设置为 provided,只有工具类需要使用到 -->
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jsqlparser</artifactId>
+                    <groupId>com.github.jsqlparser</groupId>
+                </exclusion>
+            </exclusions><!-- 设置为 provided,只有工具类需要使用到 -->
         </dependency>
         <!--https://pagehelper.github.io/docs/-->
         <dependency>
@@ -74,12 +81,6 @@
             <artifactId>fastjson2</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>19.0</version>
-        </dependency>
-
         <!--swagger注解-->
         <dependency>
             <groupId>io.swagger</groupId>
@@ -96,6 +97,14 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+
+        <!--guaua-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>30.1-jre</version>
+            <scope>compile</scope>
         </dependency>
 
     </dependencies>
