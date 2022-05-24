@@ -4,6 +4,7 @@ import org.camunda.bpm.engine.RepositoryService;
 import org.camunda.bpm.engine.repository.Deployment;
 import org.camunda.bpm.spring.boot.starter.annotation.EnableProcessApplication;
 import org.camunda.bpm.spring.boot.starter.event.PostDeployEvent;
+import org.camunda.bpm.spring.boot.starter.event.PreUndeployEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -35,6 +36,19 @@ public class CamundaProcessApplication {
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("Process_07v2a2w");
         System.out.println("流程实例Id:"+processInstance.getRootProcessInstanceId());
         System.out.println("流程业务Key"+processInstance.getBusinessKey());*/
+    }
+
+
+    /**
+     * 使用部署回调
+     * @param event
+     */
+    @EventListener
+    public void onPostDeploy(PostDeployEvent event) {
+    }
+
+    @EventListener
+    public void onPreUndeploy(PreUndeployEvent event) {
     }
 
 }

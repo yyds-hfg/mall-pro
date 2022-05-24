@@ -6,7 +6,6 @@ import com.hacker.service.ProcessTaskService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -31,6 +30,23 @@ public class ProcessTaskController {
         return R.run(()-> processTaskService.queryTaskAgents(businessKey));
     }
 
+    @ApiOperation("设置任务候选人")
+    @GetMapping("/setCandidateUser/{taskId}/{userId}")
+    public R<?> setCandidateUser(@PathVariable String taskId, @PathVariable String userId) {
+        return R.run(()->processTaskService.setCandidateUser(taskId,userId));
+    }
+
+    @ApiOperation("设置和候选组")
+    @GetMapping("/setCandidateGroup/{taskId}/{groupId}")
+    public R<?> setCandidateGroup(@PathVariable String taskId, @PathVariable String groupId) {
+        return R.run(()->processTaskService.setCandidateGroup(taskId,groupId));
+    }
+
+    @ApiOperation("设置认领任务人")
+    @GetMapping("/setAssignee/{taskId}/{userId}")
+    public R<?> setAssignee(@PathVariable String taskId, @PathVariable String userId) {
+        return R.run(()->processTaskService.setAssignee(taskId,userId));
+    }
 
     @ApiOperation("完成当前人工任务")
     @PostMapping("/complete")

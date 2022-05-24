@@ -2,6 +2,7 @@ package com.hacker.domain;
 
 import lombok.Builder;
 import lombok.Data;
+import org.camunda.bpm.engine.impl.persistence.entity.ProcessDefinitionEntity;
 import org.camunda.bpm.engine.repository.ProcessDefinition;
 
 /**
@@ -13,29 +14,29 @@ import org.camunda.bpm.engine.repository.ProcessDefinition;
 @Builder
 public class ProcessDefinitionInfo {
 
-    /** 流程描述 **/
-    private String description;
+    /**
+     *
+     */
+    private String definitionKey;
 
-    /** 这个流程定义有一个开始表单键吗? */
-    private boolean hasStartFormKey;
+    private String deploymentId;
 
-    /** 如果进程定义处于挂起状态，则返回true */
-    private boolean isSuspended;
+    private String resourceName;
 
-    /** 流程定义的版本标记 */
-    private String versionTag;
+    private String definitionId;
 
-    /** 如果进程定义在Tasklist中是可启动的，返回true */
-    private boolean isStartableInTasklist;
-    
+    private String processName;
+
     public static ProcessDefinitionInfo getInstance(ProcessDefinition processDefinition) {
+        ProcessDefinitionEntity definitionEntity = (ProcessDefinitionEntity) processDefinition;
         return ProcessDefinitionInfo.builder()
-                .description(processDefinition.getDescription())
-                .hasStartFormKey(processDefinition.hasStartFormKey())
-                .isSuspended(processDefinition.isSuspended())
-                .versionTag(processDefinition.getVersionTag())
-                .isStartableInTasklist(processDefinition.isStartableInTasklist())
+                .definitionKey(definitionEntity.getKey())
+                .deploymentId(definitionEntity.getDeploymentId())
+                .resourceName(definitionEntity.getResourceName())
+                .definitionId(definitionEntity.getId())
+                .processName(definitionEntity.getName())
                 .build();
+
     }
 
 }

@@ -2,6 +2,8 @@ package com.hacker.service;
 
 import com.hacker.domain.TaskInfo;
 import com.hacker.domain.request.TaskComplete;
+import org.camunda.bpm.engine.AuthorizationException;
+import org.camunda.bpm.engine.ProcessEngineException;
 
 import java.util.List;
 
@@ -18,8 +20,11 @@ public interface ProcessTaskService {
 
     /**
      * 设置候选人
-     * @param taskId
-     * @param userId
+     * @param taskId 任务Id
+     * @param userId 用户Id
+     * @throws ProcessEngineException 当任务或用户不存在时。(Camunda是否保存了这个任务)
+     * @throws AuthorizationException 用户没有权限。更新资源的权限。任务或没有权限。
+     * UPDATE_TASK对资源的权限。PROCESS_DEFINITION(如果任务是正在运行的流程实例的一部分)。
      */
     public void setCandidateUser(String taskId, String userId);
 
@@ -27,6 +32,9 @@ public interface ProcessTaskService {
      * 设置和候选组
      * @param taskId
      * @param groupId
+     * @throws ProcessEngineException—当任务或组不存在时。
+     * @throws AuthorizationException—用户没有权限。更新资源的权限。任务或没有权限。
+     * UPDATE_TASK对资源的权限。PROCESS_DEFINITION(如果任务是正在运行的流程实例的一部分)。
      */
     public void setCandidateGroup(String taskId, String groupId);
 

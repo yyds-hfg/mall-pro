@@ -21,7 +21,4 @@ public interface ProcessInstanceService {
      */
     public ProcessInstanceInfo startProcessInstanceByKey(StartProcessRequest request);
 
-
-
-
 }
