@@ -66,4 +66,11 @@ public interface ProcessTaskService {
      * @param taskComplete
      */
     public void completeTask(TaskComplete taskComplete);
+
+    /**
+     * 查询已办任务
+     * @param userId 用户Id
+     * @return
+     */
+    public List<TaskInfo> queryDoneTask(String userId);
 }

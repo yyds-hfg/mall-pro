@@ -2,6 +2,7 @@ package com.hacker.service.impl;
 
 import com.hacker.domain.TaskInfo;
 import com.hacker.domain.request.TaskComplete;
+import com.hacker.service.ProcessHistoryService;
 import com.hacker.service.ProcessTaskService;
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.TaskService;
@@ -21,9 +22,12 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 public class ProcessTaskServiceImpl implements ProcessTaskService {
+
     @Autowired
     private TaskService taskService;
 
+    @Autowired
+    private ProcessHistoryService processHistoryService;
 
     @Override
     @Transactional
@@ -32,7 +36,7 @@ public class ProcessTaskServiceImpl implements ProcessTaskService {
         List<Task> list = taskService.createTaskQuery().processInstanceBusinessKey(businessKey)
                 .active().list();
         log.info(String.format("查询代办任务完成,代办任务数 [{%d}]",list.size()));
-        return list.stream().map(TaskInfo::getInstrance).collect(Collectors.toList());
+        return list.stream().map(TaskInfo::getTaskInstrance).collect(Collectors.toList());
     }
 
     @Override
@@ -69,5 +73,10 @@ public class ProcessTaskServiceImpl implements ProcessTaskService {
     @Override
     public void completeTask(TaskComplete taskComplete) {
         taskService.complete(taskComplete.getTaskId(),taskComplete.getVars());
+    }
+
+    @Override
+    public List<TaskInfo> queryDoneTask(String userId) {
+        return processHistoryService.getDoneTaskPage(userId);
     }
 }

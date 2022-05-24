@@ -2,6 +2,7 @@ package com.hacker.domain;
 
 import lombok.Builder;
 import lombok.Data;
+import org.camunda.bpm.engine.history.HistoricTaskInstance;
 import org.camunda.bpm.engine.task.DelegationState;
 import org.camunda.bpm.engine.task.Task;
 
@@ -59,12 +60,21 @@ public class TaskInfo {
 
     private String tenantId;
 
-    public static TaskInfo getInstrance(Task task) {
+    public static TaskInfo getTaskInstrance(Task task) {
         return TaskInfo.builder()
                 .id(task.getId())
                 .description(task.getDescription())
                 .createTime(task.getCreateTime())
                 .name(task.getName())
+                .build();
+    }
+
+    public static TaskInfo getHistoricTaskInstance(HistoricTaskInstance historicTaskInstance) {
+        return TaskInfo.builder()
+                .id(historicTaskInstance.getId())
+                .description(historicTaskInstance.getDescription())
+                .createTime(historicTaskInstance.getStartTime())
+                .name(historicTaskInstance.getName())
                 .build();
     }
 

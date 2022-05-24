@@ -58,4 +58,10 @@ public class ProcessTaskController {
         return R.run(()-> processTaskService.completeTask(taskComplete));
     }
 
+    @ApiOperation(value = "查询已办任务")
+    @GetMapping("/queryDoneTask/{userId}")
+    public R<?> queryDoneTask(@PathVariable String userId) {
+        return R.run(()-> processTaskService.queryDoneTask(userId));
+    }
+
 }

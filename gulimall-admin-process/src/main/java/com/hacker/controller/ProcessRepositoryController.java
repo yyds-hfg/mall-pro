@@ -37,5 +37,6 @@ public class ProcessRepositoryController {
     public R<?> getDeployProcess() {
         return R.run(()->processRepositoryService.getDeploymentInfo());
     }
+
 }
 
