@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 /**
  * @Author: Zero
@@ -26,25 +27,28 @@ public class ProcessTaskController {
 
     @ApiOperation(value = "查询流程当前任务 ")
     @GetMapping("/queryTaskAgents/{businessKey}")
-    public R<?> queryTaskAgents(@PathVariable String businessKey) {
+    public R<?> queryTaskAgents(@NotBlank(message = "businessKey不能为空") @PathVariable String businessKey) {
         return R.run(()-> processTaskService.queryTaskAgents(businessKey));
     }
 
     @ApiOperation("设置任务候选人")
     @GetMapping("/setCandidateUser/{taskId}/{userId}")
-    public R<?> setCandidateUser(@PathVariable String taskId, @PathVariable String userId) {
+    public R<?> setCandidateUser(@NotBlank(message = "taskId不能为空") @PathVariable String taskId,
+                                 @NotBlank(message = "userId不能为空") @PathVariable String userId) {
         return R.run(()->processTaskService.setCandidateUser(taskId,userId));
     }
 
     @ApiOperation("设置和候选组")
     @GetMapping("/setCandidateGroup/{taskId}/{groupId}")
-    public R<?> setCandidateGroup(@PathVariable String taskId, @PathVariable String groupId) {
+    public R<?> setCandidateGroup(@NotBlank(message = "taskId不能为空") @PathVariable String taskId,
+                                  @NotBlank(message = "groupId不能为空") @PathVariable String groupId) {
         return R.run(()->processTaskService.setCandidateGroup(taskId,groupId));
     }
 
     @ApiOperation("设置认领任务人")
     @GetMapping("/setAssignee/{taskId}/{userId}")
-    public R<?> setAssignee(@PathVariable String taskId, @PathVariable String userId) {
+    public R<?> setAssignee(@NotBlank(message = "taskId不能为空") @PathVariable String taskId,
+                            @NotBlank(message = "userId不能为空") @PathVariable String userId) {
         return R.run(()->processTaskService.setAssignee(taskId,userId));
     }
 

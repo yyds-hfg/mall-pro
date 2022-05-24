@@ -4,7 +4,6 @@ import com.hacker.domain.TaskInfo;
 import com.hacker.domain.request.TaskComplete;
 import com.hacker.service.ProcessTaskService;
 import lombok.extern.slf4j.Slf4j;
-import org.camunda.bpm.engine.RepositoryService;
 import org.camunda.bpm.engine.TaskService;
 import org.camunda.bpm.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +24,6 @@ public class ProcessTaskServiceImpl implements ProcessTaskService {
     @Autowired
     private TaskService taskService;
 
-    @Autowired
-    private RepositoryService repositoryService;
 
     @Override
     @Transactional

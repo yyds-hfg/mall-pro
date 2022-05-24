@@ -8,6 +8,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /**
  * @Author: Zero
  * @Date: 2022/5/23 22:33
@@ -23,7 +25,7 @@ public class ProcessInstanceController {
 
     @ApiOperation(value = "根据流程定义的Key,启动流程")
     @PostMapping("/start")
-    public R<?> startProcess(@RequestBody StartProcessRequest request) {
+    public R<?> startProcess(@Valid @RequestBody StartProcessRequest request) {
         return R.run(()-> processInstanceService.startProcessInstanceByKey(request));
     }
 
