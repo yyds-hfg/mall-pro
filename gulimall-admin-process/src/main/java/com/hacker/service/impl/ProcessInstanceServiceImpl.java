@@ -3,14 +3,18 @@ package com.hacker.service.impl;
 import com.hacker.domain.ProcessInstanceInfo;
 import com.hacker.domain.request.StartProcessRequest;
 import com.hacker.domain.TaskInfo;
-import com.hacker.service.ProcessService;
+import com.hacker.domain.request.TaskComplete;
+import com.hacker.service.ProcessInstanceService;
 import lombok.extern.slf4j.Slf4j;
+import org.camunda.bpm.engine.RepositoryService;
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.TaskService;
+import org.camunda.bpm.engine.repository.ProcessDefinition;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.camunda.bpm.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,31 +26,22 @@ import java.util.stream.Collectors;
  */
 @Service
 @Slf4j
-public class ProcessServiceImpl implements ProcessService {
+public class ProcessInstanceServiceImpl implements ProcessInstanceService {
 
     @Autowired
     private RuntimeService runtimeService;
 
     @Autowired
-    private TaskService taskService;
+    private RepositoryService repositoryService;
 
     @Override
+    @Transactional
     public ProcessInstanceInfo startProcessInstanceByKey(StartProcessRequest request) {
         log.info(String.format("开启一个流程,流程定义Key [{%s}],流程业务Key [{%s}]",request.getDefinitionKey(),request.getBusinessKey()));
+        ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().processDefinitionKey(request.getDefinitionKey()).active().singleResult();
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(request.getDefinitionKey(), request.getBusinessKey(), request.getVars());
         log.info(String.format("流程启动成功,流程定义Id [{%s}]",processInstance.getProcessDefinitionId()));
         return ProcessInstanceInfo.getInstance(processInstance);
     }
-
-    @Override
-    public List<TaskInfo> queryTaskAgents(String businessKey) {
-        log.info(String.format("查询代办任务,流程业务Key [{%s}]",businessKey));
-        List<Task> list = taskService.createTaskQuery().processInstanceBusinessKey(businessKey)
-                .active().list();
-        log.info(String.format("查询代办任务完成,代办任务数 [{%d}]",list.size()));
-        return list.stream().map(TaskInfo::getInstrance).collect(Collectors.toList());
-    }
-
-
 
 }
