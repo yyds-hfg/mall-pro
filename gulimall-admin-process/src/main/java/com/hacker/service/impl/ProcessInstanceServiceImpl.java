@@ -38,7 +38,6 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
     @Transactional
     public ProcessInstanceInfo startProcessInstanceByKey(StartProcessRequest request) {
         log.info(String.format("开启一个流程,流程定义Key [{%s}],流程业务Key [{%s}]",request.getDefinitionKey(),request.getBusinessKey()));
-        ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().processDefinitionKey(request.getDefinitionKey()).active().singleResult();
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(request.getDefinitionKey(), request.getBusinessKey(), request.getVars());
         log.info(String.format("流程启动成功,流程定义Id [{%s}]",processInstance.getProcessDefinitionId()));
         return ProcessInstanceInfo.getInstance(processInstance);
