@@ -12,7 +12,6 @@ import com.hacker.product.service.AttrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
 /**
@@ -44,8 +43,7 @@ public class AttrController {
                           @PathVariable("catelogId") Long catelogId,
                           @PathVariable("attrType") String type) {
 
-        PageUtils page = attrService.queryBaseAttrPage(params, catelogId, type);
-        return R.ok().put("page", page);
+        return R.ok().put("page", null);
     }
 
     /**
@@ -53,8 +51,7 @@ public class AttrController {
      */
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = attrService.queryPage(params);
-        return R.ok().put("page", page);
+        return R.ok().put("page", null);
     }
 
 

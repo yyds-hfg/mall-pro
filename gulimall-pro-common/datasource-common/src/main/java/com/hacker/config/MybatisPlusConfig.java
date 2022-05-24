@@ -1,4 +1,4 @@
-package com.hacker.common.config;
+package com.hacker.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;

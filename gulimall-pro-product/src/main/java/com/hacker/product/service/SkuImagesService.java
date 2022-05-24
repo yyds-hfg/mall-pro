@@ -1,7 +1,6 @@
 package com.hacker.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.hacker.common.utils.PageUtils;
 import com.hacker.product.entity.SkuImagesEntity;
 
 import java.util.Map;
@@ -15,6 +14,5 @@ import java.util.Map;
  */
 public interface SkuImagesService extends IService<SkuImagesEntity> {
 
-    PageUtils queryPage(Map<String, Object> params);
 }
 

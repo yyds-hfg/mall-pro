@@ -4,19 +4,33 @@ server:
 spring:
   application:
     name: camunda-application
-
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/camunda?serverTimezone=GMT%2B8
     username: root
     password: 123456
 
+#解决Swagger documentationPluginsBootstrapper  npe异常
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+
 logging:
   level:
 #    org.camunda.bpm.engine*: debug
-#    //org.camunda.bpm.engine.impl.persistence.entity
     org.camunda.bpm.engine.impl.persistence.entity: debug
 
+#关闭swagger2烦人的提示信息
+    springfox:
+      documentation:
+        spring:
+          web:
+            readers:
+              operation:
+                CachingOperationNameGenerator: warn
+swagger:
+  module:
+    name: ProcessMoudel
 camunda:
   bpm:
     admin-user:
@@ -25,29 +39,13 @@ camunda:
       first-name: admin
     filter:
       create: All tasks
-#    配置路径
+    #配置路径
     webapp:
       application-path: /mycamunda
 
+knife4j:
+# 开启生产环境屏蔽
+  production: true
 
-#knife4j:
-#  # 开启生产环境屏蔽
-#  production: true
-#
-#swagger:
-#  module:
-#    name: ProductModel
-#
-##关闭swagger2烦人的提示信息
-#  level:
-#    springfox:
-#      documentation:
-#        spring:
-#          web:
-#            readers:
-#              operation:
-#                CachingOperationNameGenerator: warn
-#  #解决Swagger documentationPluginsBootstrapper  npe异常
-#  mvc:
-#    pathmatch:
-#      matching-strategy: ANT_PATH_MATCHER
+
+

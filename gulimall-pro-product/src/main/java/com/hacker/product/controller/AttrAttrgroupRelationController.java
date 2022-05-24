@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
 
@@ -36,9 +35,7 @@ public class AttrAttrgroupRelationController {
     @RequestMapping("/list")
     //@RequiresPermissions("product:attrattrgrouprelation:list")
     public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = attrAttrgroupRelationService.queryPage(params);
-
-        return R.ok().put("page", page);
+        return R.ok().put("page",null);
     }
 
 

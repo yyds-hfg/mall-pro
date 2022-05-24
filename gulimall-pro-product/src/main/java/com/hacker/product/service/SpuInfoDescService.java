@@ -1,7 +1,6 @@
 package com.hacker.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.hacker.common.utils.PageUtils;
 import com.hacker.product.entity.SpuInfoDescEntity;
 
 import java.util.Map;
@@ -15,7 +14,6 @@ import java.util.Map;
  */
 public interface SpuInfoDescService extends IService<SpuInfoDescEntity> {
 
-    PageUtils queryPage(Map<String, Object> params);
 
     void saveSpuInfoDesc(SpuInfoDescEntity descEntity);
 

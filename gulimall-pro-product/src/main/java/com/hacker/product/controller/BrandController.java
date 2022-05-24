@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hacker.product.entity.BrandEntity;
 import com.hacker.product.service.BrandService;
-import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
 
@@ -39,9 +38,8 @@ public class BrandController {
     @RequestMapping("/list")
     //@RequiresPermissions("product:brand:list")
     public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = brandService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok().put("page", null);
     }
 
 

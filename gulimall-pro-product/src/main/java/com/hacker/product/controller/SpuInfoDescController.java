@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hacker.product.entity.SpuInfoDescEntity;
-import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
 
@@ -29,16 +28,6 @@ public class SpuInfoDescController {
     @Autowired
     private SpuInfoDescService spuInfoDescService;
 
-    /**
-     * 列表
-     */
-    @RequestMapping("/list")
-    //@RequiresPermissions("product:spuinfodesc:list")
-    public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = spuInfoDescService.queryPage(params);
-
-        return R.ok().put("page", page);
-    }
 
 
     /**

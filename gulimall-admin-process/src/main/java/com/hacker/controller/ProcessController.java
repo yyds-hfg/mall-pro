@@ -1,15 +1,14 @@
 package com.hacker.controller;
 
-import com.hacker.common.result.R;
-import com.hacker.domain.StartProcessRequest;
+import com.hacker.domain.request.StartProcessRequest;
+import com.hacker.domain.request.TaskComplete;
+import com.hacker.result.R;
+import com.hacker.service.ProcessService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.camunda.bpm.engine.RuntimeService;
+import org.camunda.bpm.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author: Zero
@@ -17,19 +16,33 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description:
  */
 @RestController
-@Api("")
+@Api(tags = "流程控制器")
 @RequestMapping("/process")
 public class ProcessController {
 
     @Autowired
-    private RuntimeService runtimeService;
+    private ProcessService processService;
 
-
-    @ApiOperation("根据流程定义的Key,启动流程")
+    @ApiOperation(value = "根据流程定义的Key,启动流程")
     @PostMapping("/start")
     public R<?> startProcess(@RequestBody StartProcessRequest request) {
-        return R.run(()->runtimeService
-                .startProcessInstanceByKey(request.getProcessKey(),request.getBusinessKey(),request.getVars()));
+        return R.run(()->processService.startProcessInstanceByKey(request));
+    }
+
+    @ApiOperation("查询代办任务 ")
+    @GetMapping("/queryTaskAgents/{businessKey}")
+    public R<?> queryTaskAgents(@PathVariable String businessKey) {
+        return R.run(()->processService.queryTaskAgents(businessKey));
+    }
+
+    @ApiOperation("6.完成当前人工任务")
+    @PostMapping("/complete")
+    public R complete(@RequestBody TaskComplete taskComplete) {
+//        String businessId = taskComplete.getBusinessId();
+//        Task task = taskService.createTaskQuery().processInstanceBusinessKey(businessId)
+//                .singleResult();
+//        taskService.complete(task.getId());
+        return R.ok();
     }
 
 

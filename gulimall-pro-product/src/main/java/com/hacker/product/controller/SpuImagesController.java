@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hacker.product.service.SpuImagesService;
-import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
 
@@ -29,16 +28,6 @@ public class SpuImagesController {
     @Autowired
     private SpuImagesService spuImagesService;
 
-    /**
-     * 列表
-     */
-    @RequestMapping("/list")
-    //@RequiresPermissions("product:spuimages:list")
-    public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = spuImagesService.queryPage(params);
-
-        return R.ok().put("page", page);
-    }
 
 
     /**

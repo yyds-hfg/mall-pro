@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hacker.product.entity.CommentReplayEntity;
 import com.hacker.product.service.CommentReplayService;
-import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
 
@@ -35,9 +34,8 @@ public class CommentReplayController {
     @RequestMapping("/list")
     //@RequiresPermissions("product:commentreplay:list")
     public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = commentReplayService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok().put("page", null);
     }
 
 

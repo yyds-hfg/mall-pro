@@ -16,7 +16,7 @@
     <dependencies>
         <dependency>
             <groupId>com.hacker</groupId>
-            <artifactId>gulimall-pro-common</artifactId>
+            <artifactId>system-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>

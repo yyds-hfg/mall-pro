@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hacker.product.entity.SpuInfoEntity;
 import com.hacker.product.service.SpuInfoService;
-import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
 
@@ -29,17 +28,6 @@ import com.hacker.common.utils.R;
 public class SpuInfoController {
     @Autowired
     private SpuInfoService spuInfoService;
-
-    /**
-     * 列表
-     */
-    @RequestMapping("/list")
-    //@RequiresPermissions("product:spuinfo:list")
-    public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = spuInfoService.queryPageByCondition(params);
-
-        return R.ok().put("page", page);
-    }
 
 
     /**

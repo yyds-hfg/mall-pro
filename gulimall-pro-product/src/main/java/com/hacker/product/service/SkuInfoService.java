@@ -1,7 +1,6 @@
 package com.hacker.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.hacker.common.utils.PageUtils;
 import com.hacker.product.entity.SkuInfoEntity;
 
 import java.util.Map;
@@ -15,11 +14,9 @@ import java.util.Map;
  */
 public interface SkuInfoService extends IService<SkuInfoEntity> {
 
-    PageUtils queryPage(Map<String, Object> params);
 
     void saveSkuInfo(SkuInfoEntity skuInfoEntity);
 
-    PageUtils queryPageByCondition(Map<String, Object> params);
 
 }
 

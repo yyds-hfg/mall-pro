@@ -1,11 +1,9 @@
 package com.hacker.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.hacker.common.utils.PageUtils;
 import com.hacker.product.entity.CategoryEntity;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 商品三级分类
@@ -16,7 +14,6 @@ import java.util.Map;
  */
 public interface CategoryService extends IService<CategoryEntity> {
 
-    PageUtils queryPage(Map<String, Object> params);
 
     /**
      * 以树形结构返回商品分类

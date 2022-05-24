@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.hacker.product.service.AttrGroupService;
-import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
 
@@ -71,8 +70,7 @@ public class AttrGroupController {
     @GetMapping("/{attrgroupId}/noattr/relation")
     public R attrNoRelation(@PathVariable("attrgroupId") Long attrgroupId,
                             @RequestParam Map<String, Object> params) {
-        PageUtils page = attrService.getNoRelationAttr(params, attrgroupId);
-        return R.ok().put("page", page);
+        return R.ok().put("page", null);
     }
 
     @PostMapping("/attr/relation/delete")
@@ -90,9 +88,8 @@ public class AttrGroupController {
                   @PathVariable("catelogId") Long catelogId) {
 //        PageUtils page = attrGroupService.queryPage(params);
 
-        PageUtils page = attrGroupService.queryPage(params, catelogId);
 
-        return R.ok().put("page", page);
+        return R.ok().put("page", null);
     }
 
 

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hacker.product.service.SpuCommentService;
-import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
 
@@ -30,15 +29,6 @@ public class SpuCommentController {
     @Autowired
     private SpuCommentService spuCommentService;
 
-    /**
-     * 列表
-     */
-    @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = spuCommentService.queryPage(params);
-
-        return R.ok().put("page", page);
-    }
 
 
     /**

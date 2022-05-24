@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hacker.product.entity.ProductAttrValueEntity;
 import com.hacker.product.service.ProductAttrValueService;
-import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
 
@@ -36,9 +35,8 @@ public class ProductAttrValueController {
     @RequestMapping("/list")
     //@RequiresPermissions("product:productattrvalue:list")
     public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = productAttrValueService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok().put("page", null);
     }
 
 

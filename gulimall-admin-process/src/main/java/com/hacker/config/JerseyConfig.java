@@ -18,4 +18,5 @@ public class JerseyConfig extends CamundaJerseyResourceConfig {
     protected void registerAdditionalResources() {
         this.register("");
     }
+
 }

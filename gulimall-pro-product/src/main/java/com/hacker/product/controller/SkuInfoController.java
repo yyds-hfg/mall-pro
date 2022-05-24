@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hacker.common.utils.PageUtils;
 
 /**
  * sku信息
@@ -28,15 +27,6 @@ public class SkuInfoController {
 
     @Autowired
     private SkuInfoService skuInfoService;
-
-    /**
-     * 列表
-     */
-    @RequestMapping("/list")
-    //@RequiresPermissions("product:skuinfo:list")
-    public R<PageUtils> list(@RequestParam Map<String, Object> params) {
-        return R.run(() -> skuInfoService.queryPageByCondition(params));
-    }
 
 
     /**

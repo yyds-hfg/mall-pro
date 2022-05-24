@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hacker.product.service.SkuImagesService;
-import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
 /**
@@ -35,9 +34,8 @@ public class SkuImagesController {
     @RequestMapping("/list")
     //@RequiresPermissions("product:skuimages:list")
     public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = skuImagesService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok().put("page", null);
     }
 
 

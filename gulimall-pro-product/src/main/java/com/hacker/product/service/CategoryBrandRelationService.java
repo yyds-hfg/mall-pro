@@ -2,7 +2,6 @@ package com.hacker.product.service;
 
 import com.hacker.product.entity.BrandEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.hacker.common.utils.PageUtils;
 import com.hacker.product.entity.CategoryBrandRelationEntity;
 
 import java.util.List;
@@ -17,7 +16,6 @@ import java.util.Map;
  */
 public interface CategoryBrandRelationService extends IService<CategoryBrandRelationEntity> {
 
-    PageUtils queryPage(Map<String, Object> params);
 
     void saveDetail(CategoryBrandRelationEntity categoryBrandRelation);
 

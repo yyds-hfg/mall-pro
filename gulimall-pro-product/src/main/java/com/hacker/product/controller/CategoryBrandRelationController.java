@@ -13,7 +13,6 @@ import com.hacker.product.service.CategoryBrandRelationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
 
@@ -72,9 +71,8 @@ public class CategoryBrandRelationController {
     @RequestMapping("/list")
     //@RequiresPermissions("product:categorybrandrelation:list")
     public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = categoryBrandRelationService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok().put("page", null);
     }
 
 

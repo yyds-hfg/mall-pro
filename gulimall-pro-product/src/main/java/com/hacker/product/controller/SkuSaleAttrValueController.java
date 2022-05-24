@@ -29,14 +29,6 @@ public class SkuSaleAttrValueController {
     @Autowired
     private SkuSaleAttrValueService skuSaleAttrValueService;
 
-    /**
-     * 列表
-     */
-    @RequestMapping("/list")
-    //@RequiresPermissions("product:skusaleattrvalue:list")
-    public R<?> list(@RequestParam Map<String, Object> params) {
-        return R.run(() -> skuSaleAttrValueService.queryPage(params));
-    }
 
 
     /**
