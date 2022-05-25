@@ -24,7 +24,6 @@ public class ProcessTaskController {
     @Autowired
     private ProcessTaskService processTaskService;
 
-
     @ApiOperation(value = "查询流程当前任务 ")
     @GetMapping("/queryTaskAgents/{businessKey}")
     public R<?> queryTaskAgents(@NotBlank(message = "businessKey不能为空") @PathVariable String businessKey) {
@@ -56,6 +55,12 @@ public class ProcessTaskController {
     @PostMapping("/complete")
     public R<?> completeTask(@Valid @RequestBody TaskComplete taskComplete) {
         return R.run(()-> processTaskService.completeTask(taskComplete));
+    }
+
+    @ApiOperation(value = "查询用户代办任务 ")
+    @GetMapping("/getTodoTaskPage/{userId}")
+    public R<?> getTodoTaskPage(@NotBlank(message = "userId不能为空") @PathVariable String userId) {
+        return R.run(()-> processTaskService.getTodoTaskPage(userId));
     }
 
     @ApiOperation(value = "查询已办任务")

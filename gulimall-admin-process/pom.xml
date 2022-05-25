@@ -19,7 +19,6 @@
     <description>流程引擎后台管理系统</description>
 
     <dependencies>
-
         <dependency>
             <groupId>org.camunda.bpm.springboot</groupId>
             <artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>
@@ -37,6 +36,12 @@
             <artifactId>camunda-engine-plugin-spin</artifactId>
             <version>7.15.0</version>
         </dependency>
+        <!--ServiceConnector所需 ,通过Http请求调用服务-->
+        <dependency>
+            <groupId>org.camunda.bpm</groupId>
+            <artifactId>camunda-engine-plugin-connect</artifactId>
+            <version>7.15.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.camunda.spin</groupId>
@@ -44,10 +49,10 @@
             <version>1.11.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.sun.xml.bind</groupId>-->
+<!--            <artifactId>jaxb-impl</artifactId>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>mysql</groupId>
@@ -81,6 +86,10 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
     </dependencies>
 

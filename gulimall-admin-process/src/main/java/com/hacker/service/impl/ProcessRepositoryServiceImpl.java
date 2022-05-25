@@ -1,11 +1,11 @@
 package com.hacker.service.impl;
 
-import com.hacker.domain.DeploymentInfo;
-import com.hacker.domain.ProcessDefinitionInfo;
 import com.hacker.service.ProcessRepositoryService;
 import org.camunda.bpm.engine.RepositoryService;
 import org.camunda.bpm.engine.repository.Deployment;
 import org.camunda.bpm.engine.repository.ProcessDefinition;
+import org.camunda.bpm.engine.rest.dto.repository.DeploymentDto;
+import org.camunda.bpm.engine.rest.dto.repository.ProcessDefinitionDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,21 +26,21 @@ public class ProcessRepositoryServiceImpl implements ProcessRepositoryService {
 
     @Override
     @Transactional
-    public ProcessDefinitionInfo getProcessDefinition(String definitionKey) {
+    public ProcessDefinitionDto getProcessDefinition(String definitionKey) {
         return getProcessDefinitionLists(definitionKey).get(0);
     }
 
     @Override
     @Transactional
-    public List<ProcessDefinitionInfo> getProcessDefinitionList(String definitionKey) {
+    public List<ProcessDefinitionDto> getProcessDefinitionList(String definitionKey) {
         return getProcessDefinitionLists(definitionKey);
     }
 
     @Override
     @Transactional
-    public List<DeploymentInfo> getDeploymentInfo() {
+    public List<DeploymentDto> getDeploymentInfo() {
         List<Deployment> list = repositoryService.createDeploymentQuery().list();
-        return list.stream().map(DeploymentInfo::getInstance).collect(Collectors.toList());
+        return list.stream().map(DeploymentDto::fromDeployment).collect(Collectors.toList());
     }
 
     /**
@@ -48,10 +48,10 @@ public class ProcessRepositoryServiceImpl implements ProcessRepositoryService {
      * @param definitionKey 流程定义Key
      * @return List<ProcessDefinitionInfo>
      */
-    private List<ProcessDefinitionInfo> getProcessDefinitionLists(String definitionKey) {
+    private List<ProcessDefinitionDto> getProcessDefinitionLists(String definitionKey) {
         List<ProcessDefinition> list = repositoryService.createProcessDefinitionQuery()
                 .processDefinitionKey(definitionKey).active().orderByDeploymentTime().asc().list();
-        return list.stream().map(ProcessDefinitionInfo::getInstance).collect(Collectors.toList());
+        return list.stream().map(ProcessDefinitionDto::fromProcessDefinition).collect(Collectors.toList());
     }
 
 }

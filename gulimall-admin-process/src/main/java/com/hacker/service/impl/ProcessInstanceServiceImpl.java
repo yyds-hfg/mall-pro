@@ -1,10 +1,10 @@
 package com.hacker.service.impl;
 
-import com.hacker.domain.ProcessInstanceInfo;
 import com.hacker.domain.request.StartProcessRequest;
 import com.hacker.service.ProcessInstanceService;
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.RuntimeService;
+import org.camunda.bpm.engine.rest.dto.runtime.ProcessInstanceDto;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,11 +24,11 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
 
     @Override
     @Transactional
-    public ProcessInstanceInfo startProcessInstanceByKey(StartProcessRequest request) {
+    public ProcessInstanceDto startProcessInstanceByKey(StartProcessRequest request) {
         log.info(String.format("开启一个流程,流程定义Key [{%s}],流程业务Key [{%s}]",request.getDefinitionKey(),request.getBusinessKey()));
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(request.getDefinitionKey(), request.getBusinessKey(), request.getVars());
         log.info(String.format("流程启动成功,流程定义Id [{%s}]",processInstance.getProcessDefinitionId()));
-        return ProcessInstanceInfo.getInstance(processInstance);
+        return ProcessInstanceDto.fromProcessInstance(processInstance);
     }
 
 }

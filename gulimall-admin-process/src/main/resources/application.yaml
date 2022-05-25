@@ -9,13 +9,17 @@ spring:
     url: jdbc:mysql://localhost:3306/camunda?serverTimezone=GMT%2B8
     username: root
     password: 123456
-
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
 #解决Swagger documentationPluginsBootstrapper  npe异常
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
-
-#camunda
+  jersey:
+    application-path: /engine-rest
+#Camunda
 logging:
   level:
     org.camunda.bpm.engine.impl.persistence.entity: debug
@@ -32,12 +36,23 @@ logging:
 swagger:
   module:
     name: ProcessMoudel
+
 camunda:
   bpm:
     admin-user:
       id: camunda
       password: admin
       first-name: admin
+#如果希望允许对 restapi 发出跨源请求，则需要启用 CORS。
+#    run:
+#      cors:
+#        enable: true
+#        allowed-origins: "*"
+#      auth:
+#        enable: true
+#        authentication: basic
+    database:
+      type: mysql
     filter:
       create: All tasks
     #配置路径
@@ -45,8 +60,10 @@ camunda:
       application-path: /mycamunda
     #禁用
       index-redirect-enabled: false
-#      csrf:
-#        entry-points:
+    #Camunda默认不开启序列化,开启序列化
+    generic-properties:
+      properties:
+        javaSerializationFormatEnabled: true
 
 knife4j:
 # 开启生产环境屏蔽

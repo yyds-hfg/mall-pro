@@ -1,11 +1,7 @@
 package com.hacker.service;
 
-import com.hacker.domain.ProcessInstanceInfo;
 import com.hacker.domain.request.StartProcessRequest;
-import com.hacker.domain.TaskInfo;
-import com.hacker.domain.request.TaskComplete;
-
-import java.util.List;
+import org.camunda.bpm.engine.rest.dto.runtime.ProcessInstanceDto;
 
 /**
  * @Author: Zero
@@ -19,6 +15,6 @@ public interface ProcessInstanceService {
      * @param request
      * @return
      */
-    public ProcessInstanceInfo startProcessInstanceByKey(StartProcessRequest request);
+    public ProcessInstanceDto startProcessInstanceByKey(StartProcessRequest request);
 
 }

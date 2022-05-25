@@ -1,9 +1,10 @@
 package com.hacker.service;
 
-import com.hacker.domain.TaskInfo;
 import com.hacker.domain.request.TaskComplete;
 import org.camunda.bpm.engine.AuthorizationException;
 import org.camunda.bpm.engine.ProcessEngineException;
+import org.camunda.bpm.engine.rest.dto.history.HistoricTaskInstanceDto;
+import org.camunda.bpm.engine.rest.dto.task.TaskDto;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface ProcessTaskService {
     /**
      * 查询代办任务
      */
-    public List<TaskInfo> queryTaskAgents(String businessKey);
+    public List<TaskDto> queryTaskAgents(String businessKey);
 
     /**
      * 设置候选人
@@ -68,9 +69,15 @@ public interface ProcessTaskService {
     public void completeTask(TaskComplete taskComplete);
 
     /**
+     * 查询代办任务
+     * @param userId
+     * @return
+     */
+    public List<TaskDto> getTodoTaskPage(String userId);
+    /**
      * 查询已办任务
      * @param userId 用户Id
      * @return
      */
-    public List<TaskInfo> queryDoneTask(String userId);
+    public List<HistoricTaskInstanceDto> queryDoneTask(String userId);
 }

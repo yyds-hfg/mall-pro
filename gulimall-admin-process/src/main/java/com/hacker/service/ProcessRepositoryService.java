@@ -1,9 +1,7 @@
 package com.hacker.service;
 
-import com.hacker.domain.DeploymentInfo;
-import com.hacker.domain.ProcessDefinitionInfo;
-import org.camunda.bpm.engine.impl.persistence.entity.ProcessDefinitionEntity;
-import org.camunda.bpm.engine.repository.ProcessDefinition;
+import org.camunda.bpm.engine.rest.dto.repository.DeploymentDto;
+import org.camunda.bpm.engine.rest.dto.repository.ProcessDefinitionDto;
 
 import java.util.List;
 
@@ -19,14 +17,18 @@ public interface ProcessRepositoryService {
      * @param definitionKey 流程定义key
      * @return ProcessDefinitionInfo
      */
-    public ProcessDefinitionInfo getProcessDefinition(String definitionKey);
+    public ProcessDefinitionDto getProcessDefinition(String definitionKey);
 
     /**
      * 得到所有部署过的流程定义
      * @param definitionKey
      * @return
      */
-    public List<ProcessDefinitionInfo> getProcessDefinitionList(String definitionKey);
+    public List<ProcessDefinitionDto> getProcessDefinitionList(String definitionKey);
 
-    public List<DeploymentInfo> getDeploymentInfo();
+    /**
+     * 得到部署的信息
+     * @return
+     */
+    public List<DeploymentDto> getDeploymentInfo();
 }

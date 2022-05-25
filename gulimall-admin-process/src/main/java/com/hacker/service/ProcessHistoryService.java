@@ -1,6 +1,6 @@
 package com.hacker.service;
 
-import com.hacker.domain.TaskInfo;
+import org.camunda.bpm.engine.rest.dto.history.HistoricTaskInstanceDto;
 
 import java.util.List;
 
@@ -15,5 +15,5 @@ public interface ProcessHistoryService {
      * @param userId
      * @return
      */
-    public List<TaskInfo> getDoneTaskPage(String userId);
+    public List<HistoricTaskInstanceDto> getDoneTaskPage(String userId);
 }

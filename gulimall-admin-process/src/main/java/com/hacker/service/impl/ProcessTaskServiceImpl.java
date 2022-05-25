@@ -1,11 +1,12 @@
 package com.hacker.service.impl;
 
-import com.hacker.domain.TaskInfo;
 import com.hacker.domain.request.TaskComplete;
 import com.hacker.service.ProcessHistoryService;
 import com.hacker.service.ProcessTaskService;
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.TaskService;
+import org.camunda.bpm.engine.rest.dto.history.HistoricTaskInstanceDto;
+import org.camunda.bpm.engine.rest.dto.task.TaskDto;
 import org.camunda.bpm.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,12 +32,12 @@ public class ProcessTaskServiceImpl implements ProcessTaskService {
 
     @Override
     @Transactional
-    public List<TaskInfo> queryTaskAgents(String businessKey) {
+    public List<TaskDto> queryTaskAgents(String businessKey) {
         log.info(String.format("查询代办任务,流程业务Key [{%s}]",businessKey));
         List<Task> list = taskService.createTaskQuery().processInstanceBusinessKey(businessKey)
                 .active().list();
         log.info(String.format("查询代办任务完成,代办任务数 [{%d}]",list.size()));
-        return list.stream().map(TaskInfo::getTaskInstrance).collect(Collectors.toList());
+        return list.stream().map(TaskDto::fromEntity).collect(Collectors.toList());
     }
 
     @Override
@@ -75,8 +76,20 @@ public class ProcessTaskServiceImpl implements ProcessTaskService {
         taskService.complete(taskComplete.getTaskId(),taskComplete.getVars());
     }
 
+    @Transactional
     @Override
-    public List<TaskInfo> queryDoneTask(String userId) {
+    public List<TaskDto> getTodoTaskPage(String userId) {
+        // 查询待办任务
+        List<Task> list = taskService.createTaskQuery()
+                .taskAssignee(String.valueOf(userId)) // 分配给自己
+                .orderByTaskCreateTime().desc().list();// 创建时间倒序
+        return list.stream().map(TaskDto::fromEntity).collect(Collectors.toList());
+    }
+
+
+    @Transactional
+    @Override
+    public List<HistoricTaskInstanceDto> queryDoneTask(String userId) {
         return processHistoryService.getDoneTaskPage(userId);
     }
 }
