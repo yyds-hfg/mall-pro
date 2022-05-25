@@ -1,6 +1,6 @@
 package com.hacker.controller;
 
-import com.hacker.domain.request.StartProcessRequest;
+import com.hacker.domain.request.ProcessRequest;
 import com.hacker.result.R;
 import com.hacker.service.ProcessInstanceService;
 import io.swagger.annotations.Api;
@@ -23,9 +23,9 @@ public class ProcessInstanceController {
     @Autowired
     private ProcessInstanceService processInstanceService;
 
-    @ApiOperation(value = "根据流程定义的Key,启动流程")
+    @ApiOperation(value = "发起流程")
     @PostMapping("/start")
-    public R<?> startProcess(@Valid @RequestBody StartProcessRequest request) {
+    public R<?> startProcess(@Valid @RequestBody ProcessRequest request) {
         return R.run(()-> processInstanceService.startProcessInstanceByKey(request));
     }
 

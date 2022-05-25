@@ -32,7 +32,7 @@ public class ProcessRequest {
 	private	String	title;
 	
 	@ApiModelProperty(value="外部业务系统数据主键标识值")
-	private String processBusinessKey;
+	private String businessKey;
 	
 	@ApiModelProperty(value="流程变量键值对")
 	private Map<String, Object> variables;
