@@ -18,6 +18,7 @@ import java.util.Map;
 @ApiModel(value="TaskRequest-任务参数对象")
 @Data
 public class TaskRequest {
+
 	@ApiModelProperty(value="流程实例ID")
 	private String	processInstId;
 	
@@ -51,14 +52,4 @@ public class TaskRequest {
 	@ApiModelProperty(value="跳转类型，1：往前跳转，2：往回跳转")
 	private String	jumpType;
 
-	public static String REJECT_TO_START ="1";
-	public static String REJECT_TO_LAST ="2";
-	public static String REJECT_TO_TARGET ="3";
-	
-	public static String WITHDRAW_TO_START ="1";
-	public static String WITHDRAW_TO_TARGET ="2";
-	
-	public static String JUMP_FORWARD ="1";
-	public static  String JUMP_BACK ="2";
-	
 }

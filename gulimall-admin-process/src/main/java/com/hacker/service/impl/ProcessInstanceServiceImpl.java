@@ -1,18 +1,27 @@
 package com.hacker.service.impl;
 
+import com.hacker.common.annotation.SystemLog;
+import com.hacker.common.exception.AccessReason;
+import com.hacker.consts.TaskConstance;
 import com.hacker.domain.request.ProcessRequest;
 import com.hacker.domain.request.StartProcessRequest;
+import com.hacker.domain.request.TaskRequest;
 import com.hacker.service.ProcessInstanceService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.camunda.bpm.engine.HistoryService;
 import org.camunda.bpm.engine.RuntimeService;
+import org.camunda.bpm.engine.TaskService;
+import org.camunda.bpm.engine.history.HistoricActivityInstance;
 import org.camunda.bpm.engine.rest.dto.runtime.ProcessInstanceDto;
+import org.camunda.bpm.engine.runtime.ActivityInstance;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,25 +36,113 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
     @Autowired
     private RuntimeService runtimeService;
 
+    @Autowired
+    private TaskService taskService;
+
+    @Autowired
+    private HistoryService historyService;
+
     @Override
     @Transactional
+    @SystemLog
     public ProcessInstanceDto startProcessInstanceByKey(ProcessRequest request) {
-        log.info("开启一个流程----------------");
         ProcessInstance processInstance = null;
         Map<String, Object> variables = request.getVariables();
-        variables.put("starter",request.getStarter());
+        variables.put("stater",request.getStater());
+        //通过流程id或者流程key发起流程
         if (StringUtils.isNotBlank(request.getProcessDefId())) {
             processInstance = runtimeService.startProcessInstanceById(request.getProcessDefId(),
                     request.getBusinessKey(), variables);
-        }
-        if (StringUtils.isNotBlank(request.getProcessDefKey())) {
+        } else if(StringUtils.isNotBlank(request.getProcessDefKey())) {
             processInstance = runtimeService.startProcessInstanceByKey(request.getProcessDefKey(),
                     request.getBusinessKey(),variables);
         }
-
         Assert.isTrue(processInstance!=null,"流程启动失败");
         log.info(String.format("流程启动成功,流程实列Id [{%s}]",processInstance.getProcessInstanceId()));
         return ProcessInstanceDto.fromProcessInstance(processInstance);
+    }
+
+    @Override
+    public void cancelProcess(TaskRequest request) {
+        ActivityInstance tree = runtimeService.getActivityInstance(request.getProcessInstId());
+        taskService.createComment(request.getTaskId(), request.getProcessInstId(), "撤回流程");
+        runtimeService
+                .createProcessInstanceModification(request.getProcessInstId())
+                .cancelActivityInstance(getInstanceIdForActivity(tree, tree.getActivityId()))
+                .startBeforeActivity(request.getTaskDefKey())
+                .execute();
+    }
+
+    @Override
+    public void rollbackProcess(TaskRequest request) {
+        String rejectType = request.getRejectType();
+        if(StringUtils.isBlank(rejectType)){
+            throw AccessReason.POCESS_REJECT_TYPE.exception("驳回类型不能为空");
+        }
+
+        ActivityInstance tree = runtimeService.getActivityInstance(request.getProcessInstId());
+        if(rejectType.equals(TaskConstance.REJECT_TO_START)){
+            List<HistoricActivityInstance> resultList = historyService
+                    .createHistoricActivityInstanceQuery()
+                    .processInstanceId(request.getProcessInstId())
+                    .activityType("userTask")
+                    .finished()
+                    .orderByHistoricActivityInstanceEndTime()
+                    .asc()
+                    .list();
+            if (resultList == null || resultList.size() <= 0) {
+                throw AccessReason.POCESS_REJECT_TYPE.exception("未找到发起节点");
+            }
+            request.setToActId(resultList.get(0).getActivityId());
+        } else if(rejectType.equals(TaskConstance.REJECT_TO_LAST)){
+            List<HistoricActivityInstance> resultList = historyService
+                    .createHistoricActivityInstanceQuery()
+                    .processInstanceId(request.getProcessInstId())
+                    .activityType("userTask")
+                    .finished()
+                    .orderByHistoricActivityInstanceEndTime()
+                    .desc()
+                    .list();
+            if (resultList == null || resultList.size() <= 0) {
+                throw AccessReason.POCESS_REJECT_TYPE.exception("未找到上一节点");
+            }
+            request.setToActId(resultList.get(0).getActivityId());
+        }else if(rejectType.equals(TaskConstance.REJECT_TO_TARGET)){
+            if(StringUtils.isBlank(request.getToActId())) {
+                throw AccessReason.POCESS_REJECT_TYPE.exception("指定目标节点不能为空");
+            }
+        } else {
+            throw AccessReason.POCESS_REJECT_TYPE.exception("驳回类型值不对，三种类型  1：起草节点，2：上一节点，3：目标节点");
+        }
+
+        taskService.createComment(request.getTaskId(), request.getProcessInstId(), "驳回流程");
+        runtimeService
+                .createProcessInstanceModification(request.getProcessInstId())
+                .cancelActivityInstance(getInstanceIdForActivity(tree, request.getTaskDefKey()))
+                .startBeforeActivity(request.getToActId())
+                .execute();
+
+    }
+
+    public String getInstanceIdForActivity(ActivityInstance activityInstance, String activityId) {
+        ActivityInstance instance = getChildInstanceForActivity(activityInstance, activityId);
+        if (instance != null) {
+            return instance.getId();
+        }
+        return null;
+    }
+
+    public ActivityInstance getChildInstanceForActivity(ActivityInstance activityInstance, String activityId) {
+        if (activityId.equals(activityInstance.getActivityId())) {
+            return activityInstance;
+        }
+        for (ActivityInstance childInstance : activityInstance.getChildActivityInstances()) {
+            ActivityInstance instance = getChildInstanceForActivity(childInstance, activityId);
+            if (instance != null) {
+                return instance;
+            }
+        }
+        return null;
     }
 
 }

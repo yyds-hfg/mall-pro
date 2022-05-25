@@ -7,8 +7,8 @@ import java.lang.annotation.*;
  * @Date: 2022/5/17 18:34
  * @Description:
  */
+@Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@Target(value = {ElementType.METHOD})
 @Documented
 public @interface SystemLog {
 

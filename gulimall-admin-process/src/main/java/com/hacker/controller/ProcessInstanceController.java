@@ -1,6 +1,7 @@
 package com.hacker.controller;
 
 import com.hacker.domain.request.ProcessRequest;
+import com.hacker.domain.request.TaskRequest;
 import com.hacker.result.R;
 import com.hacker.service.ProcessInstanceService;
 import io.swagger.annotations.Api;
@@ -25,8 +26,20 @@ public class ProcessInstanceController {
 
     @ApiOperation(value = "发起流程")
     @PostMapping("/start")
-    public R<?> startProcess(@Valid @RequestBody ProcessRequest request) {
+    public R<?> startProcess(@RequestBody ProcessRequest request) {
         return R.run(()-> processInstanceService.startProcessInstanceByKey(request));
+    }
+
+    @ApiOperation("流程撤回")
+    @PostMapping("/cancelProcess")
+    public R<?> cancelProcess(@RequestBody TaskRequest request) {
+        return R.run(()->processInstanceService.cancelProcess(request));
+    }
+
+    @ApiOperation("流程驳回")
+    @PostMapping("/rollbackProcess")
+    public R<?> rollbackProcess(@RequestBody TaskRequest request) {
+        return R.run(()->processInstanceService.rollbackProcess(request));
     }
 
 }

@@ -65,9 +65,9 @@ camunda:
       properties:
         javaSerializationFormatEnabled: true
 
-knife4j:
-# 开启生产环境屏蔽
-  production: true
+#knife4j:
+## 开启生产环境屏蔽
+#  production: true
 
 
 

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
 
@@ -35,9 +34,8 @@ public class OrderOperateHistoryController {
     @RequestMapping("/list")
     //@RequiresPermissions("order:orderoperatehistory:list")
     public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = orderOperateHistoryService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return null;
     }
 
 

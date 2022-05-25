@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.hacker.order.entity.OrderEntity;
 import com.hacker.order.service.OrderService;
-import com.hacker.common.utils.PageUtils;
 
 /**
  * 订单
@@ -29,11 +28,9 @@ public class OrderController {
      * 列表
      */
     @RequestMapping("/list")
-    public com.hacker.common.utils.R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = orderService.queryPage(params);
-        return com.hacker.common.utils.R.ok().put("page", page);
+    public R<?> list(@RequestParam Map<String, Object> params) {
+        return R.ok();
     }
-
 
     /**
      * 信息

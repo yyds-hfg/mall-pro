@@ -9,7 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-
     <artifactId>gulimall-pro-common</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
@@ -18,7 +17,5 @@
         <module>datasource-common</module>
         <module>system-common</module>
     </modules>
-
-
 
 </project>

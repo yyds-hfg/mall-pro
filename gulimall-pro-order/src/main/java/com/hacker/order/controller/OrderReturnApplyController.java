@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hacker.order.entity.OrderReturnApplyEntity;
-import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
 
@@ -35,9 +34,7 @@ public class OrderReturnApplyController {
     @RequestMapping("/list")
     //@RequiresPermissions("order:orderreturnapply:list")
     public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = orderReturnApplyService.queryPage(params);
-
-        return R.ok().put("page", page);
+        return null;
     }
 
 

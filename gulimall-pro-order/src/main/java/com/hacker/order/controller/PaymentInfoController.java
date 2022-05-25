@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hacker.order.entity.PaymentInfoEntity;
 import com.hacker.order.service.PaymentInfoService;
-import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
 /**
@@ -34,9 +33,8 @@ public class PaymentInfoController {
     @RequestMapping("/list")
     //@RequiresPermissions("order:paymentinfo:list")
     public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = paymentInfoService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return null;
     }
 
 

@@ -7,8 +7,6 @@ import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.hacker.common.utils.PageUtils;
-import com.hacker.common.utils.Query;
 
 import com.hacker.order.dao.OrderOperateHistoryDao;
 import com.hacker.order.entity.OrderOperateHistoryEntity;
@@ -18,14 +16,5 @@ import com.hacker.order.service.OrderOperateHistoryService;
 @Service("orderOperateHistoryService")
 public class OrderOperateHistoryServiceImpl extends ServiceImpl<OrderOperateHistoryDao, OrderOperateHistoryEntity> implements OrderOperateHistoryService {
 
-    @Override
-    public PageUtils queryPage(Map<String, Object> params) {
-        IPage<OrderOperateHistoryEntity> page = this.page(
-                new Query<OrderOperateHistoryEntity>().getPage(params),
-                new QueryWrapper<OrderOperateHistoryEntity>()
-        );
-
-        return new PageUtils(page);
-    }
 
 }

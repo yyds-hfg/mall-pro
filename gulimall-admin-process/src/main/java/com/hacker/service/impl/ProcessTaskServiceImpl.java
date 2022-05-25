@@ -81,8 +81,10 @@ public class ProcessTaskServiceImpl implements ProcessTaskService {
     public List<TaskDto> getTodoTaskPage(String userId) {
         // 查询待办任务
         List<Task> list = taskService.createTaskQuery()
-                .taskAssignee(String.valueOf(userId)) // 分配给自己
-                .orderByTaskCreateTime().desc().list();// 创建时间倒序
+                .taskAssignee(userId) // 分配给自己
+                .orderByTaskCreateTime()
+                .desc()
+                .list();// 创建时间倒序
         return list.stream().map(TaskDto::fromEntity).collect(Collectors.toList());
     }
 

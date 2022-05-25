@@ -1,7 +1,6 @@
 package com.hacker.order.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.hacker.common.utils.PageUtils;
 import com.hacker.order.entity.OrderReturnApplyEntity;
 
 import java.util.Map;
@@ -22,6 +21,5 @@ import java.util.Map;
  */
 public interface OrderReturnApplyService extends IService<OrderReturnApplyEntity> {
 
-    PageUtils queryPage(Map<String, Object> params);
 }
 

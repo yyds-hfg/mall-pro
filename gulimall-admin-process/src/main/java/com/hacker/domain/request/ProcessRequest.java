@@ -5,17 +5,18 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
 import java.util.Map;
 
 /**
- * 流程请求对象
+ * 流程参数对象
  *
  * @Author: Zero
  * @Date: 2022/5/25 11:44
  * @Description:
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value="ProcessRequest-流程提交参数对象")
+@ApiModel(value="ProcessRequest-流程参数对象")
 @Data
 public class ProcessRequest {
 
@@ -26,7 +27,7 @@ public class ProcessRequest {
 	private String	processDefKey;
 	
 	@ApiModelProperty(value="流程发起者")
-	private String	starter;
+	private String stater;
 	
 	@ApiModelProperty(value="流程标题")
 	private	String	title;
@@ -37,11 +38,4 @@ public class ProcessRequest {
 	@ApiModelProperty(value="流程变量键值对")
 	private Map<String, Object> variables;
    
-	public static String REJECT_TO_START ="1";
-	public static String REJECT_TO_LAST ="2";
-	public static String REJECT_TO_TARGET ="3";
-   
-	public static String WITHDRAW_TO_START ="1";
-	public static String WITHDRAW_TO_TARGET ="2";
-	
 }

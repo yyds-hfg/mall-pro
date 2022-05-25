@@ -1,7 +1,6 @@
 package com.hacker.order.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.hacker.common.utils.PageUtils;
 import com.hacker.order.entity.RefundInfoEntity;
 
 import java.util.Map;
@@ -15,6 +14,5 @@ import java.util.Map;
  */
 public interface RefundInfoService extends IService<RefundInfoEntity> {
 
-    PageUtils queryPage(Map<String, Object> params);
 }
 

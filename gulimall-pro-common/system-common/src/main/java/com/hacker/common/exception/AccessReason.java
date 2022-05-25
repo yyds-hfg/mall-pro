@@ -27,7 +27,14 @@ public enum AccessReason {
     /**
      * 空指针异常
      */
-    NULL_POINT_EXCEPTION("500004", "空指针异常");
+    NULL_POINT_EXCEPTION("500004", "空指针异常"),
+
+    /**
+     * 流程驳回异常
+     */
+    POCESS_REJECT_TYPE("500005","流程驳回异常")
+
+    ;
 
     /**
      * code

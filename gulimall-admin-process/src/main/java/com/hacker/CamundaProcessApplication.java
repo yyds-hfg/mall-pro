@@ -23,22 +23,6 @@ public class CamundaProcessApplication {
         SpringApplication.run(CamundaProcessApplication.class,args);
     }
 
-    @Autowired
-    private RepositoryService repositoryService;
-
-    @EventListener
-    public void processPostDeploy(PostDeployEvent event) {
-        /**System.out.println("部署流程");
-        Deployment deployment = repositoryService.createDeployment().addClasspathResource("bpmn/start.bpmn").deploy();
-        System.out.println("部署时间为:"+deployment.getDeploymentTime());
-        System.out.println("流程部署Id为"+deployment.getId());*/
-        /**
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("Process_07v2a2w");
-        System.out.println("流程实例Id:"+processInstance.getRootProcessInstanceId());
-        System.out.println("流程业务Key"+processInstance.getBusinessKey());*/
-    }
-
-
     /**
      * 使用部署回调
      * @param event

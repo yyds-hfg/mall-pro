@@ -3,18 +3,18 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>gulimall-pro</artifactId>
+        <artifactId>gulimall-pro-common</artifactId>
         <groupId>com.hacker</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>system-common</artifactId>
-
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
+
 
     <dependencies>
         <!--aop依赖-->
@@ -80,6 +80,13 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>30.1-jre</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>

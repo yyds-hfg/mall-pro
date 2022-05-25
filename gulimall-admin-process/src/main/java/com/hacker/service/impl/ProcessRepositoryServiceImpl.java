@@ -1,5 +1,6 @@
 package com.hacker.service.impl;
 
+import com.hacker.common.annotation.SystemLog;
 import com.hacker.service.ProcessRepositoryService;
 import org.camunda.bpm.engine.RepositoryService;
 import org.camunda.bpm.engine.repository.Deployment;
@@ -38,6 +39,7 @@ public class ProcessRepositoryServiceImpl implements ProcessRepositoryService {
 
     @Override
     @Transactional
+    @SystemLog
     public List<DeploymentDto> getDeploymentInfo() {
         List<Deployment> list = repositoryService.createDeploymentQuery().list();
         return list.stream().map(DeploymentDto::fromDeployment).collect(Collectors.toList());

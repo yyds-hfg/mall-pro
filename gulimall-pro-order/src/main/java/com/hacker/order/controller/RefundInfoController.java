@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hacker.order.entity.RefundInfoEntity;
 import com.hacker.order.service.RefundInfoService;
-import com.hacker.common.utils.PageUtils;
 import com.hacker.common.utils.R;
 
 
@@ -35,9 +34,8 @@ public class RefundInfoController {
     @RequestMapping("/list")
     //@RequiresPermissions("order:refundinfo:list")
     public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = refundInfoService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return null;
     }
 
 

@@ -30,7 +30,7 @@ public class RequestAspect {
      * 定义切点
      */
     @Pointcut("@annotation(com.hacker.common.annotation.SystemLog)")
-    public void log() {
+    public void logPointCut() {
 
     }
 
@@ -48,18 +48,19 @@ public class RequestAspect {
      * }
      */
 
-    @SneakyThrows
-    @Around("log()")
-    public Object aroundFilter(ProceedingJoinPoint joinPoint) {
-        log.info("请求进来了");
+    @Around("logPointCut()")
+    public Object aroundFilter(ProceedingJoinPoint joinPoint) throws Throwable {
+        log.info("--------------------------日志记录--------------------------");
         if (!RATE_LIMITER.tryAcquire()) {
             throw AccessReason.RATE_LIMITER.exception("接口流量超限");
         }
         long startTime = Instant.now().toEpochMilli();
         //执行方法
         Object proceed = joinPoint.proceed();
+
         long endTime = Instant.now().toEpochMilli() - startTime;
         log.info(joinPoint.getSignature().getName() + "执行了" + (endTime - startTime) + "秒");
+        log.info("--------------------------日志记录--------------------------");
         return proceed;
     }
 
