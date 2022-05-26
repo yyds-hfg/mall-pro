@@ -16,7 +16,6 @@ spring:
 #不鼓励使用循环引用,默认情况下是禁止使用的,更新应用程序以删除bean之间的依赖循环。
   main:
     allow-circular-references: true
-
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
@@ -32,9 +31,9 @@ mybatis-plus:
 server:
   port: 10000
 
-knife4j:
-  # 开启生产环境屏蔽
-  production: true
+#knife4j:
+#  # 开启生产环境屏蔽
+#  production: true
 
 swagger:
   module:
@@ -54,11 +53,11 @@ logging:
 
 
 #apollo配置中心
-app:
-  id: zero10001
-
-apollo:
-  meta: http://106.54.227.205:8080
-  bootstrap:
-    enabled: true
-    namespaces: application
+#app:
+#  id: zero10001
+#
+#apollo:
+#  meta: http://106.54.227.205:8080
+#  bootstrap:
+#    enabled: true
+#    namespaces: application

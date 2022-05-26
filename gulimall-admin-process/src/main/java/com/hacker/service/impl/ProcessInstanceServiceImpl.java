@@ -4,7 +4,6 @@ import com.hacker.common.annotation.SystemLog;
 import com.hacker.common.exception.AccessReason;
 import com.hacker.consts.TaskConstance;
 import com.hacker.domain.request.ProcessRequest;
-import com.hacker.domain.request.StartProcessRequest;
 import com.hacker.domain.request.TaskRequest;
 import com.hacker.service.ProcessInstanceService;
 import lombok.extern.slf4j.Slf4j;
@@ -66,20 +65,23 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
     public void cancelProcess(TaskRequest request) {
         ActivityInstance tree = runtimeService.getActivityInstance(request.getProcessInstId());
         taskService.createComment(request.getTaskId(), request.getProcessInstId(), "撤回流程");
+        if (tree==null) {
+            throw AccessReason.PARAM_CHECK_EXCEPTION.exception("活动实例不能为空");
+        }
         runtimeService
                 .createProcessInstanceModification(request.getProcessInstId())
-                .cancelActivityInstance(getInstanceIdForActivity(tree, tree.getActivityId()))
+                .cancelActivityInstance(getInstanceIdForActivity(tree,tree.getActivityId()))
                 .startBeforeActivity(request.getTaskDefKey())
                 .execute();
     }
 
     @Override
     public void rollbackProcess(TaskRequest request) {
+        //
         String rejectType = request.getRejectType();
         if(StringUtils.isBlank(rejectType)){
             throw AccessReason.POCESS_REJECT_TYPE.exception("驳回类型不能为空");
         }
-
         ActivityInstance tree = runtimeService.getActivityInstance(request.getProcessInstId());
         if(rejectType.equals(TaskConstance.REJECT_TO_START)){
             List<HistoricActivityInstance> resultList = historyService
@@ -121,7 +123,6 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
                 .cancelActivityInstance(getInstanceIdForActivity(tree, request.getTaskDefKey()))
                 .startBeforeActivity(request.getToActId())
                 .execute();
-
     }
 
     public String getInstanceIdForActivity(ActivityInstance activityInstance, String activityId) {

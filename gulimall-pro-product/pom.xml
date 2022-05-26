@@ -20,6 +20,7 @@
             <artifactId>system-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
         <dependency>
             <groupId>com.hacker</groupId>
             <artifactId>datasource-common</artifactId>
@@ -67,16 +68,21 @@
         </dependency>
 
         <!--阿波罗配置中心-->
+<!--        <dependency>-->
+<!--            <groupId>com.ctrip.framework.apollo</groupId>-->
+<!--            <artifactId>apollo-client</artifactId>-->
+<!--            <version>1.9.1</version>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <artifactId>guava</artifactId>-->
+<!--                    <groupId>com.google.guava</groupId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
+
         <dependency>
-            <groupId>com.ctrip.framework.apollo</groupId>
-            <artifactId>apollo-client</artifactId>
-            <version>1.9.1</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>guava</artifactId>
-                    <groupId>com.google.guava</groupId>
-                </exclusion>
-            </exclusions>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
         </dependency>
 
     </dependencies>

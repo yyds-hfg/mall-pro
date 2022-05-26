@@ -2,6 +2,7 @@ package com.hacker.result;
 
 import cn.hutool.json.JSONUtil;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -12,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @Data
 @Slf4j
 @SuppressWarnings("unchecked")
+@NoArgsConstructor
 public class R<T> {
 
     private String code;

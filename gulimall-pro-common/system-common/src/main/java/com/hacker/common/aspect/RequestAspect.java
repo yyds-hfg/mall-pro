@@ -1,10 +1,12 @@
 package com.hacker.common.aspect;
 
+import com.alibaba.fastjson2.JSON;
 import com.hacker.common.exception.AccessReason;
 import com.google.common.util.concurrent.RateLimiter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
@@ -50,7 +52,20 @@ public class RequestAspect {
 
     @Around("logPointCut()")
     public Object aroundFilter(ProceedingJoinPoint joinPoint) throws Throwable {
-        log.info("--------------------------日志记录--------------------------");
+        log.info("--------------------------日志记录-Start--------------------------");
+        //请求的方法名
+        Signature signature = joinPoint.getSignature();
+        String className = joinPoint.getTarget().getClass().getName();
+        String methodName = signature.getName();
+
+        //请求的参数
+        Object[] args = joinPoint.getArgs();
+        String json = JSON.toJSONString(args);
+
+        System.out.println("className"+className);
+        System.out.println("methodName"+methodName);
+        System.out.println("json"+json);
+
         if (!RATE_LIMITER.tryAcquire()) {
             throw AccessReason.RATE_LIMITER.exception("接口流量超限");
         }
@@ -60,7 +75,7 @@ public class RequestAspect {
 
         long endTime = Instant.now().toEpochMilli() - startTime;
         log.info(joinPoint.getSignature().getName() + "执行了" + (endTime - startTime) + "秒");
-        log.info("--------------------------日志记录--------------------------");
+        log.info("--------------------------日志记录-End--------------------------");
         return proceed;
     }
 

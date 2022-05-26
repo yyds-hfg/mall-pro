@@ -1,10 +1,13 @@
 package com.hacker.feign;
 
+import com.hacker.common.result.R;
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,6 +18,10 @@ import java.util.Map;
 @Component
 @Slf4j
 public class SayHello implements JavaDelegate {
+
+    @Resource
+    private CamundaFeign camundaFeign;
+
     @Override
     public void execute(DelegateExecution execution) throws Exception {
         Map<String, Object> variables = execution.getVariables();
@@ -22,5 +29,10 @@ public class SayHello implements JavaDelegate {
             System.out.println(s);
         }
         log.info("流程进入表达式");
+        R<List<?>> list = camundaFeign.list();
+        for (Object datum : list.getData()) {
+            log.info(datum.toString());
+        }
     }
+
 }

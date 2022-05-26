@@ -1,5 +1,6 @@
 package com.hacker.product.service.impl;
 
+import com.hacker.common.annotation.SystemLog;
 import com.hacker.common.exception.AccessReason;
 import com.hacker.product.service.CategoryBrandRelationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
 
 
+    @SystemLog
     @Override
     public List<CategoryEntity> listWithTree() {
         //1、查出所有分类
@@ -101,19 +103,5 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
                 .sorted(Comparator.comparingInt(menu -> (menu.getSort() == null ? 0 : menu.getSort())))
                 .collect(Collectors.toList());
     }
-
-
-    public static void main(String[] args) {
-        ArrayList<String> list = new ArrayList<>();
-        list.add("a");
-        list.add("b");
-        list.add("a");
-        List<String> stringList = list.stream()
-                .filter(s -> s.equals("c"))
-                .peek(s -> new StringBuilder(s).append(s))
-                .collect(Collectors.toList());
-        stringList.forEach(System.out::println);
-    }
-
 
 }
