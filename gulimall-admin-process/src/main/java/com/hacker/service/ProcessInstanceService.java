@@ -3,6 +3,9 @@ package com.hacker.service;
 import com.hacker.domain.request.ProcessRequest;
 import com.hacker.domain.request.TaskRequest;
 import org.camunda.bpm.engine.rest.dto.runtime.ProcessInstanceDto;
+import org.camunda.bpm.engine.rest.dto.task.TaskDto;
+
+import java.util.List;
 
 /**
  * @Author: Zero
@@ -33,6 +36,6 @@ public interface ProcessInstanceService {
      *
      * @param request
      */
-    void rollbackProcess(TaskRequest request);
+    List<TaskDto> rollbackProcess(TaskRequest request);
 
 }

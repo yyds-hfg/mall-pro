@@ -4,8 +4,10 @@ import com.hacker.common.annotation.SystemLog;
 import com.hacker.common.exception.AccessReason;
 import com.hacker.consts.TaskConstance;
 import com.hacker.domain.request.ProcessRequest;
+import com.hacker.domain.request.QueryTaskRequest;
 import com.hacker.domain.request.TaskRequest;
 import com.hacker.service.ProcessInstanceService;
+import com.hacker.service.ProcessTaskService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.camunda.bpm.engine.HistoryService;
@@ -13,6 +15,7 @@ import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.TaskService;
 import org.camunda.bpm.engine.history.HistoricActivityInstance;
 import org.camunda.bpm.engine.rest.dto.runtime.ProcessInstanceDto;
+import org.camunda.bpm.engine.rest.dto.task.TaskDto;
 import org.camunda.bpm.engine.runtime.ActivityInstance;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +35,8 @@ import java.util.Map;
 @Service
 @Slf4j
 public class ProcessInstanceServiceImpl implements ProcessInstanceService {
+    @Autowired
+    private ProcessTaskService processTaskService;
 
     @Autowired
     private RuntimeService runtimeService;
@@ -77,7 +82,7 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
     }
 
     @Override
-    public void rollbackProcess(TaskRequest request) {
+    public List<TaskDto> rollbackProcess(TaskRequest request) {
         String rejectType = request.getRejectType();
         if (StringUtils.isBlank(rejectType)) {
             throw AccessReason.POCESS_REJECT_TYPE.exception("驳回类型不能为空");
@@ -128,6 +133,8 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
                 .cancelActivityInstance(getInstanceIdForActivity(tree, request.getTaskDefKey()))
                 .startBeforeActivity(request.getToActId())
                 .execute();
+
+        return processTaskService.queryActiveTask(QueryTaskRequest.builder().processInsId(request.getProcessInstId()).build());
     }
 
     public String getInstanceIdForActivity(ActivityInstance activityInstance, String activityId) {

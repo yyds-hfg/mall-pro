@@ -26,7 +26,7 @@ public class ProcessInstanceController {
     @Autowired
     private ProcessInstanceService processInstanceService;
 
-    @ApiOperation(value = "发起流程")
+    @ApiOperation(value = "发起流程",notes = "流程发起")
     @PostMapping("/start")
     public R<?> startProcess(@NotNull @RequestBody ProcessRequest request) {
         return R.run(() -> processInstanceService.startProcessInstanceByKey(request));

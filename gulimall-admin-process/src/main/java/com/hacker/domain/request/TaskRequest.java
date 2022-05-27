@@ -52,4 +52,7 @@ public class TaskRequest {
     @ApiModelProperty(value = "跳转类型，1：往前跳转，2：往回跳转")
     private String jumpType;
 
+    @ApiModelProperty(value = "任务完成评论信息")
+    private String message;
+
 }

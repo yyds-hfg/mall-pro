@@ -24,4 +24,21 @@ public class StrUtils extends StringUtils {
         return Arrays.stream(str).noneMatch(StringUtils::isNotBlank);
     }
 
+    /**
+     * 不全为空
+     * @param str
+     * @return
+     */
+    public static Boolean isNotAllBlank(String... str) {
+        if (str==null) {
+            return false;
+        }
+        for (String s : str) {
+            if (!StringUtils.isBlank(s)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

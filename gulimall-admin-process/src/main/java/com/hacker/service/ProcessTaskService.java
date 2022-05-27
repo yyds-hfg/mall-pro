@@ -1,5 +1,6 @@
 package com.hacker.service;
 
+import com.hacker.domain.request.QueryTaskRequest;
 import com.hacker.domain.request.TaskRequest;
 import org.camunda.bpm.engine.AuthorizationException;
 import org.camunda.bpm.engine.ProcessEngineException;
@@ -17,7 +18,7 @@ public interface ProcessTaskService {
     /**
      * 查询流程当前任务
      */
-    List<TaskDto> queryTaskAgents(String businessKey);
+    List<TaskDto> queryActiveTask(QueryTaskRequest request);
 
     /**
      * 设置候选人
@@ -48,6 +49,7 @@ public interface ProcessTaskService {
      */
     void setAssignee(String taskId, String userId);
 
+
     /**
      * 声明任务的责任:指定的用户被指定为任务的受让人。与setAssignee(String, String)不同的是，
      * 如果任务已经有一个分配给它的用户，那么在这里执行检查。标识组件不检查用户是否已知。
@@ -71,7 +73,7 @@ public interface ProcessTaskService {
      *
      * @param request
      */
-    void completeTask(TaskRequest request);
+    List<TaskDto> completeTask(TaskRequest request);
 
     /**
      * 查询代办任务

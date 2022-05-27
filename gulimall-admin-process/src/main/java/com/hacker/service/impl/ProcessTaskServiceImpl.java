@@ -1,5 +1,7 @@
 package com.hacker.service.impl;
 
+import com.hacker.common.utils.StrUtils;
+import com.hacker.domain.request.QueryTaskRequest;
 import com.hacker.domain.request.TaskComplete;
 import com.hacker.domain.request.TaskRequest;
 import com.hacker.service.ProcessHistoryService;
@@ -34,12 +36,21 @@ public class ProcessTaskServiceImpl implements ProcessTaskService {
 
     @Override
     @Transactional
-    public List<TaskDto> queryTaskAgents(String businessKey) {
-        log.info(String.format("查询代办任务,流程业务Key [{%s}]", businessKey));
-        List<Task> list = taskService.createTaskQuery()
-                .processInstanceBusinessKey(businessKey)
-                .active()
-                .list();
+    public List<TaskDto> queryActiveTask(QueryTaskRequest request) {
+        log.info(String.format("查询代办任务,流程业务Key [{%s}] ,流程实例Id [{%s}]", request.getBusinessKey(),request.getProcessInsId()));
+        List<Task> list = null;
+        if (!StrUtils.isBlank(request.getBusinessKey())) {
+            list = taskService.createTaskQuery()
+                    .processInstanceBusinessKey(request.getBusinessKey())
+                    .active()
+                    .list();
+        } else if (!StrUtils.isBlank(request.getProcessInsId())) {
+            list = taskService.createTaskQuery()
+                    .processInstanceId(request.getProcessInsId())
+                    .active()
+                    .list();
+        }
+        assert list != null;
         log.info(String.format("查询代办任务完成,代办任务数 [{%d}]", list.size()));
         return list.stream().map(TaskDto::fromEntity).collect(Collectors.toList());
     }
@@ -76,9 +87,10 @@ public class ProcessTaskServiceImpl implements ProcessTaskService {
 
     @Transactional
     @Override
-    public void completeTask(TaskRequest request) {
-        taskService.createComment("", "", "");
+    public List<TaskDto> completeTask(TaskRequest request) {
+        taskService.createComment(request.getTaskId(), request.getProcessInstId(), request.getMessage());
         taskService.complete(request.getTaskId(), request.getVariables());
+        return this.queryActiveTask(QueryTaskRequest.builder().processInsId(request.getProcessInstId()).build());
     }
 
     @Transactional
