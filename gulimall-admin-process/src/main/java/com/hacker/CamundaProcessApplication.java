@@ -22,11 +22,12 @@ import org.springframework.context.event.EventListener;
 public class CamundaProcessApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CamundaProcessApplication.class,args);
+        SpringApplication.run(CamundaProcessApplication.class, args);
     }
 
     /**
      * 使用部署回调
+     *
      * @param event
      */
     @EventListener

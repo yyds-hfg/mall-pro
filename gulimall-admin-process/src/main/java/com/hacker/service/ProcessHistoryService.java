@@ -12,8 +12,9 @@ import java.util.List;
 public interface ProcessHistoryService {
     /**
      * 查询已办任务
+     *
      * @param userId
      * @return
      */
-    public List<HistoricTaskInstanceDto> getDoneTaskPage(String userId);
+    List<HistoricTaskInstanceDto> getDoneTaskPage(String userId);
 }

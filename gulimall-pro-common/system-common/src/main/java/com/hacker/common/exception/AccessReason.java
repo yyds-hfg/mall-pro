@@ -32,9 +32,7 @@ public enum AccessReason {
     /**
      * 流程驳回异常
      */
-    POCESS_REJECT_TYPE("500005","流程驳回异常")
-
-    ;
+    POCESS_REJECT_TYPE("500005", "流程驳回异常");
 
     /**
      * code

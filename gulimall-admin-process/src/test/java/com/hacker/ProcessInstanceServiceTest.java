@@ -6,6 +6,7 @@ import lombok.Data;
 import org.camunda.spin.json.SpinJsonNode;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import static org.camunda.spin.Spin.*;
 import static org.camunda.spin.DataFormats.*;
 
@@ -27,6 +28,7 @@ public class ProcessInstanceServiceTest {
         System.out.println(jsonNode);
     }
 }
+
 @Data
 @AllArgsConstructor
 class Cat {

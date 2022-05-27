@@ -9,7 +9,7 @@
 package com.hacker.common.xss;
 
 import com.hacker.common.utils.RRException;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * SQL过滤
@@ -20,7 +20,8 @@ public class SQLFilter {
 
     /**
      * SQL注入过滤
-     * @param str  待验证的字符串
+     *
+     * @param str 待验证的字符串
      */
     public static String sqlInject(String str) {
         if (StringUtils.isBlank(str)) {

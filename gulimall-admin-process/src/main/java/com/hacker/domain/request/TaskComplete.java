@@ -19,5 +19,5 @@ public class TaskComplete {
     private String taskId;
 
     @ApiModelProperty(value = "流程变量")
-    private Map<String,Object> vars;
+    private Map<String, Object> vars;
 }

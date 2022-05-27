@@ -27,6 +27,7 @@ public class MybatisPlusConfig {
 
     /**
      * MybatisPlus分页插件，自动识别数据库类型
+     *
      * @return PaginationInnerInterceptor
      */
     @Bean

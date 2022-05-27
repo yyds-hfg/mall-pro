@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
  */
 @Service
 public class ProcessHistoryServiceImpl implements ProcessHistoryService {
+
     @Autowired
     private HistoryService historyService;
 
@@ -25,8 +26,10 @@ public class ProcessHistoryServiceImpl implements ProcessHistoryService {
         // 查询已办任务
         List<HistoricTaskInstance> taskInstances = historyService.createHistoricTaskInstanceQuery()
                 .finished() // 已完成
-                .taskAssignee(String.valueOf(userId)) // 分配给自己
-                .orderByHistoricTaskInstanceEndTime().desc().list();// 审批时间倒序
-        return taskInstances.stream().map(historicTask-> HistoricTaskInstanceDto.fromHistoricTaskInstance(historicTask)).collect(Collectors.toList());
+                .taskAssignee(userId) // 分配给自己
+                .orderByHistoricTaskInstanceEndTime()
+                .desc().list();// 审批时间倒序
+        return taskInstances.stream().map(HistoricTaskInstanceDto::fromHistoricTaskInstance).collect(Collectors.toList());
     }
+    
 }

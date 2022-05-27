@@ -28,7 +28,6 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     private CategoryBrandRelationService categoryBrandRelationService;
 
 
-
     @SystemLog
     @Override
     public List<CategoryEntity> listWithTree() {

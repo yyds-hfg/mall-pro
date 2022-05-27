@@ -30,7 +30,6 @@ public class SpuCommentController {
     private SpuCommentService spuCommentService;
 
 
-
     /**
      * 信息
      */

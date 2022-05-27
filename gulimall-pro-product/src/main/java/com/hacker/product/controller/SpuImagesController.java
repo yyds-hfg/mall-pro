@@ -29,7 +29,6 @@ public class SpuImagesController {
     private SpuImagesService spuImagesService;
 
 
-
     /**
      * 信息
      */

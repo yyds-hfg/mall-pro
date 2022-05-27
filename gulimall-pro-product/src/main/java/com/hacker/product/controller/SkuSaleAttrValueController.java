@@ -30,7 +30,6 @@ public class SkuSaleAttrValueController {
     private SkuSaleAttrValueService skuSaleAttrValueService;
 
 
-
     /**
      * 信息
      */

@@ -16,26 +16,26 @@ import java.util.Map;
  * @Description:
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value="ProcessRequest-流程参数对象")
+@ApiModel(value = "ProcessRequest-流程参数对象")
 @Data
 public class ProcessRequest {
 
-	@ApiModelProperty(value="流程定义ID")
-	private String	processDefId;
-	
-	@ApiModelProperty(value="流程定义Key")
-	private String	processDefKey;
-	
-	@ApiModelProperty(value="流程发起者")
-	private String stater;
-	
-	@ApiModelProperty(value="流程标题")
-	private	String	title;
-	
-	@ApiModelProperty(value="外部业务系统数据主键标识值")
-	private String businessKey;
-	
-	@ApiModelProperty(value="流程变量键值对")
-	private Map<String, Object> variables;
-   
+    @ApiModelProperty(value = "流程定义ID")
+    private String processDefId;
+
+    @ApiModelProperty(value = "流程定义Key")
+    private String processDefKey;
+
+    @ApiModelProperty(value = "流程发起者")
+    private String stater;
+
+    @ApiModelProperty(value = "流程标题")
+    private String title;
+
+    @ApiModelProperty(value = "外部业务系统数据主键标识值")
+    private String businessKey;
+
+    @ApiModelProperty(value = "流程变量键值对")
+    private Map<String, Object> variables;
+
 }

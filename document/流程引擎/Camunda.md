@@ -1,14 +1,10 @@
 ## Camunda
 
-
-
 #### 一、Camunda简介
 
 > Camunda Platform 是一个基于 Java 的框架。主要组件是用 Java 编写的，我们主要致力于为 Java 开发人员提供他们需要的工具，以便在 JVM 上设计、实现和运行业务流程和工作流。不过，我们还希望让非 java 开发人员可以使用流程引擎技术。这就是为什么 Camunda Platform 还提供一个 REST API，它允许您构建连接到远程进程引擎的应用程序。
 >
 > Camunda Platform 既可以作为独立的进程引擎服务器使用，也可以嵌入到定制的 Java 应用程序中。可嵌入性要求是 Camunda 平台中许多架构决策的核心。
-
-
 
 #### 二、Process Engine Architecture
 
@@ -32,9 +28,7 @@
 
 ![img](../../../../images/typora-images/api.services.png)
 
-
-
-​														**ProcessEngine**
+​                                                        **ProcessEngine**
 
 |      |        引擎类        |            作用            |
 | ---- | :------------------: | :------------------------: |
@@ -50,8 +44,6 @@
 | 10   |     CaseService      |        CMMN相关操作        |
 | 11   |     FiterService     |       过滤相关的服务       |
 | 12   |   DecisionService    |        DMN相关操作         |
-
-
 
 #### 三、流程引擎使用场景
 
@@ -76,8 +68,6 @@
 ![img](../../../../images/typora-images/standalone-process-engine.png)
 
 > 在这种情况下，流程引擎作为网络服务提供。在网络上运行的不同应用程序可以通过远程通信通道与进程引擎进行交互。使流程引擎可以远程访问的最简单方法是使用内置的 REST API。不同的通信通道(如 soapwebservices 或 JMS)是可能的，但需要由用户实现。
-
-
 
 #### 四、Camunda集群
 

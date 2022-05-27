@@ -17,7 +17,6 @@ import java.util.Map;
 public interface AttrGroupService extends IService<AttrGroupEntity> {
 
 
-
     List<AttrGroupWithAttrsVo> getAttrGroupWithAttrsByCatelogId(Long catelogId);
 
 }

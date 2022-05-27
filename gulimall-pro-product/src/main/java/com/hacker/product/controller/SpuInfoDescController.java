@@ -29,7 +29,6 @@ public class SpuInfoDescController {
     private SpuInfoDescService spuInfoDescService;
 
 
-
     /**
      * 信息
      */

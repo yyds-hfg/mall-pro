@@ -35,7 +35,7 @@ public class AttrAttrgroupRelationController {
     @RequestMapping("/list")
     //@RequiresPermissions("product:attrattrgrouprelation:list")
     public R list(@RequestParam Map<String, Object> params) {
-        return R.ok().put("page",null);
+        return R.ok().put("page", null);
     }
 
 

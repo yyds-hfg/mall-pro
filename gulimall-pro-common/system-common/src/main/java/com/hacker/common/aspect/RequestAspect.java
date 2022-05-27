@@ -62,9 +62,9 @@ public class RequestAspect {
         Object[] args = joinPoint.getArgs();
         String json = JSON.toJSONString(args);
 
-        System.out.println("className"+className);
-        System.out.println("methodName"+methodName);
-        System.out.println("json"+json);
+        System.out.println("className" + className);
+        System.out.println("methodName" + methodName);
+        System.out.println("json" + json);
 
         if (!RATE_LIMITER.tryAcquire()) {
             throw AccessReason.RATE_LIMITER.exception("接口流量超限");

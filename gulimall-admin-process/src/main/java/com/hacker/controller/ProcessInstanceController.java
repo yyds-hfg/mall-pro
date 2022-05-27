@@ -1,15 +1,17 @@
 package com.hacker.controller;
 
 import com.hacker.common.exception.AccessReason;
+import com.hacker.common.utils.StrUtils;
 import com.hacker.domain.request.ProcessRequest;
 import com.hacker.domain.request.TaskRequest;
 import com.hacker.result.R;
 import com.hacker.service.ProcessInstanceService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * @Author: Zero
@@ -26,28 +28,26 @@ public class ProcessInstanceController {
 
     @ApiOperation(value = "发起流程")
     @PostMapping("/start")
-    public R<?> startProcess(@RequestBody ProcessRequest request) {
-        return R.run(()-> processInstanceService.startProcessInstanceByKey(request));
+    public R<?> startProcess(@NotNull @RequestBody ProcessRequest request) {
+        return R.run(() -> processInstanceService.startProcessInstanceByKey(request));
     }
 
     @ApiOperation("流程撤回")
     @PostMapping("/cancelProcess")
-    public R<?> cancelProcess(@RequestBody TaskRequest request) {
-        if (StringUtils.isNoneBlank(request.getProcessInstId(),request.getTaskId(),request.getTaskDefKey())) {
-            throw AccessReason.PARAM_CHECK_EXCEPTION.exception("所需参数不能为空");
+    public R<?> cancelProcess(@NotNull @RequestBody TaskRequest request) {
+        if (StrUtils.isAllNotBlank(request.getProcessInstId(), request.getTaskId(), request.getTaskDefKey())) {
+            return R.error(AccessReason.PARAM_CHECK_EXCEPTION.exception("所需参数不能为空"));
         }
-        return R.run(()->processInstanceService.cancelProcess(request));
+        return R.run(() -> processInstanceService.cancelProcess(request));
     }
 
     @ApiOperation("流程驳回")
     @PostMapping("/rollbackProcess")
-    public R<?> rollbackProcess(@RequestBody TaskRequest request) {
-        if (StringUtils.isNoneBlank(request.getRejectType(),request.getProcessInstId(),
-                request.getToActId(),request.getTaskId())) {
-            throw AccessReason.PARAM_CHECK_EXCEPTION.exception("所需参数不能为空");
+    public R<?> rollbackProcess(@NotNull @RequestBody TaskRequest request) {
+        if (StrUtils.isAllNotBlank(request.getRejectType(), request.getProcessInstId(), request.getTaskId())) {
+            R.error(AccessReason.PARAM_CHECK_EXCEPTION.exception("所需参数不能为空"));
         }
-        return R.run(()->processInstanceService.rollbackProcess(request));
+        return R.run(() -> processInstanceService.rollbackProcess(request));
     }
-
 
 }
