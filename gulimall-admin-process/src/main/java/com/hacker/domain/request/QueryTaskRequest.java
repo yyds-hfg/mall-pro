@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * @Author: Zero
  * @Date: 2022/5/27 10:38
@@ -19,7 +21,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel(value = "查询当前流程任务")
-public class QueryTaskRequest {
+public class QueryTaskRequest implements Serializable {
+
+    private static final Long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "业务Key")
     private String businessKey;

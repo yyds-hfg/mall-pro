@@ -2,15 +2,14 @@ package com.hacker.service.impl;
 
 import com.hacker.common.utils.StrUtils;
 import com.hacker.domain.request.QueryTaskRequest;
-import com.hacker.domain.request.TaskComplete;
 import com.hacker.domain.request.TaskRequest;
+import com.hacker.domain.request.TodoTaskRequest;
 import com.hacker.service.ProcessHistoryService;
 import com.hacker.service.ProcessTaskService;
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.TaskService;
 import org.camunda.bpm.engine.rest.dto.history.HistoricTaskInstanceDto;
 import org.camunda.bpm.engine.rest.dto.task.TaskDto;
-import org.camunda.bpm.engine.task.Comment;
 import org.camunda.bpm.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -95,16 +94,23 @@ public class ProcessTaskServiceImpl implements ProcessTaskService {
 
     @Transactional
     @Override
-    public List<TaskDto> getTodoTaskPage(String userId) {
-        // 查询待办任务
+    public List<TaskDto> getTodoTaskPage(TodoTaskRequest request) {
+        if (request.getFirstResult()==null) {
+            request.setFirstResult(0);
+            request.setMaxResults(20);
+        }
+        //查询待办任务--已经认领的任务
         List<Task> list = taskService.createTaskQuery()
-                .taskAssignee(userId) // 分配给自己
+                .or()
+                .taskAssignee(request.getUserId()) // 分配给自己
+                .taskCandidateGroup(request.getTaskCandidateGroup()) //候选任务
+                .taskCandidateUser(request.getTaskCandidateUser())
+                .endOr()
                 .orderByTaskCreateTime()
-                .desc()
-                .list();// 创建时间倒序
+                .desc()    //创建时间倒序
+                .listPage(request.getFirstResult(),request.getMaxResults());
         return list.stream().map(TaskDto::fromEntity).collect(Collectors.toList());
     }
-
 
     @Transactional
     @Override

@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -12,7 +13,9 @@ import java.util.Map;
  * @Description:
  */
 @Data
-public class TaskComplete {
+public class TaskComplete implements Serializable {
+
+    private static final Long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "任务Id")
     @NotBlank(message = "任务Id不能为空")

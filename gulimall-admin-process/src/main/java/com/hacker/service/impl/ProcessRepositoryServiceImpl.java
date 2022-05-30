@@ -53,7 +53,10 @@ public class ProcessRepositoryServiceImpl implements ProcessRepositoryService {
      */
     private List<ProcessDefinitionDto> getProcessDefinitionLists(String definitionKey) {
         List<ProcessDefinition> list = repositoryService.createProcessDefinitionQuery()
-                .processDefinitionKey(definitionKey).active().orderByDeploymentTime().asc().list();
+                .processDefinitionKey(definitionKey)
+                .active()
+                .orderByDeploymentTime()
+                .asc().list();
         return list.stream().map(ProcessDefinitionDto::fromProcessDefinition).collect(Collectors.toList());
     }
 

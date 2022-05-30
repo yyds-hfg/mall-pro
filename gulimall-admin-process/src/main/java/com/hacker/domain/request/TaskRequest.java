@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -17,7 +18,9 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(value = "TaskRequest-任务参数对象")
 @Data
-public class TaskRequest {
+public class TaskRequest implements Serializable {
+
+    private static final Long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "流程实例ID")
     private String processInstId;
@@ -28,8 +31,8 @@ public class TaskRequest {
     @ApiModelProperty(value = "任务ID")
     private String taskId;
 
-    @ApiModelProperty(value = "任务Key")
-    private String taskDefKey;
+    @ApiModelProperty(value = "活动定义Key")
+    private String acticityDefKey;
 
     @ApiModelProperty(value = "任务处理人")
     private String userId;

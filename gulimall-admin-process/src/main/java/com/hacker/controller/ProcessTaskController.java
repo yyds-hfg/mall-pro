@@ -4,6 +4,7 @@ import com.hacker.common.exception.AccessReason;
 import com.hacker.common.utils.StrUtils;
 import com.hacker.domain.request.QueryTaskRequest;
 import com.hacker.domain.request.TaskRequest;
+import com.hacker.domain.request.TodoTaskRequest;
 import com.hacker.result.R;
 import com.hacker.service.ProcessTaskService;
 import io.swagger.annotations.Api;
@@ -81,9 +82,12 @@ public class ProcessTaskController {
     }
 
     @ApiOperation(value = "查询用户代办任务 ",notes = "查询用户代办任务")
-    @GetMapping("/getTodoTaskPage/{userId}")
-    public R<?> getTodoTaskPage(@NotBlank(message = "userId不能为空") @PathVariable String userId) {
-        return R.run(() -> processTaskService.getTodoTaskPage(userId));
+    @PostMapping("/getTodoTaskPage")
+    public R<?> getTodoTaskPage(@RequestBody TodoTaskRequest request) {
+        if (!StrUtils.isNotAllBlank(request.getUserId(),request.getTaskCandidateUser(),request.getTaskCandidateGroup())) {
+            throw AccessReason.PARAM_CHECK_EXCEPTION.exception("查询用户代办任务 参数不能全为空");
+        }
+        return R.run(() -> processTaskService.getTodoTaskPage(request));
     }
 
     @ApiOperation(value = "查询已办任务",notes = "查询自己已近完成办理的任务")

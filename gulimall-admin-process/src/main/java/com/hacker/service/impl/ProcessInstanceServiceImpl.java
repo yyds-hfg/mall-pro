@@ -5,6 +5,7 @@ import com.hacker.common.exception.AccessReason;
 import com.hacker.consts.TaskConstance;
 import com.hacker.domain.request.ProcessRequest;
 import com.hacker.domain.request.QueryTaskRequest;
+import com.hacker.domain.request.RollbackProcessRequest;
 import com.hacker.domain.request.TaskRequest;
 import com.hacker.service.ProcessInstanceService;
 import com.hacker.service.ProcessTaskService;
@@ -18,6 +19,7 @@ import org.camunda.bpm.engine.rest.dto.runtime.ProcessInstanceDto;
 import org.camunda.bpm.engine.rest.dto.task.TaskDto;
 import org.camunda.bpm.engine.runtime.ActivityInstance;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
+import org.camunda.bpm.engine.runtime.ProcessInstanceQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -68,7 +70,7 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
     }
 
     @Override
-    public void cancelProcess(TaskRequest request) {
+    public List<TaskDto> cancelProcess(TaskRequest request) {
         ActivityInstance tree = runtimeService.getActivityInstance(request.getProcessInstId());
         taskService.createComment(request.getTaskId(), request.getProcessInstId(), "撤回流程");
         if (tree == null) {
@@ -77,17 +79,21 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
         runtimeService
                 .createProcessInstanceModification(request.getProcessInstId())
                 .cancelActivityInstance(getInstanceIdForActivity(tree, tree.getActivityId()))
-                .startBeforeActivity(request.getTaskDefKey())
+                .startBeforeActivity(request.getActicityDefKey())
                 .execute();
+        return processTaskService.queryActiveTask(QueryTaskRequest.builder().processInsId(request.getProcessInstId()).build());
     }
 
+
     @Override
-    public List<TaskDto> rollbackProcess(TaskRequest request) {
+    @SystemLog
+    public List<TaskDto> rollbackProcess(RollbackProcessRequest request) {
+        ActivityInstance tree = runtimeService.getActivityInstance(request.getProcessInstId());
+
         String rejectType = request.getRejectType();
         if (StringUtils.isBlank(rejectType)) {
             throw AccessReason.POCESS_REJECT_TYPE.exception("驳回类型不能为空");
         }
-        ActivityInstance tree = runtimeService.getActivityInstance(request.getProcessInstId());
         if (rejectType.equals(TaskConstance.REJECT_TO_START)) {
             List<HistoricActivityInstance> resultList = historyService
                     .createHistoricActivityInstanceQuery()
@@ -127,16 +133,25 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
         }
 
         taskService.createComment(request.getTaskId(), request.getProcessInstId(), "驳回流程");
-
         runtimeService
                 .createProcessInstanceModification(request.getProcessInstId())
-                .cancelActivityInstance(getInstanceIdForActivity(tree, request.getTaskDefKey()))
+//                .cancelAllForActivity(request.getActicityDefKey()) //当前活动定义key
+                .cancelActivityInstance(getInstanceIdForActivity(tree, request.getActicityDefKey()))
                 .startBeforeActivity(request.getToActId())
+                .setVariables(request.getVariables())
+                .setVariablesLocal(request.getLocalVariables())
                 .execute();
-
         return processTaskService.queryActiveTask(QueryTaskRequest.builder().processInsId(request.getProcessInstId()).build());
     }
 
+
+
+    /**
+     *
+     * @param activityInstance activityInstance
+     * @param activityId activityId
+     * @return
+     */
     public String getInstanceIdForActivity(ActivityInstance activityInstance, String activityId) {
         ActivityInstance instance = getChildInstanceForActivity(activityInstance, activityId);
         if (instance != null) {
@@ -156,6 +171,15 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
             }
         }
         return null;
+    }
+
+
+    @SystemLog
+    @Override
+    public void test(String processInstanceId,String activityId) {
+        ActivityInstance tree = runtimeService.getActivityInstance(processInstanceId);
+        String instanceIdForActivity = this.getInstanceIdForActivity(tree, activityId);
+        System.out.println(instanceIdForActivity);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.hacker.service;
 
 import com.hacker.domain.request.ProcessRequest;
+import com.hacker.domain.request.RollbackProcessRequest;
 import com.hacker.domain.request.TaskRequest;
 import org.camunda.bpm.engine.rest.dto.runtime.ProcessInstanceDto;
 import org.camunda.bpm.engine.rest.dto.task.TaskDto;
@@ -15,7 +16,7 @@ import java.util.List;
 public interface ProcessInstanceService {
 
     /**
-     * 根据流程定义key启动流程
+     * 根据流程定义key、流程定义id启动流程
      *
      * @param request
      * @return
@@ -28,7 +29,7 @@ public interface ProcessInstanceService {
      *
      * @param request
      */
-    void cancelProcess(TaskRequest request);
+    List<TaskDto> cancelProcess(TaskRequest request);
 
 
     /**
@@ -36,6 +37,9 @@ public interface ProcessInstanceService {
      *
      * @param request
      */
-    List<TaskDto> rollbackProcess(TaskRequest request);
+    List<TaskDto> rollbackProcess(RollbackProcessRequest request);
+
+
+    void test(String processInstanceId,String activityId);
 
 }

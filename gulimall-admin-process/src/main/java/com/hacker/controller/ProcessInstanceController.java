@@ -3,6 +3,7 @@ package com.hacker.controller;
 import com.hacker.common.exception.AccessReason;
 import com.hacker.common.utils.StrUtils;
 import com.hacker.domain.request.ProcessRequest;
+import com.hacker.domain.request.RollbackProcessRequest;
 import com.hacker.domain.request.TaskRequest;
 import com.hacker.result.R;
 import com.hacker.service.ProcessInstanceService;
@@ -35,7 +36,7 @@ public class ProcessInstanceController {
     @ApiOperation("流程撤回")
     @PostMapping("/cancelProcess")
     public R<?> cancelProcess(@NotNull @RequestBody TaskRequest request) {
-        if (StrUtils.isAllNotBlank(request.getProcessInstId(), request.getTaskId(), request.getTaskDefKey())) {
+        if (StrUtils.isAllNotBlank(request.getProcessInstId(), request.getTaskId(), request.getActicityDefKey())) {
             return R.error(AccessReason.PARAM_CHECK_EXCEPTION.exception("所需参数不能为空"));
         }
         return R.run(() -> processInstanceService.cancelProcess(request));
@@ -43,11 +44,17 @@ public class ProcessInstanceController {
 
     @ApiOperation("流程驳回")
     @PostMapping("/rollbackProcess")
-    public R<?> rollbackProcess(@NotNull @RequestBody TaskRequest request) {
+    public R<?> rollbackProcess(@NotNull @RequestBody RollbackProcessRequest request) {
         if (StrUtils.isAllNotBlank(request.getRejectType(), request.getProcessInstId(), request.getTaskId())) {
             R.error(AccessReason.PARAM_CHECK_EXCEPTION.exception("所需参数不能为空"));
         }
         return R.run(() -> processInstanceService.rollbackProcess(request));
+    }
+
+    @ApiOperation("test")
+    @GetMapping("/test/{processInstanceId}/{activityId}")
+    public R<?> test(@PathVariable String activityId, @PathVariable String processInstanceId){
+        return R.run(()->processInstanceService.test(processInstanceId,activityId));
     }
 
 }

@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -18,7 +19,9 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(value = "ProcessRequest-流程参数对象")
 @Data
-public class ProcessRequest {
+public class ProcessRequest implements Serializable {
+
+    private static final Long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "流程定义ID")
     private String processDefId;

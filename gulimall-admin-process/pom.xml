@@ -19,28 +19,29 @@
     <description>流程引擎后台管理系统</description>
 
     <dependencies>
+
         <dependency>
             <groupId>org.camunda.bpm.springboot</groupId>
             <artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>
-            <version>7.15.0</version>
+            <version>7.14.0</version>
         </dependency>
 
         <dependency>
             <groupId>org.camunda.bpm.springboot</groupId>
             <artifactId>camunda-bpm-spring-boot-starter-rest</artifactId>
-            <version>7.15.0</version>
+            <version>7.14.0</version>
         </dependency>
 
         <dependency>
             <groupId>org.camunda.bpm</groupId>
             <artifactId>camunda-engine-plugin-spin</artifactId>
-            <version>7.15.0</version>
+            <version>7.14.0</version>
         </dependency>
         <!--ServiceConnector所需 ,通过Http请求调用服务-->
         <dependency>
             <groupId>org.camunda.bpm</groupId>
             <artifactId>camunda-engine-plugin-connect</artifactId>
-            <version>7.15.0</version>
+            <version>7.14.0</version>
         </dependency>
 
         <dependency>
@@ -48,6 +49,7 @@
             <artifactId>camunda-spin-dataformat-all</artifactId>
             <version>1.11.0</version>
         </dependency>
+
 
         <!--        <dependency>-->
         <!--            <groupId>com.sun.xml.bind</groupId>-->
@@ -111,6 +113,10 @@
             <groupId>com.hacker</groupId>
             <artifactId>system-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
         </dependency>
 
     </dependencies>

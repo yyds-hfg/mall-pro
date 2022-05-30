@@ -19,11 +19,11 @@ spring:
       matching-strategy: ANT_PATH_MATCHER
   jersey:
     application-path: /engine-rest
-#Camunda
+
+#更改Camunda的日志级别
 logging:
   level:
     org.camunda.bpm.engine.impl.persistence.entity: debug
-
     #关闭swagger2烦人的提示信息
     springfox:
       documentation:
@@ -33,41 +33,37 @@ logging:
               operation:
                 CachingOperationNameGenerator: warn
 
-swagger:
-  module:
-    name: ProcessMoudel
-
 camunda:
   bpm:
     admin-user:
       id: camunda
       password: admin
       first-name: admin
-    #如果希望允许对 restapi 发出跨源请求，则需要启用 CORS。
-    #    run:
-    #      cors:
-    #        enable: true
-    #        allowed-origins: "*"
-    #      auth:
-    #        enable: true
-    #        authentication: basic
+
     database:
       type: mysql
+
     filter:
       create: All tasks
+
     #配置路径
     webapp:
       application-path: /mycamunda
       #禁用
-      index-redirect-enabled: false
+      index-redirect-enabled: true
+
     #Camunda默认不开启序列化,开启序列化
     generic-properties:
       properties:
         javaSerializationFormatEnabled: true
 
-#knife4j:
-## 开启生产环境屏蔽
-#  production: true
+    #开启camunda的权限管理
+    authorization:
+      enabled: true
+
+    #关闭自动部署
+    auto-deployment-enabled: false
+
 
 
 

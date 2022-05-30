@@ -52,20 +52,15 @@ public class RequestAspect {
 
     @Around("logPointCut()")
     public Object aroundFilter(ProceedingJoinPoint joinPoint) throws Throwable {
-        log.info("--------------------------日志记录-Start--------------------------");
         //请求的方法名
         Signature signature = joinPoint.getSignature();
         String className = joinPoint.getTarget().getClass().getName();
         String methodName = signature.getName();
-
         //请求的参数
         Object[] args = joinPoint.getArgs();
         String json = JSON.toJSONString(args);
-
-        System.out.println("className" + className);
-        System.out.println("methodName" + methodName);
-        System.out.println("json" + json);
-
+        log.info("日志记录-start "+className+"."+methodName+"方法执行了--------------------------");
+        log.info(String.format("请求参数数据: {%s}",json));
         if (!RATE_LIMITER.tryAcquire()) {
             throw AccessReason.RATE_LIMITER.exception("接口流量超限");
         }
@@ -74,8 +69,7 @@ public class RequestAspect {
         Object proceed = joinPoint.proceed();
 
         long endTime = Instant.now().toEpochMilli() - startTime;
-        log.info(joinPoint.getSignature().getName() + "执行了" + (endTime - startTime) + "秒");
-        log.info("--------------------------日志记录-End--------------------------");
+        log.info("日志记录-end "+joinPoint.getSignature().getName() + "执行了" + (endTime - startTime) + "秒"+"---------------");
         return proceed;
     }
 
