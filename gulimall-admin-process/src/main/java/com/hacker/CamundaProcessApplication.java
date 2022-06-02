@@ -5,6 +5,7 @@ import org.camunda.bpm.spring.boot.starter.event.PostDeployEvent;
 import org.camunda.bpm.spring.boot.starter.event.PreUndeployEvent;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.event.EventListener;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.context.event.EventListener;
 @SpringBootApplication
 @EnableProcessApplication
 //@EnableFeignClients
+@EnableConfigurationProperties
 public class CamundaProcessApplication {
 
     public static void main(String[] args) {

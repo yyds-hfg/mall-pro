@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package io.renren.common.utils;
 
 import com.google.gson.Gson;
@@ -18,10 +10,13 @@ import java.util.concurrent.TimeUnit;
 /**
  * Redis工具类
  *
- * @author Mark sunlightcs@gmail.com
+ * @Author: Zero
+ * @Date: 2022/6/2 15:22
+ * @Description: Redis工具类
  */
 @Component
 public class RedisUtils {
+
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
@@ -49,6 +44,7 @@ public class RedisUtils {
      * 不设置过期时长
      */
     public final static long NOT_EXPIRE = -1;
+
     private final static Gson gson = new Gson();
 
     public void set(String key, Object value, long expire) {

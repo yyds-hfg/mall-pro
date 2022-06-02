@@ -1,16 +1,9 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package io.renren.common.utils;
 
 import io.renren.common.validator.group.AliyunGroup;
 import io.renren.common.validator.group.QcloudGroup;
 import io.renren.common.validator.group.QiniuGroup;
+import lombok.Getter;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -18,7 +11,9 @@ import java.util.stream.Stream;
 /**
  * 常量
  *
- * @author Mark sunlightcs@gmail.com
+ * @Author: Zero
+ * @Date: 2022/6/2 15:14
+ * @Description: 常量
  */
 public class Constant {
     /**
@@ -46,13 +41,13 @@ public class Constant {
      */
     public static final String ASC = "asc";
 
-    /**
-     * 菜单类型
-     *
-     * @author chenshun
-     * @email sunlightcs@gmail.com
-     * @date 2016年11月15日 下午1:24:29
-     */
+   /**
+    * 菜单类型
+    *
+    * @Author: Zero
+    * @Date: 2022/6/2 15:13
+    * @Description: 菜单类型
+    */
     public enum MenuType {
         /**
          * 目录
@@ -81,9 +76,9 @@ public class Constant {
     /**
      * 定时任务状态
      *
-     * @author chenshun
-     * @email sunlightcs@gmail.com
-     * @date 2016年12月3日 上午12:07:22
+     * @Author: Zero
+     * @Date: 2022/6/2 15:13
+     * @Description: 定时任务状态
      */
     public enum ScheduleStatus {
         /**
@@ -108,6 +103,10 @@ public class Constant {
 
     /**
      * 云服务商
+     *
+     * @Author: Zero
+     * @Date: 2022/6/2 15:13
+     * @Description: 云服务商
      */
     public enum CloudService {
         /**
@@ -123,21 +122,15 @@ public class Constant {
          */
         QCLOUD(3, QcloudGroup.class);
 
-        private int value;
+        @Getter
+        private final int value;
 
-        private Class<?> validatorGroupClass;
+        @Getter
+        private final Class<?> validatorGroupClass;
 
         CloudService(int value, Class<?> validatorGroupClass) {
             this.value = value;
             this.validatorGroupClass = validatorGroupClass;
-        }
-
-        public int getValue() {
-            return value;
-        }
-
-        public Class<?> getValidatorGroupClass() {
-            return this.validatorGroupClass;
         }
 
         public static CloudService getByValue(Integer value) {

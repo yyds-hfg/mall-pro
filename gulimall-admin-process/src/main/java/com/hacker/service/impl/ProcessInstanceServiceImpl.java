@@ -15,9 +15,12 @@ import com.hacker.service.ProcessTaskService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.camunda.bpm.engine.HistoryService;
+import org.camunda.bpm.engine.RepositoryService;
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.TaskService;
 import org.camunda.bpm.engine.history.HistoricActivityInstance;
+import org.camunda.bpm.engine.repository.Deployment;
+import org.camunda.bpm.engine.rest.dto.repository.DeploymentDto;
 import org.camunda.bpm.engine.rest.dto.runtime.ProcessInstanceDto;
 import org.camunda.bpm.engine.rest.dto.task.TaskDto;
 import org.camunda.bpm.engine.runtime.ActivityInstance;
@@ -26,10 +29,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.zip.ZipInputStream;
 
 /**
  * @Author: Zero
@@ -55,6 +61,19 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
     @Autowired
     private BusinessService businessService;
 
+    @Autowired
+    private RepositoryService repositoryService;
+
+
+    @Override
+    public DeploymentDto deployProcess(MultipartFile file, String name, String source) throws IOException {
+        Deployment deploy = repositoryService.createDeployment()
+                .name(name)
+                .source(source)
+                .addZipInputStream(new ZipInputStream(file.getInputStream()))
+                .deploy();
+        return DeploymentDto.fromDeployment(deploy);
+    }
 
     @Override
     @SystemLog
@@ -71,7 +90,7 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
             processInstance = runtimeService.startProcessInstanceByKey(request.getProcessDefKey(),
                     request.getBusinessKey(), variables);
         }
-        Assert.isTrue(processInstance != null, "流程启动失败");
+        Assert.isTrue(processInstance != null, AccessReason.PROCESS_START_EXCEPTION::exception);
         Assert.isTrue(businessService.save(Business.builder()
                 .businessKey(request.getBusinessKey())
                 .processInstanceId(processInstance.getProcessInstanceId())
@@ -160,6 +179,11 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
         return processTaskService.queryActiveTask(QueryTaskRequest.builder().processInsId(request.getProcessInstId()).build());
     }
 
+    @Override
+    public void test(String processInstanceId, String activityId) {
+
+    }
+
 
     /**
      *
@@ -187,15 +211,5 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
         }
         return null;
     }
-
-
-    @SystemLog
-    @Override
-    public void test(String processInstanceId,String activityId) {
-        ActivityInstance tree = runtimeService.getActivityInstance(processInstanceId);
-        String instanceIdForActivity = this.getInstanceIdForActivity(tree, activityId);
-        System.out.println(instanceIdForActivity);
-    }
-
 
 }

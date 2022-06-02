@@ -11,27 +11,18 @@
 
     <artifactId>datasource-common</artifactId>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
-
     <dependencies>
+
         <!--持久层mybatis-plus依赖-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-        <!--https://pagehelper.github.io/docs/-->
-        <!--        <dependency>-->
-        <!--            <groupId>com.github.pagehelper</groupId>-->
-        <!--            <artifactId>pagehelper</artifactId>-->
-        <!--            <scope>provided</scope>&lt;!&ndash; 设置为 provided,只有工具类需要使用到 &ndash;&gt;-->
-        <!--        </dependency>-->
 
     </dependencies>
 </project>

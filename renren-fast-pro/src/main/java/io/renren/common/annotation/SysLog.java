@@ -17,7 +17,9 @@ import java.lang.annotation.Target;
 /**
  * 系统日志注解
  *
- * @author Mark sunlightcs@gmail.com
+ * @Author: Zero
+ * @Date: 2022/6/2 15:09
+ * @Description: 系统日志注解
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

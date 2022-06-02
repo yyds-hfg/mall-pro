@@ -1,10 +1,10 @@
 package com.hacker.service.impl;
 
+import com.hacker.common.exception.AccessReason;
 import com.hacker.common.exception.Assert;
 import com.hacker.common.utils.StrUtils;
 import com.hacker.domain.request.QueryTaskRequest;
 import com.hacker.domain.request.TaskComplete;
-import com.hacker.domain.request.TaskRequest;
 import com.hacker.domain.request.TodoTaskRequest;
 import com.hacker.po.Role;
 import com.hacker.po.User;
@@ -23,7 +23,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -132,6 +131,8 @@ public class ProcessTaskServiceImpl implements ProcessTaskService {
         }
         //得到角色
         User user = userService.getById(request.getUserId());
+        Assert.isTrue(user!=null, AccessReason.PARAM_CHECK_EXCEPTION::exception);
+
         String[] roleIds = user.getRoleId().split(",");
         List<Role> roleList = roleService.listByIds(getList(roleIds));
         List<String> roleCodeList = roleList.stream().map(Role::getRoleCode).collect(Collectors.toList());
@@ -141,7 +142,7 @@ public class ProcessTaskServiceImpl implements ProcessTaskService {
                 .or()
                 .taskAssignee(request.getUserId())      //分配给自己
                 .taskCandidateGroupIn(roleCodeList)     //查询出角色
-                .taskCandidateUser(request.getUserId())  //候选用户
+                .taskCandidateUser(request.getUserId()) //候选用户
                 .endOr()
                 .orderByTaskCreateTime()
                 .desc()                                 //创建时间倒序

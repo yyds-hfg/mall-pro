@@ -1,14 +1,7 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package io.renren.common.utils;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,9 +9,13 @@ import java.util.List;
 /**
  * 分页工具类
  *
- * @author Mark sunlightcs@gmail.com
+ * @Author: Zero
+ * @Date: 2022/6/2 15:21
+ * @Description: 分页工具类
  */
+@Data
 public class PageUtils implements Serializable {
+
     private static final long serialVersionUID = 1L;
     /**
      * 总记录数
@@ -66,46 +63,6 @@ public class PageUtils implements Serializable {
         this.pageSize = (int) page.getSize();
         this.currPage = (int) page.getCurrent();
         this.totalPage = (int) page.getPages();
-    }
-
-    public int getTotalCount() {
-        return totalCount;
-    }
-
-    public void setTotalCount(int totalCount) {
-        this.totalCount = totalCount;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public int getTotalPage() {
-        return totalPage;
-    }
-
-    public void setTotalPage(int totalPage) {
-        this.totalPage = totalPage;
-    }
-
-    public int getCurrPage() {
-        return currPage;
-    }
-
-    public void setCurrPage(int currPage) {
-        this.currPage = currPage;
-    }
-
-    public List<?> getList() {
-        return list;
-    }
-
-    public void setList(List<?> list) {
-        this.list = list;
     }
 
 }

@@ -1,15 +1,10 @@
 package com.hacker.feign;
 
-import com.hacker.common.result.R;
 import lombok.extern.slf4j.Slf4j;
-import org.camunda.bpm.engine.ProcessEngine;
-import org.camunda.bpm.engine.ProcessEngineConfiguration;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,10 +27,6 @@ public class SayHello implements JavaDelegate {
         }
         log.info("流程进入表达式");
         //TODO 模拟调用外系统
-//        R<List<?>> list = camundaFeign.list();
-//        for (Object datum : list.getData()) {
-//            log.info(datum.toString());
-//        }
     }
 
 }

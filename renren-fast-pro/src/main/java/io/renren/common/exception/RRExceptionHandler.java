@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package io.renren.common.exception;
 
 import io.renren.common.utils.R;
@@ -20,12 +12,14 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 /**
  * 异常处理器
  *
- * @author Mark sunlightcs@gmail.com
+ * @Author: Zero
+ * @Date: 2022/6/2 15:11
+ * @Description: 异常处理器
  */
 @RestControllerAdvice
 public class RRExceptionHandler {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * 处理自定义异常
@@ -61,4 +55,5 @@ public class RRExceptionHandler {
         logger.error(e.getMessage(), e);
         return R.error();
     }
+
 }

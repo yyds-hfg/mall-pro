@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package io.renren.common.utils;
 
 import com.alibaba.druid.util.StringUtils;
@@ -17,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * IP地址
  *
- * @author Mark sunlightcs@gmail.com
+ * @Author: Zero
+ * @Date: 2022/6/2 15:16
+ * @Description: IP地址
  */
 public class IPUtils {
     private static Logger logger = LoggerFactory.getLogger(IPUtils.class);
@@ -50,14 +44,6 @@ public class IPUtils {
         } catch (Exception e) {
             logger.error("IPUtils ERROR ", e);
         }
-
-//        //使用代理，则获取第一个IP地址
-//        if(StringUtils.isEmpty(ip) && ip.length() > 15) {
-//			if(ip.indexOf(",") > 0) {
-//				ip = ip.substring(0, ip.indexOf(","));
-//			}
-//		}
-
         return ip;
     }
 

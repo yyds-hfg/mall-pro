@@ -6,7 +6,5 @@ package com.hacker.common.exception;
  * @Description:
  */
 public class Assert extends cn.hutool.core.lang.Assert {
-    public Assert() {
-        super();
-    }
+
 }

@@ -1,20 +1,14 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package io.renren.common.utils;
 
 import java.util.HashMap;
 
 
 /**
- * Map工具类
  *
- * @author Mark sunlightcs@gmail.com
+ *
+ * @Author: Zero
+ * @Date: 2022/6/2 15:21
+ * @Description: 链式HashMap
  */
 public class MapUtils extends HashMap<String, Object> {
 

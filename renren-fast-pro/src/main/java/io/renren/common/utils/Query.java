@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package io.renren.common.utils;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -19,7 +11,9 @@ import java.util.Map;
 /**
  * 查询参数
  *
- * @author Mark sunlightcs@gmail.com
+ * @Author: Zero
+ * @Date: 2022/6/2 15:22
+ * @Description: 查询参数
  */
 public class Query<T> {
 

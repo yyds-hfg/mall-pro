@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package io.renren.common.aspect;
 
 import io.renren.common.exception.RRException;
@@ -20,13 +12,15 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Redis切面处理类
  *
- * @author Mark sunlightcs@gmail.com
+ * @Author: Zero
+ * @Date: 2022/6/2 15:10
+ * @Description: Redis切面处理类
  */
 @Aspect
 @Configuration
 public class RedisAspect {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     //是否开启redis缓存  true开启   false关闭
     @Value("${spring.redis.open: false}")

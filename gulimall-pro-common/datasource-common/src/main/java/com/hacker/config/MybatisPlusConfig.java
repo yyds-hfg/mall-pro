@@ -38,15 +38,4 @@ public class MybatisPlusConfig {
         return innerInterceptor;
     }
 
-//    /**
-//     * pagehelper分页
-//     * @return ConfigurationCustomizer
-//     */
-//    @Bean
-//    public ConfigurationCustomizer mybatisConfigurationCustomizer() {
-//        PageInterceptor pageInterceptor = new PageInterceptor();
-//        return configuration -> configuration.addInterceptor(pageInterceptor);
-//    }
-
-
 }

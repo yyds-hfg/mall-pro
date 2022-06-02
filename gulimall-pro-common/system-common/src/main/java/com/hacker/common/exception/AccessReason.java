@@ -12,7 +12,7 @@ public enum AccessReason {
     /**
      * 参数检查异常
      */
-    PARAM_CHECK_EXCEPTION("500001", "参数异常异常"),
+    PARAM_CHECK_EXCEPTION("500001", "参数异常"),
 
     /**
      * 类型检查异常
@@ -32,7 +32,11 @@ public enum AccessReason {
     /**
      * 流程驳回异常
      */
-    POCESS_REJECT_TYPE("500005", "流程驳回异常");
+    POCESS_REJECT_TYPE("500005", "流程驳回异常"),
+
+    PROCESS_START_EXCEPTION("500006","流程启动异常")
+
+    ;
 
     /**
      * code
