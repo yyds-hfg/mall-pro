@@ -3,6 +3,7 @@ package com.hacker.controller;
 import com.hacker.common.exception.AccessReason;
 import com.hacker.common.utils.StrUtils;
 import com.hacker.domain.request.QueryTaskRequest;
+import com.hacker.domain.request.TaskComplete;
 import com.hacker.domain.request.TaskRequest;
 import com.hacker.domain.request.TodoTaskRequest;
 import com.hacker.result.R;
@@ -70,12 +71,10 @@ public class ProcessTaskController {
         return R.run(() -> processTaskService.setOwner(taskId, userId));
     }
 
-
-
     @ApiOperation(value = "完成当前人工任务",notes = "将任务标记为已完成，并继续流程执行")
     @PostMapping("/complete")
-    public R<?> completeTask(@RequestBody TaskRequest request) {
-        if (StrUtils.isAllNotBlank(request.getTaskId(), request.getProcessInstId())) {
+    public R<?> completeTask(@RequestBody TaskComplete request) {
+        if (StrUtils.isAllNotBlank(request.getTaskId(), request.getProcessInstanceId())) {
             return R.error(AccessReason.PARAM_CHECK_EXCEPTION.exception("参数检查异常"));
         }
         return R.run(() -> processTaskService.completeTask(request));
@@ -84,7 +83,7 @@ public class ProcessTaskController {
     @ApiOperation(value = "查询用户代办任务 ",notes = "查询用户代办任务")
     @PostMapping("/getTodoTaskPage")
     public R<?> getTodoTaskPage(@RequestBody TodoTaskRequest request) {
-        if (!StrUtils.isNotAllBlank(request.getUserId(),request.getTaskCandidateUser(),request.getTaskCandidateGroup())) {
+        if (!StrUtils.isNotAllBlank(request.getUserId())) {
             throw AccessReason.PARAM_CHECK_EXCEPTION.exception("查询用户代办任务 参数不能全为空");
         }
         return R.run(() -> processTaskService.getTodoTaskPage(request));

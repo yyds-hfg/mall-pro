@@ -6,6 +6,8 @@
 >
 > Camunda Platform 既可以作为独立的进程引擎服务器使用，也可以嵌入到定制的 Java 应用程序中。可嵌入性要求是 Camunda 平台中许多架构决策的核心。
 
+![流程引擎组件构建](../../../../images/typora-images/流程引擎组件构建.png)
+
 #### 二、Process Engine Architecture
 
 ![img](../../../../images/typora-images/process-engine-architecture.png)
@@ -69,8 +71,88 @@
 
 > 在这种情况下，流程引擎作为网络服务提供。在网络上运行的不同应用程序可以通过远程通信通道与进程引擎进行交互。使流程引擎可以远程访问的最简单方法是使用内置的 REST API。不同的通信通道(如 soapwebservices 或 JMS)是可能的，但需要由用户实现。
 
-#### 四、Camunda集群
 
-![img](../../../../images/typora-images/clustered-process-engine.png)
 
-> 为了提供扩展或故障转移功能，流程引擎可以分布到集群中的不同节点。然后，每个流程引擎实例必须连接到共享数据库。
+#### (四) Camunda流程引擎术语
+
+- **Process Definition**
+
+  >  Process Definition即流程定义。Process Definition定义了流程的结构，或者说定义了业务活动的执行过程。Camunda bpm使用bpmn2.0作为其流程定义的主要建模语言。
+
+  
+
+- **Process Instance**
+
+  > Process Instance即流程实例。流程实例是流程定义的单独执行，流程定义和流程实例是一对多关系。流程实例与流程定义的关系与面向对象编程中对象与类的关系相同（在这种类比中，流程实例扮演对象的角色，流程定义扮演类的角色）。流程定义设计完成后，发布到BPM，通过流程引擎解析流程定义，发起一次流程即创建了一个流程实例，比如：创建了一个“请假流程”，这是一个流程定义，张三发起了一次请假流程，即创建了一个流程实例，李四也发起了一次请假，就是创建了另一个流程实例，这两个实例均基于流程定义创建生成。
+
+
+
+
+
+- **Execution**
+
+  > Execution即流程执行实例，如果流程实例包含多个执行路径（例如，在并行网关之后），则会同时产生多个执行实例，即execution, 通过excutionId能够区分流程实例内的当前活动路径。如下流程图，“receive payment”和“ship order”节点同时运行，即有两个execution在运行。
+
+![img](../../../../images/typora-images/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d4ejI1OA==,size_16,color_FFFFFF,t_70#pic_center.png)
+
+
+
+
+
+- **Activity Instance**
+
+  > Activity Instance即活动实例，活动实例概念与执行概念类似，但采用了不同的视角。虽然可以将执行想象为在流程中移动的令牌，但活动实例表示活动（任务、子流程等）的单个实例。因此，活动实例的概念更面向状态。
+
+
+
+
+
+- **Process Variable**
+
+  > Process Variable即流程变量，流程变量在整个工作流中扮演很重要的作用，是业务和流程引擎之间交互信息的载体，业务可以把数据放到流程变量里传递给流程引擎，流程引擎也可以把信息放到流程变量给传递给业务，流程变量最常见的用途有路由条件表达式、流程执行事件参数等。例如：请假流程中有请假天数、请假原因等一些参数都为流程变量的范围。流程变量的作用域范围是流程实例，也就是说各个流程实例的流程变量是不相互影响的。
+
+
+
+
+
+- **Cockpit**
+
+  > Camunda Platform Cockpit 是一个用于监控和操作的 Web 应用程序。它提供对已部署的 BPMN 流程和 DMN 决策的访问，允许搜索正在运行和已结束的实例并在这些实例上执行操作。
+
+
+
+
+
+- **Tasklist**
+
+  > Tasklist即任务列表，也就是待办任务。当流程节点是人工任务类型时，才可产生任务列表。
+
+
+
+
+
+- **Admin**
+
+  > Admin 是一个应用程序，它允许您通过引擎的身份服务和引擎的授权服务来配置用户和组。此外，您可以将 Camunda Admin 连接到您的 LDAP 系统。
+
+
+
+- 
+
+| 名称              | 中文名称    | 描述                              |
+| ----------------- | ----------- | --------------------------------- |
+| Definition ID     | 流程定义id  | 一类流程实例具有相同的流程定义id  |
+| Definition Key    | 流程定义key | 一类流程实例具有相同的流程定义key |
+| Deployment ID     | 流程部署id  | 一个流程部署一次具有不同的部署Id  |
+| ProcessInstanceId | 流程实例Id  | 一个流程实例具有唯一的流程实例Id  |
+| Business Key      | 业务key     | 一个流程实例应该具有唯一的业务key |
+|                   |             |                                   |
+|                   |             |                                   |
+|                   |             |                                   |
+|                   |             |                                   |
+
+
+
+
+
+[BPMN教程](https://camunda.com/bpmn/)

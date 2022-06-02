@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
  */
 @RestController
 @Api(tags = "流程实列控制器")
-@RequestMapping("/process")
+@RequestMapping("/process-instance")
 public class ProcessInstanceController {
 
     @Autowired

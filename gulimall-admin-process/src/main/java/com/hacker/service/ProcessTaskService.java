@@ -1,6 +1,7 @@
 package com.hacker.service;
 
 import com.hacker.domain.request.QueryTaskRequest;
+import com.hacker.domain.request.TaskComplete;
 import com.hacker.domain.request.TaskRequest;
 import com.hacker.domain.request.TodoTaskRequest;
 import org.camunda.bpm.engine.AuthorizationException;
@@ -50,6 +51,12 @@ public interface ProcessTaskService {
      */
     void setAssignee(String taskId, String userId);
 
+    /**
+     * 归还任务
+     * @param taskId
+     * @param userId
+     */
+    void backTask(String taskId, String userId);
 
     /**
      * 声明任务的责任:指定的用户被指定为任务的受让人。与setAssignee(String, String)不同的是，
@@ -74,7 +81,7 @@ public interface ProcessTaskService {
      *
      * @param request
      */
-    List<TaskDto> completeTask(TaskRequest request);
+    List<TaskDto> completeTask(TaskComplete request);
 
     /**
      * 查询代办任务

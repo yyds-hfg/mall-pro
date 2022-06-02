@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Map;
 
@@ -34,6 +33,9 @@ public class ProcessRequest implements Serializable {
 
     @ApiModelProperty(value = "流程标题")
     private String title;
+
+    @ApiModelProperty(value = "业务类型")
+    private String businessType;
 
     @ApiModelProperty(value = "外部业务系统数据主键标识值")
     private String businessKey;

@@ -1,6 +1,7 @@
 package com.hacker;
 
 import cn.hutool.json.JSONUtil;
+import com.hacker.common.exception.Assert;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.camunda.spin.json.SpinJsonNode;
@@ -26,6 +27,9 @@ public class ProcessInstanceServiceTest {
         String jsonStr = JSONUtil.toJsonStr(new Cat("1", "急啊急啊是"));
         SpinJsonNode jsonNode = JSON(jsonStr);
         System.out.println(jsonNode);
+    }
+    @Test
+    public void test2() {
     }
 }
 

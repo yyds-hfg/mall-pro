@@ -12,7 +12,10 @@ public enum ResultCode {
 
     SUCCESS("000000", "成功"),
 
-    DEFAULT_ERROR("400000", "业务错误");
+    DEFAULT_ERROR("400000", "业务错误"),
+
+    PARAM_CHECK("400001","参数错误")
+    ;
 
     private final String code;
 

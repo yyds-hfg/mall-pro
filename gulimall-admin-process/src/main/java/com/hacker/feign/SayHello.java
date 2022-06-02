@@ -21,8 +21,8 @@ import java.util.Map;
 @Slf4j
 public class SayHello implements JavaDelegate {
 
-    @Resource
-    private CamundaFeign camundaFeign;
+//    @Resource
+//    private CamundaFeign camundaFeign;
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {
@@ -31,10 +31,11 @@ public class SayHello implements JavaDelegate {
             System.out.println(s);
         }
         log.info("流程进入表达式");
-        R<List<?>> list = camundaFeign.list();
-        for (Object datum : list.getData()) {
-            log.info(datum.toString());
-        }
+        //TODO 模拟调用外系统
+//        R<List<?>> list = camundaFeign.list();
+//        for (Object datum : list.getData()) {
+//            log.info(datum.toString());
+//        }
     }
 
 }

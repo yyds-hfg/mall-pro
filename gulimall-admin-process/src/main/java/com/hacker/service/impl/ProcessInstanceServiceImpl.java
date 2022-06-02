@@ -2,11 +2,14 @@ package com.hacker.service.impl;
 
 import com.hacker.common.annotation.SystemLog;
 import com.hacker.common.exception.AccessReason;
+import com.hacker.common.exception.Assert;
 import com.hacker.consts.TaskConstance;
 import com.hacker.domain.request.ProcessRequest;
 import com.hacker.domain.request.QueryTaskRequest;
 import com.hacker.domain.request.RollbackProcessRequest;
 import com.hacker.domain.request.TaskRequest;
+import com.hacker.po.Business;
+import com.hacker.service.BusinessService;
 import com.hacker.service.ProcessInstanceService;
 import com.hacker.service.ProcessTaskService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,13 +22,12 @@ import org.camunda.bpm.engine.rest.dto.runtime.ProcessInstanceDto;
 import org.camunda.bpm.engine.rest.dto.task.TaskDto;
 import org.camunda.bpm.engine.runtime.ActivityInstance;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
-import org.camunda.bpm.engine.runtime.ProcessInstanceQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +39,7 @@ import java.util.Map;
 @Service
 @Slf4j
 public class ProcessInstanceServiceImpl implements ProcessInstanceService {
+
     @Autowired
     private ProcessTaskService processTaskService;
 
@@ -49,9 +52,13 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
     @Autowired
     private HistoryService historyService;
 
+    @Autowired
+    private BusinessService businessService;
+
+
     @Override
-    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
     @SystemLog
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
     public ProcessInstanceDto startProcessInstanceByKey(ProcessRequest request) {
         ProcessInstance processInstance = null;
         Map<String, Object> variables = request.getVariables();
@@ -65,9 +72,18 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
                     request.getBusinessKey(), variables);
         }
         Assert.isTrue(processInstance != null, "流程启动失败");
+        Assert.isTrue(businessService.save(Business.builder()
+                .businessKey(request.getBusinessKey())
+                .processInstanceId(processInstance.getProcessInstanceId())
+                .businessStater(request.getStater())
+                .businessTitle(request.getTitle())
+                .businessType(request.getBusinessType())
+                .createTime(LocalDateTime.now())
+                .build()),"业务 [%s] 存储发生异常",request.getBusinessKey());
         log.info(String.format("流程启动成功,流程实列Id [{%s}]", processInstance.getProcessInstanceId()));
         return ProcessInstanceDto.fromProcessInstance(processInstance);
     }
+
 
     @Override
     public List<TaskDto> cancelProcess(TaskRequest request) {
@@ -145,7 +161,6 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
     }
 
 
-
     /**
      *
      * @param activityInstance activityInstance
@@ -181,5 +196,6 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
         String instanceIdForActivity = this.getInstanceIdForActivity(tree, activityId);
         System.out.println(instanceIdForActivity);
     }
+
 
 }

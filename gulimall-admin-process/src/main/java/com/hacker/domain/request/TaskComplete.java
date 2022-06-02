@@ -21,6 +21,15 @@ public class TaskComplete implements Serializable {
     @NotBlank(message = "任务Id不能为空")
     private String taskId;
 
+    @ApiModelProperty(value = "当前用户Id")
+    private String userId;
+
+    @ApiModelProperty(value = "流程实例Id")
+    private String processInstanceId;
+
+    @ApiModelProperty("任务评论")
+    private String comment;
+
     @ApiModelProperty(value = "流程变量")
     private Map<String, Object> vars;
 }

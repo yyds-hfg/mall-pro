@@ -22,12 +22,6 @@ public class TodoTaskRequest implements Serializable {
     @ApiModelProperty(value = "用户Id")
     private String userId;
 
-    @ApiModelProperty(value = "用户候选组")
-    private String taskCandidateGroup;
-
-    @ApiModelProperty(value = "候选用户")
-    private String taskCandidateUser;
-
     @ApiModelProperty(value = "索引开始的地方")
     private Integer firstResult;
 
