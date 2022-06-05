@@ -66,11 +66,11 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
 
 
     @Override
-    public DeploymentDto deployProcess(MultipartFile file, String name, String source) throws IOException {
+    public DeploymentDto deployProcess(MultipartFile multipartFile, String name, String source) throws IOException {
         Deployment deploy = repositoryService.createDeployment()
                 .name(name)
                 .source(source)
-                .addZipInputStream(new ZipInputStream(file.getInputStream()))
+                .addInputStream(multipartFile.getOriginalFilename(),multipartFile.getInputStream())
                 .deploy();
         return DeploymentDto.fromDeployment(deploy);
     }
@@ -103,6 +103,21 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
         return ProcessInstanceDto.fromProcessInstance(processInstance);
     }
 
+    @Override
+    public ProcessInstanceDto suspendProcess(String processInstanceId) {
+        runtimeService.suspendProcessInstanceById(processInstanceId);
+        ProcessInstance processInstance = runtimeService.createProcessInstanceQuery()
+                .processInstanceId(processInstanceId).singleResult();
+        return ProcessInstanceDto.fromProcessInstance(processInstance);
+    }
+
+    @Override
+    public ProcessInstanceDto activateProcess(String processInstanceId) {
+        runtimeService.activateProcessInstanceById(processInstanceId);
+        ProcessInstance processInstance = runtimeService.createProcessInstanceQuery()
+                .processInstanceId(processInstanceId).singleResult();
+        return ProcessInstanceDto.fromProcessInstance(processInstance);
+    }
 
     @Override
     public List<TaskDto> cancelProcess(TaskRequest request) {

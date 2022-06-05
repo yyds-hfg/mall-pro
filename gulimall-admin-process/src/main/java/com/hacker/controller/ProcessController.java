@@ -1,17 +1,19 @@
 package com.hacker.controller;
 
 import com.hacker.common.exception.AccessReason;
-import com.hacker.common.utils.StrUtils;
+import com.hacker.common.exception.Assert;
+import com.hacker.common.result.R;
 import com.hacker.domain.request.ProcessRequest;
 import com.hacker.domain.request.TaskComplete;
 import com.hacker.domain.request.TodoTaskRequest;
-import com.hacker.result.R;
 import com.hacker.service.ProcessInstanceService;
 import com.hacker.service.ProcessTaskService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -32,10 +34,28 @@ public class ProcessController {
     @Autowired
     private ProcessTaskService processTaskService;
 
+    @ApiOperation(value = "流程部署",notes = "流程部署")
+    @PostMapping("/deployProcess")
+    public R<?> deployProcess(MultipartFile file,String name,String source) {
+        return R.run(()-> processInstanceService.deployProcess(file, name, source));
+    }
+
     @ApiOperation(value = "发起流程",notes = "流程发起")
     @PostMapping("/start")
     public R<?> startProcess(@NotNull @RequestBody ProcessRequest request) {
         return R.run(() -> processInstanceService.startProcessInstanceByKey(request));
+    }
+
+    @ApiOperation(value = "流程挂起")
+    @GetMapping("/suspendProcess/{processInstanceId}")
+    public R<?> suspendProcess(@PathVariable String processInstanceId) {
+        return R.run(() -> processInstanceService.suspendProcess(processInstanceId));
+    }
+
+    @ApiOperation(value = "流程激活")
+    @GetMapping("/activateProcess/{processInstanceId}")
+    public R<?> activateProcess(@PathVariable String processInstanceId) {
+        return R.run(() -> processInstanceService.activateProcess(processInstanceId));
     }
 
     @ApiOperation(value = "拾取任务",notes = "声明任务的责任:指定的用户被指定为任务的受让人。" +
@@ -62,9 +82,7 @@ public class ProcessController {
     @ApiOperation(value = "查询用户代办任务 ",notes = "查询用户代办任务")
     @PostMapping("/getTodoTaskPage")
     public R<?> getTodoTaskPage(@RequestBody TodoTaskRequest request) {
-        if (!StrUtils.isNotAllBlank(request.getUserId())) {
-            throw AccessReason.PARAM_CHECK_EXCEPTION.exception("查询用户代办任务 参数不能全为空");
-        }
+        Assert.isTrue(StringUtils.isNotBlank(request.getUserId()),AccessReason.PARAM_CHECK_EXCEPTION::exception);
         return R.run(() -> processTaskService.getTodoTaskPage(request));
     }
 

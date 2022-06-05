@@ -19,13 +19,13 @@ import java.util.List;
 public interface ProcessInstanceService {
     /**
      * 流程部署
-     * @param file
+     * @param multipartFile
      * @param name
      * @param source
      * @return
      * @throws IOException
      */
-    DeploymentDto deployProcess(MultipartFile file, String name, String source) throws IOException;
+    DeploymentDto deployProcess(MultipartFile multipartFile, String name, String source) throws IOException;
 
     /**
      * 根据流程定义key、流程定义id启动流程
@@ -51,6 +51,17 @@ public interface ProcessInstanceService {
      */
     List<TaskDto> rollbackProcess(RollbackProcessRequest request);
 
+    /**
+     * 流程挂起
+     * @param processInstanceId
+     */
+    ProcessInstanceDto suspendProcess(String processInstanceId);
+
+    /**
+     * 流程激活
+     * @param processInstanceId
+     */
+    ProcessInstanceDto activateProcess(String processInstanceId);
 
     void test(String processInstanceId,String activityId);
 

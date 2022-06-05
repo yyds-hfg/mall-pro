@@ -20,3 +20,7 @@
 
 [Camunda流程引擎及表结构认识](https://blog.csdn.net/weixin_44878554/article/details/122437071)
 
+
+
+[camunda 绑定自定义表单手动部署](https://blog.csdn.net/ninja_/article/details/119750634?ops_request_misc=&request_id=&biz_id=102&utm_term=camunda%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A1%A8%E5%8D%95&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduweb~default-0-119750634.nonecase&spm=1018.2226.3001.4450)
+

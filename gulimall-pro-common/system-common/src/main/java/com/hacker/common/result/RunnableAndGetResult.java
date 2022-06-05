@@ -7,5 +7,5 @@ package com.hacker.common.result;
  */
 @FunctionalInterface
 public interface RunnableAndGetResult<P> {
-    P run();
+    P run() throws Throwable;
 }
