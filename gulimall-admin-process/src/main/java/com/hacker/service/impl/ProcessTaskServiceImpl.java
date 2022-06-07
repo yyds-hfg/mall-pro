@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -89,20 +90,25 @@ public class ProcessTaskServiceImpl implements ProcessTaskService {
     }
 
     @Override
-    public void backTask(String taskId, String userId) {
-        Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
+    public TaskDto backTask(String taskId, String userId) {
+        Task task = getTask(taskId);
         Assert.isTrue(task!=null,"没有该任务");
-        assert task != null;
-        Assert.isTrue(userId.equals(task.getAssignee()),"[%s] 用户没有拾取该任务,无法归还",userId);
+        Assert.isTrue(userId.equals(Objects.requireNonNull(task).getAssignee()),"[%s] 用户没有拾取该任务,无法归还",userId);
         taskService.setAssignee(taskId,null);
+        return TaskDto.fromEntity(getTask(taskId));
+    }
+
+    private Task getTask(String taskId) {
+        return taskService.createTaskQuery().taskId(taskId).singleResult();
     }
 
     @Override
     @Transactional
-    public void claim(String taskId, String userId) {
-        Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
+    public TaskDto claim(String taskId, String userId) {
+        Task task = getTask(taskId);
         Assert.isTrue(task.getAssignee()==null,"任务已经被拾取");
         taskService.claim(taskId, userId);
+        return TaskDto.fromEntity(getTask(taskId));
     }
 
     @Override
@@ -114,7 +120,7 @@ public class ProcessTaskServiceImpl implements ProcessTaskService {
     @Transactional
     @Override
     public List<TaskDto> completeTask(TaskComplete request) {
-        Task task = taskService.createTaskQuery().taskId(request.getTaskId()).singleResult();
+        Task task = getTask(request.getTaskId());
         Assert.isTrue(task.getAssignee().equals(request.getUserId()),"[%s] 用户没有拾取该任务",request.getUserId());
         Comment comment = taskService.createComment(request.getTaskId(), request.getProcessInstanceId(), request.getComment());
         Assert.isTrue(comment!=null,"[%s] 创建任务评论失败",task.getId());

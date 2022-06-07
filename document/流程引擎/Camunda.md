@@ -1,6 +1,15 @@
 ## Camunda
 
-#### 一、Camunda简介
+
+
+#### 工作流简介
+
+> 工作流（Workflow），指“业务过程的部分或整体在计算机应用环境下的自动化”。是对工作流程及其各操作步骤之间业务规则的抽象、概括描述。在计算机中，工作流属于计算机支持的协同工作（CSCW）的一部分。后者是普遍地研究一个群体如何在计算机的帮助下实现协同工作的。
+> 工作流主要解决的主要问题是：为了实现某个业务目标，利用计算机在多个参与者之间按某种预定规则自动传递文档、信息或者任务。
+
+
+
+#### Camunda简介
 
 > Camunda Platform 是一个基于 Java 的框架。主要组件是用 Java 编写的，我们主要致力于为 Java 开发人员提供他们需要的工具，以便在 JVM 上设计、实现和运行业务流程和工作流。不过，我们还希望让非 java 开发人员可以使用流程引擎技术。这就是为什么 Camunda Platform 还提供一个 REST API，它允许您构建连接到远程进程引擎的应用程序。
 >
@@ -8,7 +17,7 @@
 
 ![流程引擎组件构建](../../../../images/typora-images/流程引擎组件构建.png)
 
-#### 二、Process Engine Architecture
+#### Process Engine Architecture
 
 ![img](../../../../images/typora-images/process-engine-architecture.png)
 
@@ -47,7 +56,7 @@
 | 11   |     FiterService     |       过滤相关的服务       |
 | 12   |   DecisionService    |        DMN相关操作         |
 
-#### 三、流程引擎使用场景
+#### 流程引擎使用场景
 
 **（一）嵌入式流程引擎**
 
@@ -73,7 +82,7 @@
 
 
 
-#### (四) Camunda流程引擎术语
+#### Camunda流程引擎术语
 
 - **Process Definition**
 
@@ -87,15 +96,11 @@
 
 
 
-
-
 - **Execution**
 
   > Execution即流程执行实例，如果流程实例包含多个执行路径（例如，在并行网关之后），则会同时产生多个执行实例，即execution, 通过excutionId能够区分流程实例内的当前活动路径。如下流程图，“receive payment”和“ship order”节点同时运行，即有两个execution在运行。
 
 ![img](../../../../images/typora-images/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d4ejI1OA==,size_16,color_FFFFFF,t_70#pic_center.png)
-
-
 
 
 
@@ -105,13 +110,9 @@
 
 
 
-
-
 - **Process Variable**
 
   > Process Variable即流程变量，流程变量在整个工作流中扮演很重要的作用，是业务和流程引擎之间交互信息的载体，业务可以把数据放到流程变量里传递给流程引擎，流程引擎也可以把信息放到流程变量给传递给业务，流程变量最常见的用途有路由条件表达式、流程执行事件参数等。例如：请假流程中有请假天数、请假原因等一些参数都为流程变量的范围。流程变量的作用域范围是流程实例，也就是说各个流程实例的流程变量是不相互影响的。
-
-
 
 
 
@@ -121,13 +122,9 @@
 
 
 
-
-
 - **Tasklist**
 
   > Tasklist即任务列表，也就是待办任务。当流程节点是人工任务类型时，才可产生任务列表。
-
-
 
 
 
@@ -146,13 +143,29 @@
 | Deployment ID     | 流程部署id  | 一个流程部署一次具有不同的部署Id  |
 | ProcessInstanceId | 流程实例Id  | 一个流程实例具有唯一的流程实例Id  |
 | Business Key      | 业务key     | 一个流程实例应该具有唯一的业务key |
-|                   |             |                                   |
-|                   |             |                                   |
-|                   |             |                                   |
-|                   |             |                                   |
 
 
 
+#### Demo示列
 
 
-[BPMN教程](https://camunda.com/bpmn/)
+
+以请假流程为例
+
+> 1. 定义流程：【管理员】新建流程、设计流程模型、并设置用户任务的审批人，最终发布流程
+> 2. 发起流程：【员工】选择流程，并发起流程实例
+> 3. 审批流程：【审批人】接收到流程任务，审批结果为通过或不通过
+
+![流程引擎定义流程](../../../../images/typora-images/流程引擎定义流程.png)
+
+
+
+> 根据业务需要，业务通过建立独立的数据库表（业务表）记录申请信息，而流程引擎只负责推动流程的前进或者结束。两者需要进行**双向**的关联：
+>
+> - 每一条业务表记录，通过它的流程实例的编号( `process_instance_id` )指向对应的流程实例
+> - 每一个流程实例，通过它的业务键( `BUSINESS_KEY_` ) 指向对应的业务表记录。
+
+![Diagram 1](../../../../images/typora-images/Diagram 1.jpg)
+
+
+

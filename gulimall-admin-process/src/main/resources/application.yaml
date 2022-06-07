@@ -24,7 +24,13 @@ spring:
 #更改Camunda的日志级别
 logging:
   level:
-    org.camunda.bpm.engine.impl.persistence.entity: debug
+    org:
+      camunda:
+        bpm:
+          engine:
+            impl:
+              persistence:
+                entity: debug
     #关闭swagger2烦人的提示信息
     springfox:
       documentation:
@@ -33,7 +39,6 @@ logging:
             readers:
               operation:
                 CachingOperationNameGenerator: warn
-
 camunda:
   bpm:
     admin-user:

@@ -59,8 +59,8 @@ public class ProcessController {
     }
 
     @ApiOperation(value = "拾取任务",notes = "声明任务的责任:指定的用户被指定为任务的受让人。" +
-            "与setAssignee(String, String)不同的是,\n" +
-            "如果任务已经有一个分配给它的用户，那么在这里执行检查。标识组件不检查用户是否已知。")
+            "与setAssignee(String, String)不同的是,如果任务已经有一个分配给它的用户，" +
+            "那么在这里执行检查。标识组件不检查用户是否已知。")
     @GetMapping("/claim/{taskId}/{userId}")
     public R<?> claim(@NotBlank(message = "taskId不能为空") @PathVariable String taskId,
                       @NotBlank(message = "userId不能为空") @PathVariable String userId) {

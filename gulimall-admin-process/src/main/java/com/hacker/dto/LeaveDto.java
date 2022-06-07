@@ -1,28 +1,19 @@
-package com.hacker.domain.request;
+package com.hacker.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import io.swagger.annotations.ApiModel;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.hacker.po.Leave;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Map;
 
 /**
- * 流程参数对象
- *
  * @Author: Zero
- * @Date: 2022/5/25 11:44
+ * @Date: 2022/6/6 19:43
  * @Description:
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "ProcessRequest-流程参数对象")
 @Data
-@Builder
-public class ProcessRequest implements Serializable {
-
-    private static final Long serialVersionUID = 1L;
+public class LeaveDto {
 
     @ApiModelProperty(value = "流程定义ID")
     private String processDefId;
@@ -36,10 +27,12 @@ public class ProcessRequest implements Serializable {
     @ApiModelProperty(value = "流程标题")
     private String title;
 
-    @ApiModelProperty(value = "外部业务系统数据主键标识值")
-    private String businessKey;
+    @ApiModelProperty(value = "请假原因")
+    private String reason;
+
+    @ApiModelProperty(value = "请假天数")
+    private String days;
 
     @ApiModelProperty(value = "流程变量键值对")
     private Map<String, Object> variables;
-
 }

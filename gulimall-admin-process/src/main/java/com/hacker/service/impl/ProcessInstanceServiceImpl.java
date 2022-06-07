@@ -35,6 +35,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.zip.ZipInputStream;
 
 /**
@@ -90,16 +91,16 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
             processInstance = runtimeService.startProcessInstanceByKey(request.getProcessDefKey(),
                     request.getBusinessKey(), variables);
         }
-        Assert.isTrue(processInstance != null, AccessReason.PROCESS_START_EXCEPTION::exception);
-        Assert.isTrue(businessService.save(Business.builder()
+        Assert.isTrue(processInstance != null,AccessReason.NULL_POINT_EXCEPTION::exception);
+       /** Assert.isTrue(businessService.save(Business.builder()
                 .businessKey(request.getBusinessKey())
                 .processInstanceId(processInstance.getProcessInstanceId())
                 .businessStater(request.getStater())
                 .businessTitle(request.getTitle())
                 .businessType(request.getBusinessType())
                 .createTime(LocalDateTime.now())
-                .build()),"业务 [%s] 存储发生异常",request.getBusinessKey());
-        log.info(String.format("流程启动成功,流程实列Id [{%s}]", processInstance.getProcessInstanceId()));
+                .build()),"业务 [%s] 存储发生异常",request.getBusinessKey());*/
+        log.info(String.format("流程启动成功,流程实列Id [{%s}]", Objects.requireNonNull(processInstance).getProcessInstanceId()));
         return ProcessInstanceDto.fromProcessInstance(processInstance);
     }
 

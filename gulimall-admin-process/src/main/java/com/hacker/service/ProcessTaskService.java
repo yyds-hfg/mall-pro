@@ -55,7 +55,7 @@ public interface ProcessTaskService {
      * @param taskId
      * @param userId
      */
-    void backTask(String taskId, String userId);
+    TaskDto backTask(String taskId, String userId);
 
     /**
      * 声明任务的责任:指定的用户被指定为任务的受让人。与setAssignee(String, String)不同的是，
@@ -65,7 +65,7 @@ public interface ProcessTaskService {
      * @param userId 当userId为空时，任务是无人认领的，没有分配给任何人。
      * @throws ProcessEngineException 当任务不存在或任务已经被其他用户认领时
      */
-    void claim(String taskId, String userId);
+    TaskDto claim(String taskId, String userId);
 
     /**
      * 将此任务的所有权转移给另一个用户。标识组件不检查用户是否已知

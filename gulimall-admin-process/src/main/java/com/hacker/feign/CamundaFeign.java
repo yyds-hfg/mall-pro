@@ -1,6 +1,7 @@
 package com.hacker.feign;
 
 import com.hacker.common.result.R;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
