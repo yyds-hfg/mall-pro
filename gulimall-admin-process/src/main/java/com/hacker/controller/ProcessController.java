@@ -36,7 +36,8 @@ public class ProcessController {
 
     @ApiOperation(value = "流程部署",notes = "流程部署")
     @PostMapping("/deployProcess")
-    public R<?> deployProcess(MultipartFile file,String name,String source) {
+    public R<?> deployProcess(@NotNull(message = "部署资源不能为空") MultipartFile file,
+                              String name, String source) {
         return R.run(()-> processInstanceService.deployProcess(file, name, source));
     }
 
@@ -49,12 +50,14 @@ public class ProcessController {
     @ApiOperation(value = "流程挂起")
     @GetMapping("/suspendProcess/{processInstanceId}")
     public R<?> suspendProcess(@PathVariable String processInstanceId) {
+        Assert.notNull(processInstanceId,AccessReason.NULL_POINT_EXCEPTION::exception);
         return R.run(() -> processInstanceService.suspendProcess(processInstanceId));
     }
 
     @ApiOperation(value = "流程激活")
     @GetMapping("/activateProcess/{processInstanceId}")
     public R<?> activateProcess(@PathVariable String processInstanceId) {
+        Assert.notNull(processInstanceId,AccessReason.NULL_POINT_EXCEPTION::exception);
         return R.run(() -> processInstanceService.activateProcess(processInstanceId));
     }
 
@@ -69,7 +72,8 @@ public class ProcessController {
 
     @GetMapping("/backTask/{taskId}/{userId}")
     @ApiOperation(value = "归还任务")
-    public R<?> backTask(@PathVariable String taskId, @PathVariable String userId) {
+    public R<?> backTask(@NotBlank(message = "taskId不能为空") @PathVariable String taskId,
+                         @NotBlank(message = "userId不能为空") @PathVariable String userId) {
         return R.run(()->processTaskService.backTask(taskId,userId));
     }
 

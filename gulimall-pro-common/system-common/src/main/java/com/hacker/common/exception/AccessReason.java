@@ -34,6 +34,9 @@ public enum AccessReason {
      */
     POCESS_REJECT_TYPE("500005", "流程驳回异常"),
 
+    /**
+     * 流程启动异常
+     */
     PROCESS_START_EXCEPTION("500006","流程启动异常")
 
     ;
@@ -60,6 +63,7 @@ public enum AccessReason {
     }
 
     /**
+     * 生成异常实列
      * @return
      */
     public AccessException exception() {
@@ -67,6 +71,7 @@ public enum AccessReason {
     }
 
     /**
+     * 生成异常实列
      * @param errorMsg
      * @return
      */

@@ -10,26 +10,26 @@ import org.apache.commons.lang3.StringUtils;
 public class AccessException extends RuntimeException {
 
     /**
-     * 返回accessReason
-     */
-    private AccessReason accessReason;
-
-    /**
      * 自定义异常信息
      */
     public String errorMsg;
 
     /**
-     *
+     * 返回异常实列
+     * @param accessReason accessReason
      */
     public AccessException(AccessReason accessReason) {
         this(accessReason, accessReason.getErrorMsg());
     }
 
-
+    /**
+     * 返回异常实列
+     * @param accessReason  accessReason
+     * @param errorMsg errorMsg
+     */
     public AccessException(AccessReason accessReason, String errorMsg) {
         super(!StringUtils.isNotBlank(errorMsg) ? errorMsg : accessReason.getErrorMsg());
-        this.accessReason = accessReason;
         this.errorMsg = errorMsg;
     }
+
 }
