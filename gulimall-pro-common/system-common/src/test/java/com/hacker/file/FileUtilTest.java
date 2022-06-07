@@ -93,10 +93,7 @@ public class FileUtilTest {
         List<Field> fieldList = Arrays.stream(type.getDeclaredFields())
                 .sorted(Comparator.comparingInt(field -> Integer.parseInt(field.getAnnotation(Element.class).order())))
                 .collect(Collectors.toList());
-        for (Field field : fieldList) {
-            Element annotation = field.getAnnotation(Element.class);
-            list.add(Integer.valueOf(annotation.length()));
-        }
+        fieldList.forEach(field->list.add(Integer.valueOf(field.getAnnotation(Element.class).length())));
         return list;
     }
 
