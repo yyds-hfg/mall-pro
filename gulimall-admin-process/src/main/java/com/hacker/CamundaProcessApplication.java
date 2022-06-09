@@ -15,7 +15,6 @@ import org.springframework.context.event.EventListener;
  */
 @SpringBootApplication
 @EnableProcessApplication
-//@EnableFeignClients
 @EnableConfigurationProperties
 public class CamundaProcessApplication {
 

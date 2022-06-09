@@ -82,7 +82,7 @@ public class ProcessTaskController {
     @ApiOperation(value = "查询用户代办任务 ",notes = "查询用户代办任务")
     @PostMapping("/getTodoTaskPage")
     public R<?> getTodoTaskPage(@RequestBody TodoTaskRequest request) {
-        if (!StrUtils.isNotAllBlank(request.getUserId())) {
+        if (!StrUtils.isNotAllBlank(request.getUserName())) {
             throw AccessReason.PARAM_CHECK_EXCEPTION.exception("查询用户代办任务 参数不能全为空");
         }
         return R.run(() -> processTaskService.getTodoTaskPage(request));

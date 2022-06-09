@@ -96,6 +96,22 @@
             <scope>provided</scope>
         </dependency>
 
+
+        <!-- 操作2003版本的excel，以.xls结尾的 -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>4.1.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- 操作2007版本以上的excel，以.xlsx结尾的 -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>4.1.2</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
 </project>

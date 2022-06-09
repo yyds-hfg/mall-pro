@@ -4,15 +4,14 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.hacker.po.User">
-        <id column="id" property="id" />
-        <result column="username" property="username" />
+        <id column="username" property="username" />
         <result column="password" property="password" />
         <result column="role_id" property="roleId" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, username, password, role_id
+        username, password, role_id
     </sql>
 
 </mapper>

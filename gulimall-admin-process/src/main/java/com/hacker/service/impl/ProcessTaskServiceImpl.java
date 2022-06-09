@@ -18,6 +18,7 @@ import org.camunda.bpm.engine.rest.dto.history.HistoricTaskInstanceDto;
 import org.camunda.bpm.engine.rest.dto.task.TaskDto;
 import org.camunda.bpm.engine.task.Comment;
 import org.camunda.bpm.engine.task.Task;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -105,6 +106,9 @@ public class ProcessTaskServiceImpl implements ProcessTaskService {
     @Override
     @Transactional
     public TaskDto claim(String taskId, String userId) {
+        /**
+         * 查询任务的时候只能查到自己的代办任务,所以不需要做验证
+         */
         Task task = getTask(taskId);
         Assert.isTrue(task.getAssignee()==null,"任务已经被拾取");
         taskService.claim(taskId, userId);
@@ -119,47 +123,49 @@ public class ProcessTaskServiceImpl implements ProcessTaskService {
 
     @Transactional
     @Override
-    public List<TaskDto> completeTask(TaskComplete request) {
+    public void completeTask(TaskComplete request) {
         Task task = getTask(request.getTaskId());
         Assert.isTrue(task.getAssignee().equals(request.getUserId()),"[%s] 用户没有拾取该任务",request.getUserId());
         Comment comment = taskService.createComment(request.getTaskId(), request.getProcessInstanceId(), request.getComment());
         Assert.isTrue(comment!=null,"[%s] 创建任务评论失败",task.getId());
         taskService.complete(request.getTaskId(), request.getVars());
-        return this.queryActiveTask(QueryTaskRequest.builder().processInsId(request.getProcessInstanceId()).build());
     }
 
-    @Transactional
     @Override
+    @Transactional
     public List<TaskDto> getTodoTaskPage(TodoTaskRequest request) {
         if (request.getFirstResult()==null) {
             request.setFirstResult(0);
             request.setMaxResults(20);
         }
         //得到角色
-        User user = userService.getById(request.getUserId());
+        User user = userService.getById(request.getUserName());
         Assert.isTrue(user!=null, AccessReason.PARAM_CHECK_EXCEPTION::exception);
-
         String[] roleIds = user.getRoleId().split(",");
         List<Role> roleList = roleService.listByIds(getList(roleIds));
         List<String> roleCodeList = roleList.stream().map(Role::getRoleCode).collect(Collectors.toList());
+        List<Task> list = getTaskList(request.getUserName(), roleCodeList, request.getFirstResult(), request.getMaxResults());
+        return list.stream().map(TaskDto::fromEntity).collect(Collectors.toList());
+    }
 
+    @NotNull
+    private List<Task> getTaskList(String userName, List<String> roleCodeList,Integer start,Integer end) {
         //查询待办任务--已经认领的任务
         List<Task> list = taskService.createTaskQuery()
                 .or()
-                .taskAssignee(request.getUserId())      //分配给自己
+                .taskAssignee(userName)      //分配给自己
                 .taskCandidateGroupIn(roleCodeList)     //查询出角色
-                .taskCandidateUser(request.getUserId()) //候选用户
+                .taskCandidateUser(userName) //候选用户
                 .endOr()
                 .orderByTaskCreateTime()
-                .desc()                                 //创建时间倒序
-                .listPage(request.getFirstResult(),request.getMaxResults());
-
+                .desc()                      //创建时间倒序
+                .listPage(start, end);
         //查出没有被别人拾取的任务
         list = list.stream().filter(task ->task.getAssignee()==null ||
-                task.getAssignee().equals(request.getUserId())).collect(Collectors.toList());
-
-        return list.stream().map(TaskDto::fromEntity).collect(Collectors.toList());
+                task.getAssignee().equals(userName)).collect(Collectors.toList());
+        return list;
     }
+
 
     private List<String> getList(String[] roleIds) {
         ArrayList<String> list = new ArrayList<>();

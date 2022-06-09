@@ -80,7 +80,7 @@ public interface ProcessTaskService {
      *
      * @param request
      */
-    List<TaskDto> completeTask(TaskComplete request);
+    void completeTask(TaskComplete request);
 
     /**
      * 查询代办任务

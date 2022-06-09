@@ -86,11 +86,11 @@ public class ProcessController {
     @ApiOperation(value = "查询用户代办任务 ",notes = "查询用户代办任务")
     @PostMapping("/getTodoTaskPage")
     public R<?> getTodoTaskPage(@RequestBody TodoTaskRequest request) {
-        Assert.isTrue(StringUtils.isNotBlank(request.getUserId()),AccessReason.PARAM_CHECK_EXCEPTION::exception);
+        Assert.isTrue(StringUtils.isNotBlank(request.getUserName()),AccessReason.PARAM_CHECK_EXCEPTION::exception);
         return R.run(() -> processTaskService.getTodoTaskPage(request));
     }
 
-    @ApiOperation(value = "查询已办任务",notes = "查询自己已近完成办理的任务")
+    @ApiOperation(value = "查询已办任务",notes = "查询自己已经完成办理的任务")
     @GetMapping("/queryDoneTask/{userId}")
     public R<?> queryDoneTask(@NotBlank(message = "userId不能为空") @PathVariable String userId) {
         return R.run(() -> processTaskService.queryDoneTask(userId));

@@ -29,19 +29,23 @@ public class LeaveServiceImpl extends ServiceImpl<LeaveMapper, Leave> implements
     @Autowired
     private ProcessInstanceService processInstanceService;
 
-    @Autowired
-    private ProcessTaskService processTaskService;
+    /**
+     * 流程定义
+     */
+    public static final String PROCESS_KEY = "Process_1nduia6";
 
     @Override
     public void startLeave(LeaveDto leaveDto) {
-        //保存信息
+        //插入请假业务表单
         Leave leave = LeaveMap.INSTANCE.toLeave(leaveDto);
         this.baseMapper.insert(leave);
-        //发起流程
+
+        //调用Camunda流程引擎发起流程
         ProcessRequest processRequest = LeaveMap.INSTANCE.toProcessRequest(leaveDto);
         processRequest.setBusinessKey(leave.getId());
         ProcessInstanceDto processInstanceDto = processInstanceService.startProcessInstanceByKey(processRequest);
-        //更新信息
+
+        //将流程实例添加到请假业务表中
         leave.setProcessInstanceId(processInstanceDto.getId());
         this.baseMapper.updateById(leave);
 

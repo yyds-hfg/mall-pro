@@ -20,7 +20,7 @@ public class TodoTaskRequest implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "用户Id")
-    private String userId;
+    private String userName;
 
     @ApiModelProperty(value = "索引开始的地方")
     private Integer firstResult;

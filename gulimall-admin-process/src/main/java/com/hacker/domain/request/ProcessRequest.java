@@ -3,8 +3,10 @@ package com.hacker.domain.request;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -20,6 +22,8 @@ import java.util.Map;
 @ApiModel(value = "ProcessRequest-流程参数对象")
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProcessRequest implements Serializable {
 
     private static final Long serialVersionUID = 1L;

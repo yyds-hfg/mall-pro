@@ -41,20 +41,21 @@
 
 ​                                                        **ProcessEngine**
 
-|      |        引擎类        |            作用            |
-| ---- | :------------------: | :------------------------: |
-| 1    |  RespositoryService  |        操作流程定义        |
-| 2    |    HistoryService    |       查询历史表数据       |
-| 3    |     TaskService      |          操作任务          |
-| 4    |   IdentityService    |       操作用户或者组       |
-| 5    |    RuntimeService    |        操作流程实列        |
-| 6    |     FormService      |        操作流程表单        |
-| 7    | AuthorizationService |        授权相关服务        |
-| 8    |  ManagementService   | 执行cmd与以及job相关的服务 |
-| 9    | ExternalTaskService  |     外部任务相关的服务     |
-| 10   |     CaseService      |        CMMN相关操作        |
-| 11   |     FiterService     |       过滤相关的服务       |
-| 12   |   DecisionService    |        DMN相关操作         |
+|      |             引擎类             |            作用            |
+| ---- | :----------------------------: | :------------------------: |
+| 0    | **ProcessEngineConfiguration** |       流程引擎配置类       |
+| 1    |     **RespositoryService**     |        操作流程定义        |
+| 2    |       **HistoryService**       |       查询历史表数据       |
+| 3    |        **TaskService**         |          操作任务          |
+| 4    |        IdentityService         |       操作用户或者组       |
+| 5    |       **RuntimeService**       |        操作流程实列        |
+| 6    |          FormService           |        操作流程表单        |
+| 7    |      AuthorizationService      |        授权相关服务        |
+| 8    |       ManagementService        | 执行cmd与以及job相关的服务 |
+| 9    |      ExternalTaskService       |     外部任务相关的服务     |
+| 10   |          CaseService           |        CMMN相关操作        |
+| 11   |          FiterService          |       过滤相关的服务       |
+| 12   |        DecisionService         |        DMN相关操作         |
 
 #### 流程引擎使用场景
 
@@ -146,6 +147,10 @@
 
 
 
+
+
+
+
 #### Demo示列
 
 
@@ -165,7 +170,24 @@
 > - 每一条业务表记录，通过它的流程实例的编号( `process_instance_id` )指向对应的流程实例
 > - 每一个流程实例，通过它的业务键( `BUSINESS_KEY_` ) 指向对应的业务表记录。
 
+[Camunda表单](https://docs.camunda.org/manual/latest/user-guide/task-forms/)
+
 ![Diagram 1](../../../../images/typora-images/Diagram 1.jpg)
 
 
 
+> 根据业务创建前端相对应的业务实现
+>
+>  PROCESS_KEY    静态变量：是业务对应的流程定义Key的编号 ,同一个流程的版本升级是不可以不改变流程定义的。
+>
+> 
+
+![1654742587579](../../../../images/typora-images/1654742587579.png)
+
+
+
+
+
+> 流程走完之后，配置监听器自动去更改请假状态
+
+![1654745214908](../../../../images/typora-images/1654745214908.png)

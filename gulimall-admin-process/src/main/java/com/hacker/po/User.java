@@ -7,7 +7,6 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -18,23 +17,19 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Zero
- * @since 2022-06-01
+ * @since 2022-06-09
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("user")
-@Builder
 @ApiModel(value="User对象", description="")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
-
     @ApiModelProperty(value = "账号")
-    @TableField("username")
+    @TableId(value = "username", type = IdType.ASSIGN_UUID)
     private String username;
 
     @ApiModelProperty(value = "密码")
@@ -45,8 +40,6 @@ public class User implements Serializable {
     @TableField("role_id")
     private String roleId;
 
-
-    public static final String ID = "id";
 
     public static final String USERNAME = "username";
 

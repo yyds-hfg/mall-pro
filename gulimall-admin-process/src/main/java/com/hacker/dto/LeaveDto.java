@@ -15,12 +15,6 @@ import java.util.Map;
 @Data
 public class LeaveDto {
 
-    @ApiModelProperty(value = "流程定义ID")
-    private String processDefId;
-
-    @ApiModelProperty(value = "流程定义Key")
-    private String processDefKey;
-
     @ApiModelProperty(value = "流程发起者")
     private String stater;
 
