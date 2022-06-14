@@ -1,0 +1,23 @@
+{
+  "properties": [
+    {
+      "name": "knife4j.description",
+      "type": "java.lang.String",
+      "description": "商品服务."
+    },
+    {
+      "name": "knife4j.groupName",
+      "type": "java.lang.String",
+      "description": "商品服务."
+    },
+    {
+      "name": "knife4j.basePackage",
+      "type": "java.lang.String",
+      "description": "com.hacker.product.controller."
+    },
+    {
+      "name": "knife4j.version",
+      "type": "java.lang.String",
+      "description": "1.0."
+    }
+  ] }
