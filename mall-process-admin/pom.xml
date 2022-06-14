@@ -10,7 +10,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>gulimall-admin-process</artifactId>
+    <artifactId>mall-process-admin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <description>流程引擎后台管理系统</description>
