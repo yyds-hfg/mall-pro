@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>gulimall-pro-common</module>
+        <module>mall-pro-framework</module>
         <module>gulimall-pro-coupon</module>
         <module>gulimall-pro-member</module>
         <module>gulimall-pro-order</module>
@@ -21,7 +21,7 @@
         <module>gulimall-pro-ware</module>
         <module>gulimall-pro-gateway</module>
         <module>gulimall-pro-third-party</module>
-        <module>gulimall-admin-process</module>
+        <module>mall-process-admin</module>
     </modules>
 
 
