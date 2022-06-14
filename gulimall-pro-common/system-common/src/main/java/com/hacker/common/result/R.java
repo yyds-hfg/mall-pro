@@ -51,7 +51,7 @@ public class R<T> {
     public static R<?> error(Throwable e) {
         final R<?> result = error();
         result.message = e.getMessage();
-        log.error("异常信息:" + JSONUtil.toJsonStr(e));
+        log.error("异常信息:" + e.getMessage());
         return result;
     }
 
@@ -61,7 +61,7 @@ public class R<T> {
             runnable.run();
             return ok();
         } catch (Throwable e) {
-            log.error("异常信息:" + JSONUtil.toJsonStr(e));
+            log.error("异常信息:" + e.getMessage());
             return error(e);
         }
     }
@@ -75,7 +75,7 @@ public class R<T> {
         try {
             return ok(runnable.run());
         } catch (Throwable e) {
-            log.error("异常信息:" + JSONUtil.toJsonStr(e));
+            log.error("异常信息:" + e.getMessage());
             return (R<V>) error(e);
         }
     }

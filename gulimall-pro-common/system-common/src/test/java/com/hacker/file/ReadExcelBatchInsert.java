@@ -1,7 +1,7 @@
 package com.hacker.file;
 
 import com.hacker.common.annotation.Element;
-import com.hacker.entity.Person;
+import com.hacker.entity.Custr;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -18,10 +18,10 @@ import java.util.stream.Collectors;
 /**
  * @Author: Zero
  * @Date: 2022/6/7 15:21
- * @Description: 批量插入对象
+ * @Description: 读取Excel文件批量插入对象
  */
 @Slf4j
-public class FileUtilTest {
+public class ReadExcelBatchInsert {
 
     private static final String PATH = "D:\\test.dat";
 
@@ -29,13 +29,12 @@ public class FileUtilTest {
      * 处理数据
      */
     private <T> void handleData(ArrayList<String> lines) {
-        ArrayList<Person> objectList = new ArrayList<>();
+        ArrayList<Custr> objectList = new ArrayList<>();
         //得到每一个属性的定长
-        List<Integer> elementSize = getElementSize(Person.class);
+        List<Integer> elementSize = getElementSize(Custr.class);
         lines.forEach(line -> {
             List<String> list = getLines(line, elementSize);
-
-             Person person = (Person) getObject(Person.class, list);
+            Custr person = (Custr) getObject(Custr.class, list);
             objectList.add(person);
         });
         //TODO 插入数据库
@@ -52,7 +51,7 @@ public class FileUtilTest {
             String line = null;
             while ((line = reader.readLine())!=null) {
                 lines.add(line);
-                if (lines.size()>4) {
+                if (lines.size()>10) {
                     //处理
                     handleData(lines);
                     lines.clear();
@@ -98,6 +97,7 @@ public class FileUtilTest {
     public static List<Integer> getElementSize(Class<?> type) {
         ArrayList<Integer> list = new ArrayList<>();
         List<Field> fieldList = Arrays.stream(type.getDeclaredFields())
+                .filter(field -> field.getAnnotation(Element.class)!=null)
                 .sorted(Comparator.comparingInt(field -> Integer.parseInt(field.getAnnotation(Element.class).order())))
                 .collect(Collectors.toList());
         fieldList.forEach(field->list.add(Integer.valueOf(field.getAnnotation(Element.class).length())));
@@ -112,9 +112,12 @@ public class FileUtilTest {
     @SneakyThrows
     private Object getObject(Class<?> type,List<String> list) {
         List<Field> fieldList = Arrays.stream(type.getDeclaredFields())
+                .filter(field -> field.getAnnotation(Element.class)!=null)
                 .sorted(Comparator.comparingInt(field -> Integer.parseInt(field.getAnnotation(Element.class).order())))
                 .collect(Collectors.toList());
         Object o = type.getConstructor().newInstance();
+
+        //调用对象o的setXXX()对对象o赋值并进行返回
         for (int i = 0; i < fieldList.size(); i++) {
             Method method = o.getClass().getMethod("set"+getUpper(fieldList.get(i).getName()), String.class);
             method.invoke(o,list.get(i));

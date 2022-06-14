@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.hacker</groupId>
-    <artifactId>gulimall-pro</artifactId>
+    <artifactId>mall-pro</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>gulimall-pro</name>
+    <name>mall-pro</name>
     <description>聚合服务</description>
     <packaging>pom</packaging>
 
@@ -31,20 +31,20 @@
         <spring-cloud.version>2021.0.1</spring-cloud.version>
         <!--https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E-->
         <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
+        <aliyun.version>1.0.0</aliyun.version>
+
 
         <!-- Web 相关 -->
-        <knife4j.version>2.0.6</knife4j.version>
+        <knife4j-spring-boot.version>2.0.6</knife4j-spring-boot.version>
         <swagger-annotations.version>1.5.22</swagger-annotations.version>
         <servlet.versoin>2.5</servlet.versoin>
+        <swagger-annotations.version>1.5.22</swagger-annotations.version>
+
 
         <!--DB相关-->
         <mybatis-plus-boot.version>3.4.2</mybatis-plus-boot.version>
         <mysql.version>8.0.19</mysql.version>
         <pagehelper.version>5.3.0</pagehelper.version>
-
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-        <knife4j-spring-boot.version>2.0.6</knife4j-spring-boot.version>
 
 
         <!--工具类相关-->
@@ -54,13 +54,22 @@
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <servlet-api.version>2.5</servlet-api.version>
         <validation-api.version>2.0.1.Final</validation-api.version>
-        <swagger-annotations.version>1.5.22</swagger-annotations.version>
+
 
         <org.mapstruct.version>1.5.1.Final</org.mapstruct.version>
         <org.projectlombok.version>1.18.16</org.projectlombok.version>
 
+
+        <!--Camunda工作流-->
         <camunda.spring-boot.version>7.15.0</camunda.spring-boot.version>
-        <jaxb-impl.version>2.3.5</jaxb-impl.version>
+
+
+        <!--线上诊断工具-->
+        <arthas.version>3.6.3</arthas.version>
+
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+
     </properties>
 
     <dependencyManagement>
@@ -94,10 +103,14 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>aliyun-spring-boot-dependencies</artifactId>
-                <version>1.0.0</version>
+                <version>${aliyun.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+
+            <!-- Web 相关 -->
+
 
             <!--工具类-->
             <dependency>
@@ -106,6 +119,7 @@
                 <version>${fastjson2.version}</version>
             </dependency>
 
+            <!--hutool工具-->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
@@ -132,12 +146,15 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
             </dependency>
+
             <!--mybatis-plus-->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus-boot.version}</version>
             </dependency>
+
+            <!--数据库分页工具-->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper</artifactId>
@@ -152,12 +169,14 @@
                 <version>${spring.boot.version}</version>
             </dependency>
 
-
+            <!--Apache http调用所需-->
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpcore</artifactId>
                 <version>${httpcore.version}</version>
             </dependency>
+
+            <!--Apache-lanng3依赖包-->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
@@ -172,12 +191,14 @@
                 <version>${org.projectlombok.version}</version>
             </dependency>
 
+            <!--knife4j配置-->
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-spring-boot-starter</artifactId>
                 <version>${knife4j-spring-boot.version}</version>
             </dependency>
 
+            <!--swagger注解依赖-->
             <dependency>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-annotations</artifactId>
@@ -191,16 +212,18 @@
                 <version>${camunda.spring-boot.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.sun.xml.bind</groupId>
-                <artifactId>jaxb-impl</artifactId>
-                <version>${jaxb-impl.version}</version>
-            </dependency>
-
+            <!--DTO转换神器-->
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
                 <version>${org.mapstruct.version}</version>
+            </dependency>
+
+            <!--阿里巴巴Java线上诊断工具-->
+            <dependency>
+                <groupId>com.taobao.arthas</groupId>
+                <artifactId>arthas-spring-boot-starter</artifactId>
+                <version>${arthas.version}</version>
             </dependency>
 
         </dependencies>

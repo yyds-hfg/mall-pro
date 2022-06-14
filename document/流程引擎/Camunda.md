@@ -5,6 +5,7 @@
 #### 工作流简介
 
 > 工作流（Workflow），指“业务过程的部分或整体在计算机应用环境下的自动化”。是对工作流程及其各操作步骤之间业务规则的抽象、概括描述。在计算机中，工作流属于计算机支持的协同工作（CSCW）的一部分。后者是普遍地研究一个群体如何在计算机的帮助下实现协同工作的。
+>
 > 工作流主要解决的主要问题是：为了实现某个业务目标，利用计算机在多个参与者之间按某种预定规则自动传递文档、信息或者任务。
 
 
@@ -29,10 +30,6 @@
 
 
 
-> **Job Executor**: 作业执行器负责处理异步后台工作，如进程中的定时器或异步延续
-
-
-
 > **The Persistence Layer** :流程引擎的特点是有一个持久层，负责将流程实例状态持久化到关系数据库
 
 
@@ -52,7 +49,7 @@
 | 6    |          FormService           |        操作流程表单        |
 | 7    |      AuthorizationService      |        授权相关服务        |
 | 8    |       ManagementService        | 执行cmd与以及job相关的服务 |
-| 9    |      ExternalTaskService       |     外部任务相关的服务     |
+| 9    |    **ExternalTaskService**     |     外部任务相关的服务     |
 | 10   |          CaseService           |        CMMN相关操作        |
 | 11   |          FiterService          |       过滤相关的服务       |
 | 12   |        DecisionService         |        DMN相关操作         |
@@ -131,7 +128,7 @@
 
 - **Admin**
 
-  > Admin 是一个应用程序，它允许您通过引擎的身份服务和引擎的授权服务来配置用户和组。此外，您可以将 Camunda Admin 连接到您的 LDAP 系统。
+  > Admin 是一个应用程序，它允许您通过引擎的身份服务和引擎的授权服务来配置用户和组。
 
 
 
@@ -141,11 +138,15 @@
 | ----------------- | ----------- | --------------------------------- |
 | Definition ID     | 流程定义id  | 一类流程实例具有相同的流程定义id  |
 | Definition Key    | 流程定义key | 一类流程实例具有相同的流程定义key |
-| Deployment ID     | 流程部署id  | 一个流程部署一次具有不同的部署Id  |
 | ProcessInstanceId | 流程实例Id  | 一个流程实例具有唯一的流程实例Id  |
+| Deployment ID     | 流程部署id  | 一个流程部署一次具有不同的部署Id  |
 | Business Key      | 业务key     | 一个流程实例应该具有唯一的业务key |
 
 
+
+#### Camunda表结构介绍
+
+[Camunda表结构介绍](https://blog.csdn.net/wxz258/article/details/109048818)
 
 
 
@@ -186,7 +187,7 @@
 
 
 
-
+5x3x9
 
 > 流程走完之后，配置监听器自动去更改请假状态
 

@@ -126,7 +126,8 @@ public class ProcessTaskServiceImpl implements ProcessTaskService {
     public void completeTask(TaskComplete request) {
         Task task = getTask(request.getTaskId());
         Assert.isTrue(task.getAssignee().equals(request.getUserId()),"[%s] 用户没有拾取该任务",request.getUserId());
-        Comment comment = taskService.createComment(request.getTaskId(), request.getProcessInstanceId(), request.getComment());
+        Comment comment = taskService.createComment(request.getTaskId(),
+                request.getProcessInstanceId(), request.getComment());
         Assert.isTrue(comment!=null,"[%s] 创建任务评论失败",task.getId());
         taskService.complete(request.getTaskId(), request.getVars());
     }

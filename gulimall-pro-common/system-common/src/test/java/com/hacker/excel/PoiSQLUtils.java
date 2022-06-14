@@ -1,13 +1,12 @@
 package com.hacker.excel;
 
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.CharsetUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -27,17 +26,31 @@ public class PoiSQLUtils {
 
     private static final String XLS = ".xls";
     private static final String XLSX = ".xlsx";
-    static StringBuilder createSql = new StringBuilder("");
-    static StringBuilder commentSql = new StringBuilder("");
-    static StringBuilder retain = new StringBuilder("retain");
-    static Integer count = 1;
+    private static StringBuilder createSql = new StringBuilder("");
+    private static StringBuilder commentSql = new StringBuilder("");
+    private static StringBuilder retain = new StringBuilder("retain");
+    private static Integer count = 1;
 
 
-    static String tableName = "CBPB_CUSTER";
-    static String tableCHName = "客户资料表";
+    private static String tableName = "";
+    private static String tableCHName = "";
 
     public static void main(String[] args) {
-        PoiSQLUtils.readExcel("D:\\CUSTR.xlsx");
+        File file = new File("D:\\sqlfile.txt");
+        List<String> list = FileUtil.listFileNames("D:\\excel");
+        list.forEach(System.out::println);
+        list.forEach(path-> {
+            String[] split = path.split("\\.");
+            tableName = split[0].split("_")[0];
+            tableCHName=split[0].split("_")[1];
+            PoiSQLUtils.readExcel("D:\\excel\\"+path);
+            FileUtil.writeUtf8String(String.valueOf(createSql),file);
+            FileUtil.writeUtf8String(String.valueOf(commentSql),file);
+            createSql = new StringBuilder("");
+            commentSql = new StringBuilder("");
+            System.out.println("__________________");
+        });
+//
     }
 
     /**
@@ -93,10 +106,7 @@ public class PoiSQLUtils {
                     }
                     getString(list);
                     list.clear();
-                    System.out.println();
                 }
-
-                System.out.println();
             }
         } catch (FileNotFoundException e) {
             log.error("文件不存在，filePath={}", filePath);
@@ -115,8 +125,8 @@ public class PoiSQLUtils {
             } catch (IOException e) {
                 log.error("数据流关闭异常！", e);
             }
-            System.out.println(createSql);
-            System.out.println(commentSql);
+//            System.out.println(createSql);
+//            System.out.println(commentSql);
             String sql = getSQL(createSql, commentSql);
             System.out.println(sql);
         }
@@ -149,6 +159,5 @@ public class PoiSQLUtils {
         }
         return replace;
     }
-
 
 }

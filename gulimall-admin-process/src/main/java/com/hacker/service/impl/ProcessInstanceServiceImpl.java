@@ -78,7 +78,7 @@ public class ProcessInstanceServiceImpl implements ProcessInstanceService {
 
     @Override
     @SystemLog
-    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
+    @Transactional(rollbackFor = Exception.class)
     public ProcessInstanceDto startProcessInstanceByKey(ProcessRequest request) {
         ProcessInstance processInstance = null;
         Map<String, Object> variables = request.getVariables();

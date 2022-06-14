@@ -9,7 +9,7 @@
     <description>renren-fast-pro</description>
 
     <parent>
-        <artifactId>gulimall-pro</artifactId>
+        <artifactId>mall-pro</artifactId>
         <groupId>com.hacker</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
