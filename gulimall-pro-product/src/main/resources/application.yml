@@ -36,11 +36,11 @@ server:
 #knife4j:
 #  # 开启生产环境屏蔽
 #  production: true
-knife4j:
-  description: 商品服务
-  groupName: 商品服务
-  basePackage: com.hacker.product.controller
-  version: 1.0
+#knife4j:
+#  description: 商品服务
+#  groupName: 商品服务
+#  basePackage: com.hacker.controller
+#  version: 1.0
 swagger:
   module:
     name: ProductModel

@@ -1,14 +1,13 @@
 package com.hacker.product;
 
-import com.hacker.product.entity.BrandEntity;
-import com.hacker.product.service.BrandService;
-import com.hacker.product.service.CategoryService;
+import com.hacker.entity.BrandEntity;
+import com.hacker.service.BrandService;
+import com.hacker.service.CategoryService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 import java.util.List;

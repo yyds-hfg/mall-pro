@@ -11,7 +11,7 @@
     <artifactId>gulimall-pro-product</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>gulimall-pro-product</name>
-    <description>谷粒商城-商品服务</description>
+    <description>商城-商品服务</description>
 
     <dependencies>
 
@@ -54,12 +54,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>commons-io</artifactId>
-                    <groupId>commons-io</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
@@ -67,29 +61,21 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
-        <!--阿波罗配置中心-->
-        <!--        <dependency>-->
-        <!--            <groupId>com.ctrip.framework.apollo</groupId>-->
-        <!--            <artifactId>apollo-client</artifactId>-->
-        <!--            <version>1.9.1</version>-->
-        <!--            <exclusions>-->
-        <!--                <exclusion>-->
-        <!--                    <artifactId>guava</artifactId>-->
-        <!--                    <groupId>com.google.guava</groupId>-->
-        <!--                </exclusion>-->
-        <!--            </exclusions>-->
-        <!--        </dependency>-->
-
         <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-spring-boot-starter</artifactId>
-        </dependency>
-
-<!--        <dependency>
             <groupId>com.hacker</groupId>
             <artifactId>mall-pro-knife4j-framework</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>-->
+        </dependency>
+
+        <!--空手道自动化测试-->
+        <dependency>
+            <groupId>com.intuit.karate</groupId>
+            <artifactId>karate-apache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.intuit.karate</groupId>
+            <artifactId>karate-junit4</artifactId>
+        </dependency>
 
     </dependencies>
 

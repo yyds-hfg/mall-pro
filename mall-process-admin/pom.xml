@@ -102,6 +102,12 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+            <groupId>com.hacker</groupId>
+            <artifactId>mall-pro-knife4j-framework</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
 </project>

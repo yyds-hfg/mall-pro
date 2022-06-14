@@ -19,7 +19,7 @@
         <module>gulimall-pro-order</module>
         <module>gulimall-pro-product</module>
         <module>gulimall-pro-ware</module>
-        <module>gulimall-pro-gateway</module>
+        <module>mall-pro-gateway</module>
         <module>gulimall-pro-third-party</module>
         <module>mall-process-admin</module>
     </modules>
@@ -69,6 +69,8 @@
 
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+
+        <karate.version>0.8.0</karate.version>
 
     </properties>
 
@@ -226,6 +228,17 @@
                 <version>${arthas.version}</version>
             </dependency>
 
+            <!--自动化测试框架 - 空手道 -->
+            <dependency>
+                <groupId>com.intuit.karate</groupId>
+                <artifactId>karate-apache</artifactId>
+                <version>${karate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.intuit.karate</groupId>
+                <artifactId>karate-junit4</artifactId>
+                <version>${karate.version}</version>
+            </dependency>
         </dependencies>
 
     </dependencyManagement>
@@ -234,6 +247,8 @@
 
     <build>
         <resources>
+            <!--设置测试资源文件目录,建议测试用例文件和java文件放在同一个目录下,
+            遇到庞大的工程的时候方便管理,不必在文件夹src/test/java和src/test/resources文件夹之间切换-->
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
@@ -242,8 +257,6 @@
                 <filtering>false</filtering>
             </resource>
         </resources>
-        <!--为什么加这个-->
-        <!--        <defaultGoal>compile</defaultGoal>-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -268,7 +281,6 @@
                             <artifactId>lombok</artifactId>
                             <version>${org.projectlombok.version}</version>
                         </path>
-
                         <!-- additional annotation processor required as of Lombok 1.18.16 -->
                         <path>
                             <groupId>org.projectlombok</groupId>

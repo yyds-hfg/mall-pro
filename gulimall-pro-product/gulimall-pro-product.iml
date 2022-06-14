@@ -71,8 +71,6 @@
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.6.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.6.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-logging:2.6.3" level="project" />
-    <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.2.10" level="project" />
-    <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.2.10" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-to-slf4j:2.17.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.17.1" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:jul-to-slf4j:1.7.33" level="project" />
@@ -96,15 +94,15 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-starter-test:2.6.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-test:2.6.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-test-autoconfigure:2.6.3" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.jayway.jsonpath:json-path:2.6.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: net.minidev:json-smart:2.4.7" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: net.minidev:accessors-smart:2.4.7" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.ow2.asm:asm:9.1" level="project" />
+    <orderEntry type="library" name="Maven: com.jayway.jsonpath:json-path:2.6.0" level="project" />
+    <orderEntry type="library" name="Maven: net.minidev:json-smart:2.4.7" level="project" />
+    <orderEntry type="library" name="Maven: net.minidev:accessors-smart:2.4.7" level="project" />
+    <orderEntry type="library" name="Maven: org.ow2.asm:asm:9.1" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.33" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: jakarta.xml.bind:jakarta.xml.bind-api:2.3.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: jakarta.activation:jakarta.activation-api:1.2.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.assertj:assertj-core:3.21.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest:2.2" level="project" />
+    <orderEntry type="library" name="Maven: org.hamcrest:hamcrest:2.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter:5.8.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-api:5.8.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.opentest4j:opentest4j:1.2.0" level="project" />
@@ -156,7 +154,6 @@
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.7" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpasyncclient:4.1.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore-nio:4.4.15" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.13" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba.nacos:nacos-api:1.4.2" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.15" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.13.1" level="project" />
@@ -166,6 +163,7 @@
     <orderEntry type="library" name="Maven: io.prometheus:simpleclient_tracer_otel_agent:0.12.0" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba.spring:spring-context-support:1.0.11" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-context:3.1.1" level="project" />
+    <orderEntry type="module" module-name="mall-pro-knife4j-framework" />
     <orderEntry type="library" name="Maven: com.github.xiaoymin:knife4j-spring-boot-starter:2.0.6" level="project" />
     <orderEntry type="library" name="Maven: com.github.xiaoymin:knife4j-spring-boot-autoconfigure:2.0.6" level="project" />
     <orderEntry type="library" name="Maven: com.github.xiaoymin:knife4j-spring:2.0.6" level="project" />
@@ -186,5 +184,21 @@
     <orderEntry type="library" name="Maven: io.springfox:springfox-bean-validators:2.10.5" level="project" />
     <orderEntry type="library" name="Maven: io.springfox:springfox-spring-webmvc:2.10.5" level="project" />
     <orderEntry type="library" name="Maven: com.github.xiaoymin:knife4j-spring-ui:2.0.6" level="project" />
+    <orderEntry type="library" name="Maven: com.intuit.karate:karate-apache:0.8.0" level="project" />
+    <orderEntry type="library" name="Maven: com.intuit.karate:karate-core:0.8.0" level="project" />
+    <orderEntry type="library" name="Maven: info.cukes:cucumber-java:1.2.5" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.13" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpmime:4.5.13" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:jcl-over-slf4j:1.7.33" level="project" />
+    <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.2.10" level="project" />
+    <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.2.10" level="project" />
+    <orderEntry type="library" name="Maven: com.intuit.karate:karate-junit4:0.8.0" level="project" />
+    <orderEntry type="library" name="Maven: info.cukes:cucumber-junit:1.2.5" level="project" />
+    <orderEntry type="library" name="Maven: info.cukes:cucumber-core:1.2.5" level="project" />
+    <orderEntry type="library" name="Maven: info.cukes:cucumber-html:0.2.3" level="project" />
+    <orderEntry type="library" name="Maven: info.cukes:cucumber-jvm-deps:1.0.5" level="project" />
+    <orderEntry type="library" name="Maven: info.cukes:gherkin:2.12.2" level="project" />
+    <orderEntry type="library" name="Maven: junit:junit:4.13.2" level="project" />
+    <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:2.2" level="project" />
   </component>
 </module>
