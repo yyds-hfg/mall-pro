@@ -8,15 +8,20 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>gulimall-pro-order</artifactId>
+    <artifactId>mall-pro-order</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gulimall-pro-order</name>
-    <description>谷粒商城-订单服务</description>
+    <name>mall-pro-order</name>
+    <description>商城-订单服务</description>
 
     <dependencies>
         <dependency>
             <groupId>com.hacker</groupId>
             <artifactId>system-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hacker</groupId>
+            <artifactId>mall-pro-datasource-framework</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -32,10 +37,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
     </dependencies>
     <build>
