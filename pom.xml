@@ -14,11 +14,11 @@
 
     <modules>
         <module>mall-pro-framework</module>
-        <module>gulimall-pro-coupon</module>
-        <module>gulimall-pro-member</module>
+        <module>mall-pro-coupon</module>
+        <module>mall-pro-member</module>
         <module>gulimall-pro-order</module>
         <module>gulimall-pro-product</module>
-        <module>gulimall-pro-ware</module>
+        <module>mall-pro-ware</module>
         <module>mall-pro-gateway</module>
         <module>gulimall-pro-third-party</module>
         <module>mall-process-admin</module>
