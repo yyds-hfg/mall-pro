@@ -3,21 +3,25 @@
     {
       "name": "knife4j.description",
       "type": "java.lang.String",
-      "description": "商品服务."
+      "description": "Description for knife4j.description.",
+      "defaultValue": "Description"
     },
     {
       "name": "knife4j.groupName",
       "type": "java.lang.String",
-      "description": "商品服务."
+      "description": "Description for knife4j.groupName.",
+      "defaultValue": "Description"
     },
     {
       "name": "knife4j.basePackage",
       "type": "java.lang.String",
-      "description": "com.hacker.product.controller."
+      "description": "Description for knife4j.basePackage.",
+      "defaultValue": "Description"
     },
     {
       "name": "knife4j.version",
       "type": "java.lang.String",
-      "description": "1.0."
+      "description": "Description for knife4j.version.",
+      "defaultValue": "Description"
     }
   ] }

@@ -21,7 +21,7 @@
         <module>mall-pro-ware</module>
         <module>mall-pro-gateway</module>
         <module>mall-pro-third-party</module>
-        <module>mall-process-admin</module>
+        <module>mall-pro-process</module>
         <module>mall-pro-test</module>
     </modules>
 
@@ -57,6 +57,7 @@
         <validation-api.version>2.0.1.Final</validation-api.version>
 
 
+        <!--DTO转换-->
         <org.mapstruct.version>1.5.1.Final</org.mapstruct.version>
         <org.projectlombok.version>1.18.16</org.projectlombok.version>
 

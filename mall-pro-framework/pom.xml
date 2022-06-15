@@ -17,6 +17,7 @@
     <modules>
         <module>mall-pro-datasource-framework</module>
         <module>mall-pro-knife4j-framework</module>
+        <module>mall-pro-utils-framework</module>
         <module>system-common</module>
     </modules>
 

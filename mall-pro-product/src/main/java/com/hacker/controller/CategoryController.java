@@ -3,6 +3,7 @@ package com.hacker.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import com.hacker.common.annotation.SystemLog;
 import com.hacker.common.result.R;
 import com.hacker.entity.CategoryEntity;
 import com.hacker.service.CategoryService;
@@ -37,6 +38,7 @@ public class CategoryController {
      * 信息
      */
     @GetMapping("/info/{catId}")
+    @SystemLog
     public R<?> info(@PathVariable("catId") Long catId) {
         return R.run(() -> categoryService.getById(catId));
     }

@@ -3,7 +3,6 @@ package com.hacker.common.aspect;
 import com.alibaba.fastjson2.JSON;
 import com.hacker.common.exception.AccessReason;
 import com.google.common.util.concurrent.RateLimiter;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -24,9 +23,9 @@ import java.time.Instant;
 @Component
 public class RequestAspect {
 
-//    private static final ThreadLocal<Long> startTime = new ThreadLocal<>();
+    private static final ThreadLocal<Long> startTime = new ThreadLocal<>();
 
-    private static final RateLimiter RATE_LIMITER = RateLimiter.create(3);
+    private static final RateLimiter RATE_LIMITER = RateLimiter.create(2);
 
     /**
      * 定义切点

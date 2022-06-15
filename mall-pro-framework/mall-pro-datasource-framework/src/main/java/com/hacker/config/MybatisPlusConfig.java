@@ -2,8 +2,10 @@ package com.hacker.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.reflection.DefaultReflectorFactory;
 import org.apache.ibatis.reflection.ReflectorFactory;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
  * @Description: mybatis-plus配置
  */
 @Configuration
+@MapperScan(value = "${mybatis-plus.base-package}",annotationClass = Mapper.class)
 public class MybatisPlusConfig {
 
     /**
