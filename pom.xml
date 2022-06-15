@@ -23,6 +23,7 @@
         <module>mall-pro-third-party</module>
         <module>mall-pro-process</module>
         <module>mall-pro-test</module>
+        <module>mall-pro-karate</module>
     </modules>
 
 

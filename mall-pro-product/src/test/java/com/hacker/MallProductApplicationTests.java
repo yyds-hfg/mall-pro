@@ -1,4 +1,4 @@
-package com.hacker.product;
+package com.hacker;
 
 import com.hacker.entity.BrandEntity;
 import com.hacker.service.BrandService;
