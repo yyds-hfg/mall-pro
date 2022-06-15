@@ -12,7 +12,7 @@
     <artifactId>mall-pro-framework</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <description>每一个微服务公共的依赖，bean，工具类等</description>
+    <description>为每一个微服务提供基础服务支持</description>
 
     <modules>
         <module>mall-pro-datasource-framework</module>

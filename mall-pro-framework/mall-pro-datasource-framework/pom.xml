@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>mall-pro-datasource-framework</artifactId>
+    <artifactId>mall-pro-datasource-stater</artifactId>
 
     <dependencies>
 

@@ -63,7 +63,7 @@
 
         <dependency>
             <groupId>com.hacker</groupId>
-            <artifactId>mall-pro-datasource-framework</artifactId>
+            <artifactId>mall-pro-datasource-stater</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

@@ -22,6 +22,7 @@
         <module>mall-pro-gateway</module>
         <module>mall-pro-third-party</module>
         <module>mall-process-admin</module>
+        <module>mall-pro-test</module>
     </modules>
 
 
@@ -72,8 +73,10 @@
         <!--线上诊断工具-->
         <arthas.version>3.6.3</arthas.version>
 
+
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+
 
         <!--空手道自动化测试框架-->
         <karate.version>0.8.0</karate.version>

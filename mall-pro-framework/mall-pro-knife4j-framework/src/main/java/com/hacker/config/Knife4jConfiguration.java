@@ -31,11 +31,11 @@ public class Knife4jConfiguration {
     @Value("${knife4j.version:1.0}")
     private String version;
 
-    @Bean(value = "defaultApi2")
-    public Docket defaultApi2() {
+    @Bean(value = "docketInfo")
+    public Docket docketInfo() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(new ApiInfoBuilder()
-                        //.title("swagger-bootstrap-ui-demo RESTful APIs")
+                        .title("swagger-bootstrap-ui-demo RESTful APIs")
                         .description(description)
                         .termsOfServiceUrl("https://www.google.com/")
                         .version(version)

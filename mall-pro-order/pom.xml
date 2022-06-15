@@ -21,7 +21,7 @@
         </dependency>
         <dependency>
             <groupId>com.hacker</groupId>
-            <artifactId>mall-pro-datasource-framework</artifactId>
+            <artifactId>mall-pro-datasource-stater</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -38,6 +38,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
     <build>
         <plugins>

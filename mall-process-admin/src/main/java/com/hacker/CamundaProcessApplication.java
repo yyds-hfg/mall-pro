@@ -11,7 +11,7 @@ import org.springframework.context.event.EventListener;
 /**
  * @Author: Zero
  * @Date: 2022/5/23 18:54
- * @Description:
+ * @Description: Camunda工作流
  */
 @SpringBootApplication
 @EnableProcessApplication
@@ -25,7 +25,7 @@ public class CamundaProcessApplication {
     /**
      * 使用部署回调
      *
-     * @param event
+     * @param event event
      */
     @EventListener
     public void onPostDeploy(PostDeployEvent event) {

@@ -1,7 +1,5 @@
 package com.hacker.dto;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.hacker.po.Leave;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 

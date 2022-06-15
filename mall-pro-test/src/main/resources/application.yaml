@@ -1,0 +1,12 @@
+server:
+  port: 8030
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+knife4j:
+  description: 商品服务
+  groupName: 商品服务
+  basePackage: com.hacker.test.controller
+  version: 1.0
