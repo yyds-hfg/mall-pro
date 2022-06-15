@@ -9,10 +9,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>gulimall-pro-ware</artifactId>
+    <artifactId>mall-pro-ware</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>gulimall-pro-ware</name>
-    <description>谷粒商城-仓储服务</description>
+    <description>商城-仓储服务</description>
 
     <dependencies>
 
@@ -39,8 +39,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <groupId>com.hacker</groupId>
+            <artifactId>mall-pro-datasource-framework</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
     </dependencies>
