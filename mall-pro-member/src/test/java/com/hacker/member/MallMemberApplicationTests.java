@@ -1,15 +1,13 @@
-package com.hacker.ware;
+package com.hacker.member;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class GulimallWareApplicationTests {
-
+public class MallMemberApplicationTests {
 
     @Test
     public void contextLoads() {
-
     }
 
 }

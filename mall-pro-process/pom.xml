@@ -10,10 +10,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>mall-process-admin</artifactId>
+    <artifactId>mall-pro-process</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <description>流程引擎后台管理系统</description>
+    <description>流程引擎后台管理服务</description>
 
     <dependencies>
 

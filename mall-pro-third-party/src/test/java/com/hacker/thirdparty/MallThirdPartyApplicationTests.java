@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 @SpringBootTest
-class GulimallThirdPartyApplicationTests {
+class MallThirdPartyApplicationTests {
 
     @Test
     void contextLoads() {

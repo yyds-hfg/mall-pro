@@ -16,10 +16,10 @@ import org.springframework.context.event.EventListener;
 @SpringBootApplication
 @EnableProcessApplication
 @EnableConfigurationProperties
-public class CamundaProcessApplication {
+public class MallCamundaProcessApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CamundaProcessApplication.class, args);
+        SpringApplication.run(MallCamundaProcessApplication.class, args);
     }
 
     /**

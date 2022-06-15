@@ -20,7 +20,7 @@ import java.util.List;
  */
 @Slf4j
 @SpringBootTest
-public class GulimallProductApplicationTests {
+public class MallProductApplicationTests {
 
     @Autowired
     BrandService brandService;

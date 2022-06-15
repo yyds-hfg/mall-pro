@@ -13,7 +13,7 @@ import org.springframework.cache.CacheManager;
 import java.lang.reflect.Field;
 
 @SpringBootTest
-public class GulimallCouponApplicationTests {
+public class MallCouponApplicationTests {
 
     /**
      * 测试本地缓存Caffeine是否能成功实现

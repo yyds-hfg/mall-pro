@@ -54,8 +54,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @SpringBootApplication
 @EnableCaching //开启本地缓存功能
 @EnableAspectJAutoProxy(proxyTargetClass = true)
-public class GulimallCouponApplication {
+public class MallCouponApplication {
     public static void main(String[] args) {
-        SpringApplication.run(GulimallCouponApplication.class, args);
+        SpringApplication.run(MallCouponApplication.class, args);
     }
 }

@@ -56,11 +56,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @MapperScan("com.hacker.dao")
 @EnableDiscoveryClient
 @SpringBootApplication
-public class GulimallProductApplication {
+public class MallProductApplication {
 
 
     public static void main(String[] args) {
-        SpringApplication.run(GulimallProductApplication.class, args);
+        SpringApplication.run(MallProductApplication.class, args);
     }
 
 
