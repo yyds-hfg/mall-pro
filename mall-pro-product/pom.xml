@@ -8,7 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>gulimall-pro-product</artifactId>
+    <artifactId>mall-pro-product</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>gulimall-pro-product</name>
     <description>商城-商品服务</description>
