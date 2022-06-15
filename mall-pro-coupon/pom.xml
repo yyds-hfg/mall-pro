@@ -11,7 +11,7 @@
     <artifactId>mall-pro-coupon</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>gulimall-pro-coupon</name>
+    <name>mall-pro-coupon</name>
     <description>商城-优惠卷服务</description>
 
     <dependencies>
@@ -69,7 +69,4 @@
 
     </dependencies>
 
-    <build>
-        <defaultGoal>compile</defaultGoal>
-    </build>
 </project>

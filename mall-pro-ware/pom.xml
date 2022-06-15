@@ -11,7 +11,7 @@
 
     <artifactId>mall-pro-ware</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gulimall-pro-ware</name>
+    <name>mall-pro-ware</name>
     <description>商城-仓储服务</description>
 
     <dependencies>

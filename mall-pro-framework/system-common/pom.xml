@@ -47,7 +47,7 @@
             <artifactId>validation-api</artifactId>
         </dependency>
 
-        <!--hutool-->
+        <!--hu tool-->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>

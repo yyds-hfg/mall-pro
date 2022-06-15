@@ -11,7 +11,8 @@
 
     <artifactId>mall-pro-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gulimall-pro-gateway</name>
+
+    <name>mall-pro-gateway</name>
     <description>API网关</description>
 
     <dependencies>
@@ -38,7 +39,7 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
-        <!--Hoxton之前的版本,默认负载均衡器为Ribbon,在这之后变成loadbalancer-->
+        <!--Horton之前的版本,默认负载均衡器为Ribbon,在这之后变成loadbalancer-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>

@@ -16,8 +16,8 @@
         <module>mall-pro-framework</module>
         <module>mall-pro-coupon</module>
         <module>mall-pro-member</module>
-        <module>gulimall-pro-order</module>
-        <module>gulimall-pro-product</module>
+        <module>mall-pro-order</module>
+        <module>mall-pro-product</module>
         <module>mall-pro-ware</module>
         <module>mall-pro-gateway</module>
         <module>mall-pro-third-party</module>
@@ -62,6 +62,11 @@
 
         <!--Camunda工作流-->
         <camunda.spring-boot.version>7.15.0</camunda.spring-boot.version>
+        <camunda.webapp.version>7.15.0</camunda.webapp.version>
+        <camunda.rest.version>7.15.0</camunda.rest.version>
+        <camunda.spin.version>7.15.0</camunda.spin.version>
+        <camunda.connect.version>7.15.0</camunda.connect.version>
+        <camunda.spin-dataformat.version>1.11.0</camunda.spin-dataformat.version>
 
 
         <!--线上诊断工具-->
@@ -70,6 +75,7 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
 
+        <!--空手道自动化测试框架-->
         <karate.version>0.8.0</karate.version>
 
     </properties>
@@ -213,6 +219,38 @@
                 <artifactId>camunda-bpm-spring-boot-starter</artifactId>
                 <version>${camunda.spring-boot.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.camunda.bpm.springboot</groupId>
+                <artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>
+                <version>${camunda.webapp.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.camunda.bpm.springboot</groupId>
+                <artifactId>camunda-bpm-spring-boot-starter-rest</artifactId>
+                <version>${camunda.rest.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.camunda.bpm</groupId>
+                <artifactId>camunda-engine-plugin-spin</artifactId>
+                <version>${camunda.spin.version}</version>
+            </dependency>
+
+            <!--ServiceConnector所需 ,通过Http请求调用服务-->
+            <dependency>
+                <groupId>org.camunda.bpm</groupId>
+                <artifactId>camunda-engine-plugin-connect</artifactId>
+                <version>${camunda.connect.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.camunda.spin</groupId>
+                <artifactId>camunda-spin-dataformat-all</artifactId>
+                <version>${camunda.spin-dataformat.version}</version>
+            </dependency>
+
 
             <!--DTO转换神器-->
             <dependency>
