@@ -45,14 +45,12 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
 
     @Override
-    public void removeMenuByIds(List<Long> asList) {
+    public void removeMenuByIds(List<Long> ids) {
         //TODO  1、检查当前删除的菜单，是否被别的地方引用
         //逻辑删除
-        baseMapper.deleteBatchIds(asList);
+        this.baseMapper.deleteBatchIds(ids);
     }
 
-
-    //[2,25,225]
     @Override
     public Long[] findCatelogPath(Long catelogId) {
         List<Long> paths = new ArrayList<>();
@@ -61,11 +59,10 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         return parentPath.toArray(new Long[0]);
     }
 
-
     /**
      * 级联更新所有关联的数据
      *
-     * @param category
+     * @param category category
      */
     @Transactional
     @Override
@@ -75,7 +72,6 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     }
 
 
-    //225,25,2
     private List<Long> findParentPath(Long catelogId, List<Long> paths) {
         //1、收集当前节点id
         paths.add(catelogId);

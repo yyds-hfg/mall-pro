@@ -1,4 +1,4 @@
-package com.hacker.controller;
+package com.hacker.controller.category;
 
 import java.util.Arrays;
 import java.util.List;

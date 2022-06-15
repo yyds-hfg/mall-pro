@@ -1,77 +1,71 @@
 package com.hacker.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 
 /**
+ * <p>
  * 商品三级分类
+ * </p>
  *
- * @author leifengyang
- * @email leifengyang@gmail.com
- * @date 2019-10-01 21:08:48
+ * @author Zero
+ * @since 2022-06-15
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
 @TableName("pms_category")
+@ApiModel(value="Category对象", description="商品三级分类")
 public class CategoryEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 分类id
-     */
-    @TableId
+    @ApiModelProperty(value = "分类id")
+    @TableId(value = "cat_id", type = IdType.AUTO)
     private Long catId;
 
-    /**
-     * 分类名称
-     */
+    @ApiModelProperty(value = "分类名称")
+    @TableField("name")
     private String name;
 
-    /**
-     * 父分类id
-     */
+    @ApiModelProperty(value = "父分类id")
+    @TableField("parent_cid")
     private Long parentCid;
 
-    /**
-     * 层级
-     */
+    @ApiModelProperty(value = "层级")
+    @TableField("cat_level")
     private Integer catLevel;
 
-    /**
-     * 是否显示[0-不显示，1显示]
-     */
-    @TableLogic(value = "1", delval = "0")
+    @ApiModelProperty(value = "是否显示[0-不显示，1显示]")
+    @TableField("show_status")
+    @TableLogic(value = "1",delval = "0")
     private Integer showStatus;
 
-    /**
-     * 排序
-     */
+    @ApiModelProperty(value = "排序")
+    @TableField("sort")
     private Integer sort;
 
-    /**
-     * 图标地址
-     */
+    @ApiModelProperty(value = "图标地址")
+    @TableField("icon")
     private String icon;
 
-    /**
-     * 计量单位
-     */
+    @ApiModelProperty(value = "计量单位")
+    @TableField("product_unit")
     private String productUnit;
 
-    /**
-     * 商品数量
-     */
+    @ApiModelProperty(value = "商品数量")
+    @TableField("product_count")
     private Integer productCount;
-
 
     /**
      * 表示表中不存在这个字段
@@ -80,5 +74,24 @@ public class CategoryEntity implements Serializable {
     @TableField(exist = false)
     @ApiModelProperty(notes = "表示表中不存在这个字段")
     private List<CategoryEntity> children;
+
+
+    public static final String CAT_ID = "cat_id";
+
+    public static final String NAME = "name";
+
+    public static final String PARENT_CID = "parent_cid";
+
+    public static final String CAT_LEVEL = "cat_level";
+
+    public static final String SHOW_STATUS = "show_status";
+
+    public static final String SORT = "sort";
+
+    public static final String ICON = "icon";
+
+    public static final String PRODUCT_UNIT = "product_unit";
+
+    public static final String PRODUCT_COUNT = "product_count";
 
 }

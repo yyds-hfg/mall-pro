@@ -20,7 +20,10 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
-
+#为了解决 Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method ‘POST’ not supported]
+    hiddenmethod:
+      filter:
+        enabled: true
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
   global-config:
@@ -28,6 +31,8 @@ mybatis-plus:
       id-type: auto
       logic-delete-value: 1
       logic-not-delete-value: 0
+
+
   #打印日志
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

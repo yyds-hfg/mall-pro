@@ -4,7 +4,7 @@ spring:
       routes:
 
         - id: product_route
-          uri: lb://gulimall-product-pro
+          uri: lb://mall-pro-product
           predicates:
             - Path=/api/product/**
           filters:
@@ -23,7 +23,7 @@ spring:
 
 
         - id: member_route
-          uri: lb://gulimall-member
+          uri: lb://mall-pro-member
           predicates:
             - Path=/api/member/**
           filters:
@@ -31,7 +31,7 @@ spring:
 
 
         - id: ware_route
-          uri: lb://gulimall-ware
+          uri: lb://mall-pro-ware
           predicates:
             - Path=/api/ware/**
           filters:
@@ -50,7 +50,7 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8848
   application:
-    name: gulimall-gateway-pro
+    name: mall-pro-gateway
 
 server:
   port: 88

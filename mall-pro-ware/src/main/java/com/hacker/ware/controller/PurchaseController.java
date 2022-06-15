@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.hacker.common.result.R;
 import com.hacker.ware.vo.MergeVo;
 import com.hacker.ware.vo.PurchaseDoneVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import com.hacker.ware.entity.PurchaseEntity;
 import com.hacker.ware.service.PurchaseService;
 import com.hacker.common.utils.PageUtils;
-import com.hacker.common.utils.R;
 
 
 /**
@@ -30,7 +30,6 @@ public class PurchaseController {
     @Autowired
     private PurchaseService purchaseService;
 
-    ///ware/purchase/done
     @PostMapping("/done")
     public R finish(@RequestBody PurchaseDoneVo doneVo) {
 
@@ -66,7 +65,7 @@ public class PurchaseController {
     public R unreceivelist(@RequestParam Map<String, Object> params) {
         PageUtils page = purchaseService.queryPageUnreceivePurchase(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
@@ -76,8 +75,7 @@ public class PurchaseController {
     //@RequiresPermissions("ware:purchase:list")
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = purchaseService.queryPage(params);
-
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
 
@@ -89,7 +87,7 @@ public class PurchaseController {
     public R info(@PathVariable("id") Long id) {
         PurchaseEntity purchase = purchaseService.getById(id);
 
-        return R.ok().put("purchase", purchase);
+        return R.ok(purchase);
     }
 
     /**
