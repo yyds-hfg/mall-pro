@@ -20,7 +20,7 @@
         <module>gulimall-pro-product</module>
         <module>mall-pro-ware</module>
         <module>mall-pro-gateway</module>
-        <module>gulimall-pro-third-party</module>
+        <module>mall-pro-third-party</module>
         <module>mall-process-admin</module>
     </modules>
 

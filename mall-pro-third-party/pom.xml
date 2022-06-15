@@ -8,15 +8,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>gulimall-pro-third-party</artifactId>
+    <artifactId>mall-pro-third-party</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>gulimall-pro-third-party</name>
     <description>第三方服务</description>
-
-    <properties>
-        <java.version>1.8</java.version>
-        <spring-cloud.version>Hoxton.RC1</spring-cloud.version>
-    </properties>
 
     <dependencies>
 
@@ -53,8 +48,9 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
     </dependencies>
+
+
     <build>
         <plugins>
             <plugin>
@@ -63,12 +59,5 @@
             </plugin>
         </plugins>
     </build>
-    <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-        </repository>
-    </repositories>
 
 </project>
