@@ -1,52 +1,77 @@
 package com.hacker.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
 
 /**
+ * <p>
  * spu属性值
+ * </p>
  *
- * @author leifengyang
- * @email leifengyang@gmail.com
- * @date 2019-10-01 21:08:49
+ * @author Zero
+ * @since 2022-06-15
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
 @TableName("pms_product_attr_value")
+@ApiModel(value="ProductAttrValue对象", description="spu属性值")
 public class ProductAttrValueEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
-    /**
-     * id
-     */
-    @TableId
+    @ApiModelProperty(value = "id")
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
-    /**
-     * 商品id
-     */
+
+    @ApiModelProperty(value = "商品id")
+    @TableField("spu_id")
     private Long spuId;
-    /**
-     * 属性id
-     */
+
+    @ApiModelProperty(value = "属性id")
+    @TableField("attr_id")
     private Long attrId;
-    /**
-     * 属性名
-     */
+
+    @ApiModelProperty(value = "属性名")
+    @TableField("attr_name")
     private String attrName;
-    /**
-     * 属性值
-     */
+
+    @ApiModelProperty(value = "属性值")
+    @TableField("attr_value")
     private String attrValue;
-    /**
-     * 顺序
-     */
+
+    @ApiModelProperty(value = "顺序")
+    @TableField("attr_sort")
     private Integer attrSort;
-    /**
-     * 快速展示【是否展示在介绍上；0-否 1-是】
-     */
+
+    @ApiModelProperty(value = "快速展示【是否展示在介绍上；0-否 1-是】")
+    @TableField("quick_show")
     private Integer quickShow;
+
+
+    public static final String ID = "id";
+
+    public static final String SPU_ID = "spu_id";
+
+    public static final String ATTR_ID = "attr_id";
+
+    public static final String ATTR_NAME = "attr_name";
+
+    public static final String ATTR_VALUE = "attr_value";
+
+    public static final String ATTR_SORT = "attr_sort";
+
+    public static final String QUICK_SHOW = "quick_show";
 
 }

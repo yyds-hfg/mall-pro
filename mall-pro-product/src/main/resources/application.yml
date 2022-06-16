@@ -10,6 +10,11 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+        #https://blog.csdn.net/a745233700/article/details/122916208
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
 

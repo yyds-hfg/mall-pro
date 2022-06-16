@@ -1,8 +1,9 @@
-package com.hacker.controller;
+package com.hacker.controller.category;
 
 import java.util.Arrays;
 import java.util.List;
 
+import cn.hutool.core.collection.ListUtil;
 import com.hacker.common.annotation.SystemLog;
 import com.hacker.common.result.R;
 import com.hacker.entity.CategoryEntity;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * @Author: Zero
  * @Date: 2022/5/19 14:30
- * @Description: 商品三级分类
+ * @Description: 商品分类
  */
 @RestController
 @RequestMapping("product/category")
@@ -47,7 +48,7 @@ public class CategoryController {
      * 保存
      */
     @PostMapping("/save")
-    @ApiOperation("")
+    @ApiOperation(value = "添加商品分类菜单")
     public R<?> save(@RequestBody CategoryEntity category) {
         return R.run(() -> categoryService.save(category));
     }
@@ -67,14 +68,14 @@ public class CategoryController {
 
     /**
      * 删除
-     * SpringMVC自动将请求体的数据（json），转为对应的对象
+     * SpringMVC自动将请求体的数据（json）,转为对应的对象
      *
      * @param catIds 获取请求体，必须发送POST请求
-     * @return
+     * @return R
      */
-    @DeleteMapping("/delete")
+    @PostMapping("/delete")
     public R<?> delete(@RequestBody Long[] catIds) {
-        return R.run(() -> categoryService.removeMenuByIds(Arrays.asList(catIds)));
+        return R.run(() -> categoryService.removeMenuByIds(ListUtil.toList(catIds)));
     }
 
 }

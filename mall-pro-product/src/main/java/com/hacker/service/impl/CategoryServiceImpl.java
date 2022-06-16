@@ -38,7 +38,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         }
         return entities.stream()  //找到所有的一级分类
                 .filter(categoryEntity -> categoryEntity.getParentCid() == 0)
-                .peek((menu) -> menu.setChildren(getChildrens(menu, entities)))//当前菜单的子分类
+                .peek((menu) -> menu.setChildren(getChildrens(menu, entities)))     //当前菜单的子分类
                 .sorted(Comparator.comparingInt(menu -> (menu.getSort() == null ? 0 : menu.getSort())))
                 .collect(Collectors.toList());
     }
