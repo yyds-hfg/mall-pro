@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.hacker.redis.service.impl.RedisStringService,\
+  com.hacker.redis.service.impl.RedisListService,\
+  com.hacker.redis.service.impl.RedisSetService,\
+  com.hacker.redis.service.impl.RedisHashService
