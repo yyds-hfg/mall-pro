@@ -1,6 +1,10 @@
 package com.hacker.Test;
 
+import lombok.Data;
 import org.junit.jupiter.api.Test;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @Author: Zero
@@ -11,12 +15,24 @@ public class JavaFun {
 
     @Test
     public void test() {
-        byte a = 127;
-        byte b = 127;
-//        b = a + b; // error : cannot convert from int to byte
-        b += a; // ok
-        System.out.println(b);
+        ArrayList<Cat> res = new ArrayList<>();
+        ArrayList<Cat> list = new ArrayList<>();
+        Map<String, List<Cat>> map = list.stream().collect(Collectors.groupingBy(Cat::getId));
+        Set<String> keySet = map.keySet();
+        for (String s : keySet) {
+            List<Cat> cats = map.get(s);
+            Cat cat = cats.stream().sorted((s1, s2) -> {
+                return 1;
+            }).collect(Collectors.toList()).get(0);
+            res.add(cat);
+        }
 
-        System.out.println(3 * 0.1 == 0.3);
     }
+}
+@Data
+class Cat {
+    private String id;
+    private String name;
+    private String create_time;
+
 }

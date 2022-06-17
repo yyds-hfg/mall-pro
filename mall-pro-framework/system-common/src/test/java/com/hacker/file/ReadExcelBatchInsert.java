@@ -115,14 +115,13 @@ public class ReadExcelBatchInsert {
                 .filter(field -> field.getAnnotation(Element.class)!=null)
                 .sorted(Comparator.comparingInt(field -> Integer.parseInt(field.getAnnotation(Element.class).order())))
                 .collect(Collectors.toList());
-        Object o = type.getConstructor().newInstance();
-
+        Object obj = type.getConstructor().newInstance();
         //调用对象o的setXXX()对对象o赋值并进行返回
         for (int i = 0; i < fieldList.size(); i++) {
-            Method method = o.getClass().getMethod("set"+getUpper(fieldList.get(i).getName()), String.class);
-            method.invoke(o,list.get(i));
+            Method method = obj.getClass().getMethod("set"+getUpper(fieldList.get(i).getName()), String.class);
+            method.invoke(obj,list.get(i));
         }
-        return o;
+        return obj;
     }
 
     public static String getUpper(String str) {

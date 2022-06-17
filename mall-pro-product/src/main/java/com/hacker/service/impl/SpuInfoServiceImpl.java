@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -61,8 +62,8 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         //1、保存spu基本信息 pms_spu_info
         SpuInfoEntity infoEntity = new SpuInfoEntity();
         BeanUtils.copyProperties(vo, infoEntity);
-        infoEntity.setCreateTime(new Date());
-        infoEntity.setUpdateTime(new Date());
+        infoEntity.setCreateTime(LocalDateTime.now());
+        infoEntity.setUpdateTime(LocalDateTime.now());
         this.saveBaseSpuInfo(infoEntity);
 
         //2、保存Spu的描述图片 pms_spu_info_desc

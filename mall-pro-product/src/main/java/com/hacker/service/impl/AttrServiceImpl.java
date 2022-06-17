@@ -160,5 +160,13 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         relationDao.deleteBatchRelation(entities);
     }
 
+    public void test() {
+        QueryWrapper<AttrEntity> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("name","小宁")
+                .orderByAsc("date")
+                .last("limit 1");
+        this.baseMapper.selectList(queryWrapper);
+    }
+
 
 }

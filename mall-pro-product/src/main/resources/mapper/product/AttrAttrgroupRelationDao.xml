@@ -18,5 +18,11 @@
         </foreach>
     </delete>
 
+    <select id="select" parameterType="string">
+        SELECT * from test
+        where `name` = #{name}
+        ORDER BY date DESC LIMIT 1
+    </select>
+
 
 </mapper>

@@ -1,16 +1,23 @@
 package com.hacker;
 
-import com.hacker.entity.BrandEntity;
+import com.hacker.dao.AttrDao;
+import com.hacker.entity.AttrEntity;
+import com.hacker.redis.service.impl.RedisStringService;
 import com.hacker.service.BrandService;
 import com.hacker.service.CategoryService;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.session.ExecutorType;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.Extension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.management.Attribute;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 
 /**
@@ -28,33 +35,72 @@ public class MallProductApplicationTests {
     @Autowired
     CategoryService categoryService;
 
+    @Autowired
+    private RedisStringService redisStringService;
+
     @Test
     public void testFindPath() {
         Long[] catelogPath = categoryService.findCatelogPath(225L);
         log.info("完整路径：{}", Arrays.asList(catelogPath));
     }
 
+    @Autowired
+    private SqlSessionFactory sqlSessionFactory;
 
     @Test
-    public void contextLoads() {
-
-//        BrandEntity brandEntity = new BrandEntity();
-//        brandEntity.setBrandId(1L);
-//        brandEntity.setDescript("华为");
-
-//
-//        brandEntity.setName("华为");
-//        brandService.save(brandEntity);
-//        System.out.println("保存成功....");
-
-//        brandService.updateById(brandEntity);
-
-
-        List<BrandEntity> list = brandService.list(new QueryWrapper<BrandEntity>().eq("brand_id", 1L));
-        list.forEach((item) -> {
-            System.out.println(item);
-        });
-
+    void contextLoads() {
+        ArrayList<AttrEntity> list = new ArrayList<>();
+        SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH);
+        AttrDao sessionMapper = sqlSession.getMapper(AttrDao.class);
+        for (int i = 0; i < 10; i++) {
+            AttrEntity attrEntity = sessionMapper.selectById(null);
+            //放入list
+            list.add(attrEntity);
+        }
+        sqlSession.commit();
     }
+
+    /**
+     *
+     * SpringBoot SpringCloud  redis rocketmq
+     * Oracle19c  MybatisPlus
+     * mapstruct  jdk11
+     * lombok
+     * karate
+     * xxl-job
+     * eureka  openfeign okhttp nginx  tomcat
+     * cicd  jekis 持续集成
+     * Arthas
+     * hibernate validator
+     * swagger
+     * camunda activity flowable
+     * hutool
+     * guava  --
+     * gson
+     * easyexcel poi
+     * chiner  -数据库设计根据
+     *
+     * 分布式事务  a   b
+     *
+     * MySQL调优
+     * 慢SQL怎么优化
+     *
+     *
+     * Jmetr  tps qps  压测  并发的情况下
+     *
+     * apipost 接口联调 测试 压测
+     *
+     * 10
+     * 卡中台  信用卡参数  信用卡额度  应用中心
+     *
+     * sonar---checkstyle
+     *
+     * Java
+     * Web
+     * springboot
+     * springcloud
+     * xxl-job
+     *
+     */
 
 }

@@ -79,17 +79,12 @@ public class PoiSQLUtils {
             } else {
                 throw new IllegalArgumentException("excel文件地址无效，filePath=" + filePath);
             }
-
             //获取工作簿下sheet的个数
             int sheetNum = workbook.getNumberOfSheets();
-
-            //遍历工作簿中的所有数据
             for (int i = 0; i < sheetNum; i++) {
-                // sheet
                 Sheet sheet = workbook.getSheetAt(i);
                 // 循环行Row
                 for (int rowIndex = 0; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
-                    // System.out.println("第" + (rowIndex + 1) + "行的数据如下：");
                     Row row = sheet.getRow(rowIndex);
                     // 迭代单元格cell
                     final ArrayList<String> list = new ArrayList<>();
