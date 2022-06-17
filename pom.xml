@@ -264,6 +264,7 @@
                 <version>${org.mapstruct.version}</version>
             </dependency>
 
+
             <!--阿里巴巴Java线上诊断工具-->
             <dependency>
                 <groupId>com.taobao.arthas</groupId>

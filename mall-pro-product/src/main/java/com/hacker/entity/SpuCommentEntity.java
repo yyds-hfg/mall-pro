@@ -7,7 +7,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -128,6 +127,5 @@ public class SpuCommentEntity implements Serializable {
     public static final String MEMBER_ICON = "member_icon";
 
     public static final String COMMENT_TYPE = "comment_type";
-
 
 }
