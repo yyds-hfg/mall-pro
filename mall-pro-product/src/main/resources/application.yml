@@ -26,7 +26,9 @@ spring:
       config:
         server-addr: 127.0.0.1:8848
         file-extension: yaml
-
+    loadbalancer:
+      nacos:
+        enabled: true
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
 
@@ -37,11 +39,21 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
-#为了解决 Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method ‘POST’ not supported]
+    #为了解决 Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method ‘POST’ not supported]
     hiddenmethod:
       filter:
         enabled: true
 
+feign:
+  #关闭默认使用的httpclient
+  httpclient:
+    enabled: false
+  #开启okhttp使用方式
+  okhttp:
+    enabled: true
+  #关闭熔断器
+  circuitbreaker:
+    enabled: false
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
@@ -50,7 +62,6 @@ mybatis-plus:
       id-type: auto
       logic-delete-value: 1
       logic-not-delete-value: 0
-
 
   #打印日志
   configuration:
@@ -70,6 +81,24 @@ knife4j:
   basePackage: com.hacker.controller
   version: 2.0
 
+#################### 监控相关配置 ####################
+# Actuator 监控端点的配置项
+management:
+  endpoints:
+    web:
+      base-path: /actuator # Actuator 提供的 API 接口的根目录。默认为 /actuator
+      exposure:
+        include: '*' # 需要开放的端点。默认值只打开 health 和 info 两个端点。通过设置 * ，可以开放所有端点。
+# Spring Boot Admin 配置项
+  boot:
+    admin:
+      # Spring Boot Admin Client 客户端的相关配置
+      client:
+        url: http://127.0.0.1:${server.port}/${spring.boot.admin.context-path} # 设置 Spring Boot Admin Server 地址
+        instance:
+          prefer-ip: true # 注册实例时，优先使用 IP
+      # Spring Boot Admin Server 服务端的相关配置
+      context-path: /admin # 配置 Spring
 
 #关闭swagger2烦人的提示信息
 logging:
@@ -81,16 +110,6 @@ logging:
             readers:
               operation:
                 CachingOperationNameGenerator: warn
-  #解决Swagger documentationPluginsBootstrapper  npe异常
+#解决Swagger documentationPluginsBootstrapper  npe异常
 
 
-
-#apollo配置中心
-#app:
-#  id: zero10001
-#
-#apollo:
-#  meta: http://106.54.227.205:8080
-#  bootstrap:
-#    enabled: true
-#    namespaces: application

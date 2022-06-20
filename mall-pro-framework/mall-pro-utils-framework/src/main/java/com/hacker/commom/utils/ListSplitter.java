@@ -1,5 +1,10 @@
 package com.hacker.commom.utils;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -18,7 +23,12 @@ public class ListSplitter<T> {
      * @param list list集合
      * @param chunkSize 每一块的大小
      */
-    public ListSplitter(List<T> list, int chunkSize){
+    public ListSplitter(@NotNull(message = "被切割集合不能为null") List<T> list,
+                        @Min(value = 1,message = "每一块大小必须大于等于一")
+                                int chunkSize){
+        if (chunkSize>list.size()) {
+            throw new IllegalArgumentException("每一块大小不能超过list长度");
+        }
         this.list = list;
         this.chunkSize = chunkSize;
         this.index = 0;
@@ -33,7 +43,6 @@ public class ListSplitter<T> {
     }
 
     /**
-     *
      * @return 返回分割之后的list的子集合
      */
     public List<T> next(){

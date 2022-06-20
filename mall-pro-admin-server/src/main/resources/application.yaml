@@ -1,0 +1,12 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    ## 注册服务名
+    name: mall-pro-admin-server
+
+management:
+  endpoint:
+    health:
+      show-details: always

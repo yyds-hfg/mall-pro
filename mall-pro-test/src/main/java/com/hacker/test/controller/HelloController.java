@@ -13,6 +13,7 @@ import javax.annotation.Resource;
  */
 @RestController
 public class HelloController {
+
     @Resource
     private Docket docket;
 

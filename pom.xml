@@ -24,6 +24,7 @@
         <module>mall-pro-process</module>
         <module>mall-pro-test</module>
         <module>mall-pro-karate</module>
+        <module>mall-pro-admin-server</module>
     </modules>
 
 
@@ -79,6 +80,9 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
 
+        <!--监控相关-->
+        <admin-starter-client.version>2.6.6</admin-starter-client.version>
+        <admin-starter-server.version>2.6.6</admin-starter-server.version>
 
         <!--空手道自动化测试框架-->
         <karate.version>0.8.0</karate.version>
@@ -265,12 +269,26 @@
             </dependency>
 
 
+            <!--监控相关-->
             <!--阿里巴巴Java线上诊断工具-->
             <dependency>
                 <groupId>com.taobao.arthas</groupId>
                 <artifactId>arthas-spring-boot-starter</artifactId>
                 <version>${arthas.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${admin-starter-client.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${admin-starter-server.version}</version>
+            </dependency>
+
 
             <!--自动化测试框架 - 空手道 -->
             <dependency>
