@@ -36,13 +36,21 @@ spring:
   main:
     allow-circular-references: true
   #
-  mvc:
-    pathmatch:
-      matching-strategy: ANT_PATH_MATCHER
-    #为了解决 Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method ‘POST’ not supported]
-    hiddenmethod:
-      filter:
-        enabled: true
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ANT_PATH_MATCHER
+#    #为了解决 Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method ‘POST’ not supported]
+#    hiddenmethod:
+#      filter:
+#        enabled: true
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:8000
+        api-path:
+        instance:
+          prefer-ip: true # 使用ip注册进来
+
 
 feign:
   #关闭默认使用的httpclient
@@ -81,25 +89,6 @@ knife4j:
   basePackage: com.hacker.controller
   version: 2.0
 
-#################### 监控相关配置 ####################
-# Actuator 监控端点的配置项
-management:
-  endpoints:
-    web:
-      base-path: /actuator # Actuator 提供的 API 接口的根目录。默认为 /actuator
-      exposure:
-        include: '*' # 需要开放的端点。默认值只打开 health 和 info 两个端点。通过设置 * ，可以开放所有端点。
-# Spring Boot Admin 配置项
-  boot:
-    admin:
-      # Spring Boot Admin Client 客户端的相关配置
-      client:
-        url: http://127.0.0.1:${server.port}/${spring.boot.admin.context-path} # 设置 Spring Boot Admin Server 地址
-        instance:
-          prefer-ip: true # 注册实例时，优先使用 IP
-      # Spring Boot Admin Server 服务端的相关配置
-      context-path: /admin # 配置 Spring
-
 #关闭swagger2烦人的提示信息
 logging:
   level:
@@ -110,6 +99,18 @@ logging:
             readers:
               operation:
                 CachingOperationNameGenerator: warn
-#解决Swagger documentationPluginsBootstrapper  npe异常
+
+
+#################### 监控相关配置 ####################
+# Actuator 监控端点的配置项
+management:
+  endpoints:
+    web:
+      base-path: /actuator # Actuator 提供的 API 接口的根目录。默认为 /actuator
+      exposure:
+        include: '*' # 需要开放的端点。默认值只打开 health 和 info 两个端点。通过设置 * ，可以开放所有端点。
+# Spring Boot Admin 配置项
+
+
 
 

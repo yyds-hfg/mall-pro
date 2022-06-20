@@ -2,9 +2,7 @@ package com.hacker.test.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.spring.web.plugins.Docket;
 
-import javax.annotation.Resource;
 
 /**
  * @Author: Zero
@@ -14,12 +12,8 @@ import javax.annotation.Resource;
 @RestController
 public class HelloController {
 
-    @Resource
-    private Docket docket;
-
     @GetMapping("/get")
     public String get() {
-        System.out.println(docket.toString());
         return "Hello!";
     }
 

@@ -5,6 +5,10 @@ spring:
   application:
     ## 注册服务名
     name: mall-pro-admin-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
 
 management:
   endpoint:

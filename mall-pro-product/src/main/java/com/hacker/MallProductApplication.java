@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * 1、整合MyBatis-Plus
@@ -52,6 +53,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * 2）、使用@ExceptionHandler标注方法可以处理的异常。
  */
 @EnableFeignClients(basePackages = "com.hacker.feign")
+@ComponentScan(basePackages = "com.hacker.config")
 @EnableDiscoveryClient
 @SpringBootApplication
 public class MallProductApplication {

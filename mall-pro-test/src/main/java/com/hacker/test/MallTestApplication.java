@@ -2,6 +2,7 @@ package com.hacker.test;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * @Author: Zero
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Description:
  */
 @SpringBootApplication
+@EnableDiscoveryClient
 public class MallTestApplication {
     public static void main(String[] args) {
         SpringApplication.run(MallTestApplication.class,args);

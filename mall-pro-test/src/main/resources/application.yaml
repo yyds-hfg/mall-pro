@@ -1,12 +1,46 @@
-server:
-  port: 8030
-spring:
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
+#server:
+#  port: 8030
+
 
 knife4j:
   description: 商品服务
   groupName: 商品服务
   basePackage: com.hacker.test.controller
   version: 1.0
+
+spring:
+  application:
+    ## 注册服务名
+    name: admin-test
+  ## spring boot admin
+  boot:
+    admin:
+      client:
+        api-path:
+        url: http://localhost:8000
+        instance:
+          prefer-ip: true # 使用ip注册进来
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+server:
+  port: 8100
+
+#  endpoints config
+management:
+  info:
+    env:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    enabled-by-default: true
+    web:
+      base-path: /actuator
+      exposure:
+        include: '*'
