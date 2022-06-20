@@ -1,6 +1,3 @@
-/**
- * Copyright 2019 bejson.com
- */
 package com.hacker.vo;
 
 import lombok.Data;

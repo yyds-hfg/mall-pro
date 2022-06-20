@@ -9,7 +9,7 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <name>mall-pro</name>
-    <description>聚合服务</description>
+    <description>mall-聚合服务</description>
     <packaging>pom</packaging>
 
     <modules>
@@ -278,11 +278,13 @@
                 <artifactId>karate-apache</artifactId>
                 <version>${karate.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.intuit.karate</groupId>
                 <artifactId>karate-junit4</artifactId>
                 <version>${karate.version}</version>
             </dependency>
+
         </dependencies>
 
     </dependencyManagement>

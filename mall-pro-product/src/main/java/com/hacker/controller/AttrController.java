@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.*;
 import com.hacker.common.utils.R;
 
 /**
- * 商品属性
  *
- * @author leifengyang
- * @email leifengyang@gmail.com
- * @date 2019-10-01 22:50:32
+ *
+ * @Author: Zero
+ * @Date: 2022/6/19 12:29
+ * @Description:
  */
 @RestController
 @RequestMapping("product/attr")
@@ -78,13 +78,11 @@ public class AttrController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("product:attr:update")
     public R update(@RequestBody AttrVo attr) {
         attrService.updateAttr(attr);
         return R.ok();
     }
 
-    ///product/attr/update/{spuId}
     @PostMapping("/update/{spuId}")
     public R updateSpuAttr(@PathVariable("spuId") Long spuId,
                            @RequestBody List<ProductAttrValueEntity> entities) {

@@ -31,7 +31,6 @@ public class OssController {
     @Value("${spring.cloud.alicloud.access-key}")
     private String accessId;
 
-
     @GetMapping("/oss/policy")
     public R<Map<String, String>> policy() {
         //https://gulimall-hello.oss-cn-beijing.aliyuncs.com/hahaha.jpg
