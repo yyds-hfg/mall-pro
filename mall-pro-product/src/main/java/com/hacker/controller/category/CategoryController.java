@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import cn.hutool.core.collection.ListUtil;
+import com.hacker.cache.CategoryCacheDao;
+import com.hacker.cache.CategoryCacheObject;
 import com.hacker.common.annotation.SystemLog;
 import com.hacker.common.result.R;
 import com.hacker.entity.CategoryEntity;
@@ -22,17 +24,21 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("product/category")
 @Api(tags = "商品三级分类")
 public class CategoryController {
-
+    private String ID = "CATEGORY_KEY";
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private CategoryCacheDao categoryCacheDao;
     /**
      * 查出所有分类以及子分类，以树形结构组装起来
      */
     @GetMapping("/list/tree")
     @ApiOperation(value = "查出所有分类以及子分类，以树形结构组装起来")
     public R<List<CategoryEntity>> list() {
-        return R.run(() -> categoryService.listWithTree());
+//        CategoryEntity categoryEntity = this.categoryCacheDao.get(ID);
+        List<CategoryEntity> categoryEntities = categoryService.listWithTree();
+        return R.ok(categoryEntities);
     }
 
     /**
